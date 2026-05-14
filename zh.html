@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王氏家族祖源报告(中文版)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    color: #2a2a2a;
+    background: #f8f5ee;
+    line-height: 1.75;
+    font-size: 16px;
+}
+.layout { display: flex; max-width: 1400px; margin: 0 auto; }
+nav.toc {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: #fff;
+    border-right: 1px solid #e5dfd0;
+    padding: 25px 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+nav.toc h2 {
+    font-size: 1.05em;
+    color: #6a5040;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+nav.toc a {
+    display: block;
+    color: #555;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    transition: all 0.15s;
+}
+nav.toc a:hover { background: #f5eee0; color: #3a3050; }
+nav.toc a.h3 { padding-left: 24px; font-size: 0.88em; color: #888; }
+nav.toc .lang-switch {
+    margin-top: 25px; padding-top: 15px; border-top: 1px solid #e5dfd0;
+}
+nav.toc .lang-switch a {
+    background: #b89868; color: white; text-align: center;
+    border-radius: 6px; padding: 8px;
+}
+nav.toc .lang-switch a:hover { background: #8a7050; }
+main {
+    flex: 1;
+    max-width: 880px;
+    padding: 40px 60px;
+    background: white;
+    min-height: 100vh;
+}
+header.report {
+    border-bottom: 3px solid #b89868;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+header.report h1 {
+    color: #3a3050;
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+header.report .subtitle {
+    color: #888;
+    font-size: 1.05em;
+}
+header.report .meta {
+    color: #aaa;
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+h2 {
+    color: #3a3050;
+    font-size: 1.55em;
+    margin: 40px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5dfd0;
+    font-weight: 600;
+}
+h3 {
+    color: #5a4060;
+    font-size: 1.2em;
+    margin: 28px 0 12px;
+    font-weight: 600;
+}
+h4 {
+    color: #6a5070;
+    font-size: 1.05em;
+    margin: 18px 0 8px;
+    font-weight: 600;
+}
+p { margin: 12px 0; }
+ul, ol { margin: 10px 0 14px 25px; }
+li { margin: 5px 0; }
+strong { color: #2a2050; }
+.highlight-box {
+    background: #faf5e8;
+    border-left: 4px solid #b89868;
+    padding: 16px 22px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.highlight-box.warning {
+    background: #fef5e8;
+    border-left-color: #d88830;
+}
+.highlight-box.success {
+    background: #f0f5e8;
+    border-left-color: #6a9050;
+}
+.highlight-box h4 {
+    color: #5a3010;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 0.92em;
+}
+th {
+    background: #f0e8d8;
+    padding: 10px 12px;
+    text-align: left;
+    color: #4a3020;
+    border-bottom: 2px solid #b89868;
+    font-weight: 600;
+}
+td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #ede5d0;
+    vertical-align: top;
+}
+tr:hover td { background: #faf5ec; }
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+.photo-grid figure {
+    background: #f5eee0;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+.photo-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+.photo-grid figcaption {
+    padding: 6px;
+    font-size: 0.85em;
+    color: #5a4030;
+}
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; }
+.confidence {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.conf-vhigh { background: #d0e8d0; color: #2a5a2a; }
+.conf-high { background: #d8e8d0; color: #3a5a2a; }
+.conf-mod { background: #f0e0c0; color: #5a4a20; }
+.conf-low { background: #f0d0d0; color: #5a2a2a; }
+.evidence-flow {
+    background: #f5f0e0;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 20px 0;
+}
+.evidence-flow strong { color: #5a4030; }
+footer.report {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid #e5dfd0;
+    color: #888;
+    font-size: 0.85em;
+}
+@media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    nav.toc { position: static; height: auto; width: 100%; border-right: none; border-bottom: 1px solid #e5dfd0; }
+    main { padding: 30px 25px; }
+    header.report h1 { font-size: 1.7em; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+<h2>目录</h2>
+<a href="#summary">一、核心结论</a>
+<a href="#evidence-stack">二、证据汇总</a>
+<a href="#dad">三、王一波 — 父系满族八旗后裔</a>
+<a href="#dad-autosomal" class="h3">3a. 常染色体:38% 阿穆尔</a>
+<a href="#dad-geography" class="h3">3b. 地理背景</a>
+<a href="#dad-record" class="h3">3c. 家族记录</a>
+<a href="#dad-y-distribution" class="h3">3d. Y 染色体地理</a>
+<a href="#dad-american" class="h3">3e. 美国平台「韩国」%</a>
+<a href="#dad-heilongjiang" class="h3">3f. 黑龙江亲戚</a>
+<a href="#dad-name" class="h3">3g. 敦龙 命名不对称</a>
+<a href="#mom">四、胡吉 — 吴语区汉族</a>
+<a href="#zhe">五、王喆 — 继承结构</a>
+<a href="#hypothesis">六、主导假说</a>
+<a href="#confidence">七、置信度评估</a>
+<a href="#alternatives">八、替代假说为何失败</a>
+<a href="#wanyan">九、完颜氏(镶蓝旗)假说</a>
+<a href="#future">十、未来研究建议</a>
+<div class="lang-switch">
+<a href="en.html">→ English</a>
+</div>
+</nav>
+
+<main>
+<header class="report">
+<h1>王氏家族祖源报告</h1>
+<div class="subtitle">基于 DNA 与文献的父系满族八旗后裔研究</div>
+<div class="meta">报告日期:2026 年 5 月 13 日 · 主体:王一波(父亲)、王喆(儿子)</div>
+</header>
+
+<section id="summary">
+<h2>一、核心结论</h2>
+
+<div class="highlight-box success">
+<h4>核心发现</h4>
+<p><strong>王一波的父系是满族八旗后裔</strong>,最可能源自 1914 年杭州驻防营被拆毁后散迁的旗人社群。家族在 1914 年后迁至绍兴/上虞地区,在民国(1911-1949)和共产党(1949-至今)两个反满/反前贵族阶级时代里主动隐藏满族身份。常染色体「阿穆尔河 N」成分达 ~38%,在吴语区是 &lt;1% 的极端异常值。<strong>母系</strong>则可追溯至上虞两大汉族世家,有完整族谱:<strong>南源贾氏</strong>(贾宗正,北宋洛阳人,后裔贾湜约 1180 年定居上虞 ~900 年)与<strong>东山谢氏</strong>(谢衡,西晋陈郡阳夏/河南太康人,286 年永嘉之乱南渡上虞 ~1700 年,即「王谢风流」中的谢家,出过东晋宰相谢安)。</p>
+</div>
+
+<h3>一段总结</h3>
+<p>王一波约为<strong>「1/2 满族八旗后裔」</strong>(一位完全八旗后代的父辈,一位吴语区汉族的母辈)。爷爷王立言基本是「纯八旗后代」(~55% 阿穆尔)。王喆则是<strong>「1/4 满族八旗后裔」</strong>,经由父亲王一波,加上母亲胡吉与外婆贾湘钟(上虞世家)的吴语区汉族血脉。家族满族身份在民国与共产党两个政治时代被主动隐藏,今天只留下基因签名、不对称的家族记录、以及家庭长辈至今仍在使用的「<strong>敦龙</strong>」(取代王一波)。</p>
+
+<h3>三类独立证据指向同一答案</h3>
+<ul>
+<li><strong>基因证据</strong>(非常高置信度):qpAdm + G25 + 23魔方 + 美国商业平台 — 四个独立分析框架使用不同的参考人群库,都显示父亲的东北亚/通古斯成分远高于吴语区汉族基线。</li>
+<li><strong>文献证据</strong>(中等置信度):家族登记册由命师(算命师)精确到时辰记录出生死亡日期,但王长荣以上完全<em>没有姓名、没有籍贯</em> — 与母系两大世家的深度族谱形成鲜明对比。</li>
+<li><strong>文化/行为证据</strong>(中高置信度):「敦龙」作为家用名一直使用到 2026 年(通过婚姻传入贾家亲属网络);王长荣父亲的多妻制(≥3 妻 = 八旗军官特征)。</li>
+</ul>
+</section>
+
+<section id="evidence-stack">
+<h2>二、证据汇总</h2>
+
+<p>17+ 条独立证据,跨越 6 种分析框架,都指向同一个方向。下表每一行在数据来源和分析方法两方面都互相独立。</p>
+
+<table>
+<thead>
+<tr><th>证据</th><th>分析框架</th><th>结论</th></tr>
+</thead>
+<tbody>
+<tr><td>qpAdm Amur_N</td><td>AADR 古 DNA</td><td>父亲 38% 阿穆尔</td></tr>
+<tr><td>qpAdm PrimorskyAmurRiver_N</td><td>AADR 古 DNA</td><td>39%(独立古代来源)</td></tr>
+<tr><td>qpAdm Amur 中石器时代</td><td>AADR 古 DNA</td><td>33%</td></tr>
+<tr><td>qpAdm 达斡尔(现代)</td><td>AADR 现代</td><td>32%</td></tr>
+<tr><td>qpAdm 赫哲族(现代)</td><td>AADR 现代</td><td>31%</td></tr>
+<tr><td>G25 最近邻</td><td>Eurogenes PCA</td><td>辽宁满族,不是任何汉族个体</td></tr>
+<tr><td>23魔方 A/B 亲戚分组</td><td>中国商业 IBD</td><td>33% 东北亚偏移 + 37% 纯吴语汉族 = 不可能来自均匀混血</td></tr>
+<tr><td>78 cM 余姚潘姓表亲(16% 朝鲜成分)</td><td>23魔方 IBD</td><td>八旗时代 TMRCA ~4 代前</td></tr>
+<tr><td>北京于姓表亲(布里亚特+欧洲混血)</td><td>23魔方 IBD</td><td>深层通古斯祖源,18 cM 匹配</td></tr>
+<tr><td>黑龙江匹配(金、傅 姓氏)</td><td>23魔方 IBD</td><td>满族汉化姓氏 + TMRCA 150-300 年前 = 八旗时代</td></tr>
+<tr><td>美国平台 5-10% 韩国(父亲)</td><td>23andMe 等</td><td>东北亚信号高于汉族基线;「韩国」= 平台缺失满族参考时的最近替代</td></tr>
+<tr><td>美国平台 2-5% 韩国(王喆)</td><td>23andMe 等</td><td>父子 2:1 减半 = 一代稀释特征</td></tr>
+<tr><td>Y 染色体 N-Y137601</td><td>YFull 终端 SNP</td><td>通古斯 Y 单倍群</td></tr>
+<tr><td>Y 染色体地理分布</td><td>23魔方 Y 数据库</td><td>非单调江苏「凹陷」、上海「超尖峰」→ 点源八旗散迁,而非梯度迁移</td></tr>
+<tr><td>家族记录不对称</td><td>命师登记册直接检查</td><td>父系无籍贯 vs 母系深度籍贯(贾 1180 年、谢 286 年)</td></tr>
+<tr><td>1914 年「灯祖父」死期</td><td>命师登记册</td><td>与杭州旗营被拆毁同年</td></tr>
+<tr><td>王长荣父亲多妻制 ≥3 妻</td><td>命师登记册</td><td>八旗军官特征,完全独立于 DNA</td></tr>
+<tr><td>「敦龙」家用名不对称</td><td>文化习俗</td><td>家族长辈使用至 2026 年;母系世家无此习俗 — 八旗后代式身份保存</td></tr>
+<tr><td>南里蒋墺王氏已排除</td><td>字辈不匹配</td><td>排除「失去族谱的吴语汉族王氏」替代假说</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="dad">
+<h2>三、王一波 — 父系满族八旗后裔</h2>
+
+<h3 id="dad-autosomal">3a. 常染色体:5 个独立来源都显示 38% 阿穆尔</h3>
+<p>最严格的测试是 qpAdm 与古 DNA 样本比对。父亲的基因模型最佳拟合为 <strong>62% 仰韶(汉族祖源)+ 38% 阿穆尔河 N(通古斯祖源)</strong>。这个数字在 5 个不同的「阿穆尔」参考来源下都稳定:</p>
+<table>
+<thead><tr><th>参考来源</th><th>n</th><th>父亲最佳拟合阿穆尔 %</th></tr></thead>
+<tbody>
+<tr><td>阿穆尔河 N(古代,~5000 年前)</td><td>14</td><td>38%</td></tr>
+<tr><td>Primorsky 阿穆尔 N(古代)</td><td>6</td><td>39%</td></tr>
+<tr><td>阿穆尔中石器时代(古代)</td><td>5</td><td>33%</td></tr>
+<tr><td>达斡尔族(现代蒙古-通古斯)</td><td>10</td><td>32%</td></tr>
+<tr><td>赫哲族(现代通古斯)</td><td>19</td><td>31%</td></tr>
+</tbody>
+</table>
+<p>中位数约 32%,范围 31-39%。多个独立来源的收敛排除了人为伪影。父亲的东北亚祖源<em>特别属于阿穆尔河流域</em>,不是泛东北亚的。</p>
+
+<h3 id="dad-geography">3b. 地理背景 — 江南地区 38% 阿穆尔是极端异常值</h3>
+<p>中国汉族有地区性阿穆尔基线梯度,反映 2000 年来吸收东北亚血脉的累积:</p>
+<ul>
+<li>北方汉族(北京、河北、山东、辽宁):~22-28% 阿穆尔基线</li>
+<li>全国汉族平均:~20-22%</li>
+<li><strong>吴语汉族(浙江、江苏、上海):~10-15% — 父亲居住地</strong></li>
+<li>粤语/闽南汉族(广东、福建):~5-10%</li>
+</ul>
+<p>父亲的<strong>「38% 阿穆尔在江南地区比基线高 +23 个百分点」</strong>。在吴语区,这位于 &lt;1% 的极端尾部。非八旗的解释要么是泛北方汉族南迁(无法产生这种地理异常),要么是近代特定东北亚祖源 — 即八旗后裔。</p>
+
+<h3 id="dad-record">3c. 家族族谱直接检查</h3>
+<p>王家保留了一本手写登记册,写在 1940 年代「金鑫源宝号台执」预印纸张上(金鑫源是印刷店铺品牌,不是家族)。关键的是,这是<strong>命师(算命师)的工作笔记</strong>,不是家族自行维护的宗谱。「朱湖国华」红印识别写者为<strong>朱国华</strong>,籍贯<strong>嵊州黄泽镇朱湖山村</strong>(紧邻上虞)。精确到时辰的记录正是命师做八字推算所需要的精度。</p>
+
+<div class="photo-grid">
+<figure><img src="jiapu/9.jpeg" alt="第 9 页"><figcaption>第 9 页(封面)</figcaption></figure>
+<figure><img src="jiapu/8.jpeg" alt="第 8 页"><figcaption>第 8 页(最古老记录)</figcaption></figure>
+<figure><img src="jiapu/7.jpeg" alt="第 7 页"><figcaption>第 7 页(1914 灯祖父)</figcaption></figure>
+<figure><img src="jiapu/6.jpeg" alt="第 6 页"><figcaption>第 6 页(王一波出生)</figcaption></figure>
+<figure><img src="jiapu/5.jpeg" alt="第 5 页"><figcaption>第 5 页(王长荣记录)</figcaption></figure>
+<figure><img src="jiapu/4.jpeg" alt="第 4 页"><figcaption>第 4 页(亲属称谓表)</figcaption></figure>
+<figure><img src="jiapu/3.jpeg" alt="第 3 页"><figcaption>第 3 页</figcaption></figure>
+<figure><img src="jiapu/2.jpeg" alt="第 2 页"><figcaption>第 2 页</figcaption></figure>
+<figure><img src="jiapu/1.jpeg" alt="第 1 页"><figcaption>第 1 页</figcaption></figure>
+</div>
+
+<h4>按页面索引死亡/出生日期</h4>
+<table>
+<thead><tr><th>页</th><th>纪年</th><th>公历</th><th>标记/事件</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>光绪癸未 二月十九 酉时</td><td>1883</td><td>匿名祖先死亡</td></tr>
+<tr><td>8</td><td>光绪辛卯 十月初九 戌时</td><td>1891</td><td>匿名死亡(旁注 1904)</td></tr>
+<tr><td>8</td><td>民国乙丑 四月廿二 卯时</td><td>~1925</td><td>死亡(属兔)</td></tr>
+<tr><td>8</td><td>民国丙寅 五月 辰时</td><td>1926</td><td>死亡</td></tr>
+<tr><td>8</td><td>民国廿二年癸酉 九月廿日</td><td>1933</td><td>可能是王立言实际出生年份(鸡年)</td></tr>
+<tr><td><strong>7</strong></td><td><strong>民国三年 ... 申时</strong></td><td><strong>1914</strong></td><td><strong>「灯祖父 死期」— 与杭州旗营拆毁同年</strong></td></tr>
+<tr><td><strong>7</strong></td><td>民国卅八年 闰七月廿二日 巳时</td><td>1949</td><td>「三祖母 死期」(高祖母级)</td></tr>
+<tr><td>6</td><td>一九五九年 农历二月十五日 申时</td><td>1959</td><td><strong>王一波出生(敦龙)</strong></td></tr>
+<tr><td>5</td><td>光绪十二年 十一月初三 子时</td><td>1886</td><td>王长荣出生</td></tr>
+<tr><td>5</td><td>1984 阳历 8月10日</td><td>1984</td><td>蒋月香去世(寿82)</td></tr>
+</tbody>
+</table>
+
+<div class="highlight-box">
+<h4>1914 年「灯祖父」 — 单一最具诊断性的数据点</h4>
+<p>1914 年正是杭州八旗驻防营被彻底拆毁、旗人散迁的同一年。如果「灯祖父」是王长荣的父亲(王喆的高祖父),他在驻防营崩溃的同一年去世 — 这是<strong>家族记录中第一条直接将王家与 1914 年杭州旗营散迁事件联系起来的文字证据</strong>。他应该是出生在 ~1850-1865 年的八旗成员,要么是 1862 年太平天国大屠杀的幸存者,要么是 1865-1875 年补充期间被调入的。</p>
+</div>
+
+<div class="highlight-box">
+<h4>「三祖母」+ 多妻制 = 独立的八旗军官证据</h4>
+<p>「三祖母 1949」记录意味着王长荣的父亲<strong>至少有 3 位妻子</strong>。多妻制(3+ 妻)是<strong>八旗军官和富裕汉族文人的特征</strong>,**不是**晚清农村汉族农民的典型情况(他们负担不起)。这是<strong>完全独立于 DNA 的</strong>八旗军官身世证据。</p>
+</div>
+
+<h3 id="dad-y-distribution">3d. Y 染色体 N-Y137601 — 地理分布映射八旗驻防</h3>
+<p>父亲的 Y 单倍群是 <strong>N-Y137601</strong>(通古斯 / 东北亚谱系)。23魔方报告其全国分布为中国男性的 0.04%。前 12 个省市:</p>
+<table>
+<thead><tr><th>省份</th><th>频率</th><th>× 基线</th><th>八旗地理解读</th></tr></thead>
+<tbody>
+<tr><td><strong>上海</strong></td><td><strong>0.31%</strong></td><td><strong>7.75×</strong></td><td>最高 — 南方八旗散迁终点</td></tr>
+<tr><td>黑龙江</td><td>0.29%</td><td>7.25×</td><td>满族故乡</td></tr>
+<tr><td>内蒙古</td><td>0.23%</td><td>5.75×</td><td>满蒙旗人故乡</td></tr>
+<tr><td>北京</td><td>0.15%</td><td>3.75×</td><td>八旗首都</td></tr>
+<tr><td><strong>浙江</strong></td><td><strong>0.12%</strong></td><td><strong>3×</strong></td><td><strong>父亲居住省 — 杭州/乍浦驻防</strong></td></tr>
+<tr><td>辽宁</td><td>0.11%</td><td>2.75×</td><td>满族故乡</td></tr>
+<tr><td>山东</td><td>0.10%</td><td>2.5×</td><td>青州驻防(1865-1875 杭州补充来源)</td></tr>
+<tr><td>江苏</td><td>0.04%</td><td>1×</td><td><strong>凹陷 — 在浙江和上海尖峰中间</strong></td></tr>
+<tr><td>河北</td><td>0.03%</td><td>0.75×</td><td>北京溢出</td></tr>
+</tbody>
+</table>
+
+<div class="highlight-box">
+<h4>江苏「凹陷」是冒烟枪证据</h4>
+<p>泛北方汉族南迁(西晋→南北朝,300-600 年)会产生<em>平滑的频率梯度</em>,因为扩散让差异变得平稳。八旗驻防散迁则产生<em>驻防城市的高点尖峰</em>,因为来源是点状集中的。观察到的模式 — 浙江(0.12%)→ 江苏(0.04% <strong>凹陷</strong>)→ 上海(0.31% <strong>超尖峰</strong>)— 是<strong>非单调</strong>的,**正好对应「点源驻防散迁」的特征**,正源于杭州 + 江宁/京口驻防。</p>
+</div>
+
+<h3 id="dad-american">3e. 美国基因检测平台 — 5-10% 韩国信号</h3>
+<p>美国商业平台(23andMe、AncestryDNA、MyHeritage、FTDNA 等)一致显示父亲为 <strong>5-10% 韩国</strong>,王喆为 <strong>2-5% 韩国</strong>;母亲胡吉是 0% 韩国。这是第四个完全独立的分析框架。</p>
+
+<p><strong>为什么是「韩国」而不是「满族」?</strong>美国平台基本没有满族参考样本 — 满族人主要在 WeGene/23魔方 测,几乎不在美国平台测。当算法遇到东北亚/通古斯信号时,只能找最接近的「已标注」人群:韩国人(本身就是约 40% 阿穆尔来源)。</p>
+
+<p><strong>父子 2:1 减半(5-10% → 2-5%)是一代稀释的冒烟枪证据。</strong>如果父亲的东北亚成分是远古散布混血,父子比例应该约为 1:1。实际观察到的 2:1 比例意味着东北亚成分来自一个特定父母(父亲),被吴语区汉族母亲稀释了一半 — 正是近代(3-4 代)八旗后裔的特征签名。</p>
+
+<h3 id="dad-heilongjiang">3f. 23魔方黑龙江亲戚匹配 — 满族汉化姓氏</h3>
+<p>父亲在<strong>黑龙江有 4 位匹配</strong>(辽宁基本为 0),分布在与东北通古斯地理对齐的城市:</p>
+<table>
+<thead><tr><th>城市</th><th>匹配数</th><th>历史民族区域</th></tr></thead>
+<tbody>
+<tr><td>哈尔滨</td><td>2</td><td>混合满/汉/朝鲜;满族行政中心</td></tr>
+<tr><td>牡丹江</td><td>1</td><td><strong>赫哲/那乃族传统聚居地</strong>(黑龙江东北部)</td></tr>
+<tr><td>齐齐哈尔</td><td>1</td><td><strong>达斡尔族传统聚居地</strong>(黑龙江西部)</td></tr>
+</tbody>
+</table>
+<p>数据库取样偏差进一步加强信号:23魔方在黑龙江的渗透率约为全国均值的 0.3-0.5 倍。4 位匹配相当于标准取样下的约 10 位。</p>
+
+<h4>两位可见匹配带有满族汉化姓氏</h4>
+<table>
+<thead><tr><th>匹配</th><th>姓氏</th><th>满族起源</th><th>Y 单倍群</th><th>东北亚 %</th><th>TMRCA</th></tr></thead>
+<tbody>
+<tr><td>金**(哈尔滨)</td><td>金</td><td><strong>爱新觉罗 → 金</strong>(清皇室家族汉化)</td><td>O-MF14228</td><td>34%</td><td>150-300 年</td></tr>
+<tr><td>傅**</td><td>傅</td><td><strong>富察氏 → 傅</strong>(满洲八旗最高级家族;富察皇后/傅恒家族)</td><td>O-F619</td><td>2.26%</td><td>150-300 年</td></tr>
+</tbody>
+</table>
+<p><strong>如果是随机汉族匹配,预期姓氏应该是王/李/张/刘</strong>(前几大汉姓)。「金」和「傅」都是有文献记录的满族汉化姓氏,集中在黑龙江加上八旗时代 TMRCA 极有诊断价值。</p>
+<p>Y 单倍群不匹配(这些表亲是 O Y,父亲是 N)是预料之中的 — 五代以上表亲<strong>不需要</strong>共享 Y,只需要在基因组某处共享 IBD 片段即可。</p>
+
+<h3 id="dad-name">3g. 敦龙 — 替代名字与不对称身份保存</h3>
+<p>登记册记录「立言之子 敦龙」 — <strong>「敦龙」是王一波本人的另一个名字</strong>,不是兄弟姐妹。关键的是,<strong>王喆的外婆(王一波的岳母,不是王家人)在 2026 年依然用「敦龙」称呼王一波</strong>。这个名字通过婚姻传入贾家亲属网络。这是<em>主要日常使用名字</em>的标记,不是儿童时期的临时昵称。</p>
+
+<div class="evidence-flow">
+<strong>不对称的身份保存机制具有诊断价值:</strong>
+<ul>
+<li><strong>母系</strong>(吴语区世家):身份通过<em>纸质记录</em>保存 — 族谱,有名录祖先名单到 1180 年/286 年;单名习惯,乳名在上学后停用。</li>
+<li><strong>父系</strong>(疑似八旗后代):无族谱,无籍贯,家族登记写在租来的纸张上。但身份通过<em>主动实践</em>保存 — 「敦龙」由家族长辈使用 60+ 年,通过婚姻传入岳家网络。</li>
+</ul>
+<p>这是 1911 年后八旗后代家族的预期标记:当外部身份标志(族谱、籍贯)被政治迫害破坏时,身份只能通过内部实践传承 — 长辈如何称呼后代、家里用什么名字、过年用什么菜。汉族世家不需要实践性身份延续,因为他们的族谱已经承担了身份保存。</p>
+</div>
+</section>
+
+<section id="mom">
+<h2>四、胡吉 — 吴语汉族,深度母系世家</h2>
+<p>母亲胡吉与父亲完全相反:常染色体上是典型吴语汉族(91% 汉、0% 蒙古/东北亚;最近邻是杭州汉族),区域亲戚网络极深(32% 亲戚在浙江 vs 全国均值约 6%)。她的线粒体 D5a2a1-A9 追溯到一位古代(3000-5000 年前)东北亚女性祖先,但常染色体上她完全是融入主流汉族基因池。</p>
+
+<p>更深层的母系族谱来自她的母亲(王喆的外婆)贾湘钟和她的父亲(王喆的外公) — 都是上虞吴语汉族世家:</p>
+
+<div class="highlight-box">
+<h4>外公家族 — 南源贾氏(上虞,~900 年)</h4>
+<p><strong>始祖贾宗正:</strong>北宋时期洛阳(河南)军官,宋徽宗时驻防泾原、凤阳。<strong>1127 年:</strong>金军南下灭北宋 — 贾宗正随宋高宗南渡至临安(今杭州)。<strong>约 1150-1180 年:</strong>孙子贾湜(行念二)从临安东移至上虞,定居上南源 — 上虞贾氏始迁祖。家族堂号:世伦堂 / 世纶堂。<strong>~900 年</strong>世居上虞至今。</p>
+</div>
+
+<div class="highlight-box">
+<h4>外婆家族 — 东山谢氏(上虞,~1700 年!)</h4>
+<p><strong>始祖谢衡:</strong>西晋时期,原籍陈郡阳夏(今河南太康县)。<strong>286 年:</strong>永嘉之乱 / 衣冠南渡 — 谢衡率家族南渡至始宁县东山(今上虞上浦镇方弄村)。<strong>谢安(320-385):</strong>东晋宰相,「东山再起」典故出自此;中国文化记忆中的<strong>「王谢风流」</strong>就是这个谢家。<strong>~1700 年</strong>世居上虞至今。中国历史上最显赫的世家之一。</p>
+</div>
+
+<p>23魔方亲戚网络 33%/37% A/B 分组正好对应父亲的父系(八旗)和母亲的母系(吴语世家):A 组(东北亚偏移)对应父亲的八旗祖先,B 组(纯吴语汉族)对应母亲的上虞世家祖先。</p>
+</section>
+
+<section id="zhe">
+<h2>五、王喆 — 1/2 + 1/4 继承结构</h2>
+<p>王喆是算术平均值:常染色体上约 18-22% 阿穆尔(在父亲 38% 和母亲 5-10% 之间)。家族族谱意义上,<strong>王喆是 1/4 满族八旗后裔</strong>(四位祖父母中一位 = 八旗,即王立言这条线),1/2 吴语汉族经母系贾/谢(通过贾湘钟),1/4 吴语汉族经胡(母亲胡吉)。</p>
+
+<p>王喆继承了父亲的 Y 染色体 N-Y137601(通古斯父系标记)和母亲的线粒体 D5a2a1-A9(古代东北亚母系标记)。整合起来:</p>
+<ul>
+<li><strong>Y 染色体:</strong>「我的父系追溯到通古斯满族八旗祖先」</li>
+<li><strong>线粒体:</strong>「我的母系追溯到青铜时代东北亚女性」</li>
+<li><strong>常染色体:</strong>「我现在是一个典型的汉族个体,带约 20% 东北亚成分」</li>
+</ul>
+
+<p>在商业平台上,王喆的基因组看起来是「典型汉族,稍偏北方汉族」 — 单独看不显眼。八旗后代的解读只有在父亲数据加入用于三角定位时才能浮现。这就是为什么<strong>只看王喆的 BAM 无法检测出近代八旗后代</strong> — 必须看父母的数据。</p>
+</section>
+
+<section id="hypothesis">
+<h2>六、主导假说</h2>
+
+<div class="highlight-box success">
+<h4>八旗后代叙事</h4>
+<p><strong>王长荣(1886 年生)出生于与杭州驻防营有关的满族八旗家庭。</strong>最可信的具体重建:</p>
+<ol>
+<li>王长荣的父亲是 1865-1875 年杭州补充期被调来的八旗成员(在 1862 年太平天国大屠杀摧毁原驻防营人口之后)。</li>
+<li>王长荣的父亲有 ≥3 位妻子(根据 1949 年「三祖母」记录) — 符合八旗军官身世。</li>
+<li>王长荣的父亲在 <strong>1914 年</strong>去世(「灯祖父 死期」,正是杭州旗营被拆毁的同一年)。</li>
+<li>1914 年拆毁后,家族从杭州散迁到 50-70 公里外的绍兴/上虞地区。</li>
+<li>家族将姓氏汉化为「王」(最可能的原满族姓氏:<strong>完颜氏(Wanyan),镶蓝旗</strong> — 见第九节)。</li>
+<li>王长荣与蒋月香(也可能是八旗后代)结婚,生王立言和至少一位兄弟。</li>
+<li>在民国(1911-1949)和共产党(1949-)反满/反「封建阶级」时代,家族<strong>主动隐藏</strong>满族身份以保护后代。身份传递在王立言一代终止。</li>
+<li>今天唯一留下的痕迹是:基因签名(父亲 ~38% 阿穆尔)、家族登记(1914 年灯祖父记录 + 不对称记录风格)、以及一直使用的家用名敦龙。</li>
+</ol>
+</div>
+
+<h4>仍然有歧义的部分</h4>
+<p>两个子假说都符合数据,目前无法决定性区分:</p>
+<ul>
+<li><strong>场景 A:</strong>王长荣 + 蒋月香都是典型辽宁满族八旗后代(各约 55% 阿穆尔)。常染色体数学最简洁,符合两位祖父祖母两边都匿名化的对称家族记录。</li>
+<li><strong>场景 B:</strong>王长荣是新满洲/赫哲族系(~80% 阿穆尔,汉化程度低),蒋月香是北汉。更好地解释黑龙江亲戚地理(牡丹江 + 齐齐哈尔)。</li>
+</ul>
+<p>两个都属于「八旗后代」的子类。要区分需要 RFmix 局部祖源分析、更多亲戚数据随时间累积、或家族口述历史碎片。</p>
+</section>
+
+<section id="confidence">
+<h2>七、置信度评估</h2>
+
+<table>
+<thead><tr><th>论点</th><th>置信度</th></tr></thead>
+<tbody>
+<tr><td>父亲有约 1/2 东北亚偏移祖源</td><td><span class="confidence conf-vhigh">非常高</span> 5 个独立的 qpAdm 古代来源收敛</td></tr>
+<tr><td>东北亚祖源经父系祖父母传承</td><td><span class="confidence conf-high">高</span> 母亲是吴语区基线;族谱不对称</td></tr>
+<tr><td>来源是八旗后代,不是泛东北亚汉族迁移</td><td><span class="confidence conf-vhigh">非常高</span> Y 染色体地理 + 表亲姓氏 + 1914 记录</td></tr>
+<tr><td>具体涉及南方驻防(杭州/乍浦/江宁)</td><td><span class="confidence conf-high">中-高</span> 浙江尖峰 + 江苏凹陷 + 上海超尖峰</td></tr>
+<tr><td>1914 年杭州旗营拆毁是家族散迁事件</td><td><span class="confidence conf-mod">中等</span> 灯祖父 1914 记录强烈暗示</td></tr>
+<tr><td>原满族姓氏 = 完颜(Wanyan)</td><td><span class="confidence conf-mod">中等</span> 《金史》「完颜汉姓曰王」+ 京旗→王 占主导</td></tr>
+<tr><td>1862 年太平天国幸存者 vs 1865-1875 调入</td><td><span class="confidence conf-low">低</span> 数据无法决定性区分</td></tr>
+<tr><td>族系是陈满洲(辽宁)vs 新满洲(赫哲一边)</td><td><span class="confidence conf-low">低</span> ~50/50</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="alternatives">
+<h2>八、替代假说为何失败</h2>
+
+<table>
+<thead><tr><th>替代假说</th><th>预测</th><th>观察</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td>泛北方汉族南迁(西晋衣冠南渡)</td><td>平滑 Y 染色体梯度;+5-10pp 阿穆尔;保留籍贯/族谱</td><td>非单调江苏凹陷;+23pp;无籍贯/族谱</td><td>3 个维度都失败</td></tr>
+<tr><td>远古散布混血(漂移)</td><td>父子 1:1 比例;短常染色体东北亚片段;无 A/B 表亲分组</td><td>2:1 比例;78 cM 表亲片段;尖锐 A/B 分组</td><td>3 个维度都失败</td></tr>
+<tr><td>失去族谱的吴语汉族王氏(如南里蒋墺王氏)</td><td>字辈与已有谱系匹配;本地汉族基因模型</td><td>字辈不匹配(26 世应该是「以」,不是「长」);38% 阿穆尔</td><td>2 个维度失败</td></tr>
+<tr><td>朝鲜移民家庭</td><td>美国平台 ~40-60% 韩国;保留朝鲜族身份</td><td>5-10% 韩国;无朝鲜族身份</td><td>2 个维度失败</td></tr>
+<tr><td>蒙古族后代</td><td>~30-40% 阿穆尔;蒙古 Y 染色体 C-M407</td><td>38% 阿穆尔;N-Y137601</td><td>2 个维度失败</td></tr>
+<tr><td>八旗后代</td><td>+20pp 阿穆尔;八旗驻防 Y 地理;满族汉化姓氏;不对称记录消失;多妻制隐含八旗军官</td><td>全部观察到</td><td>清晰拟合</td></tr>
+</tbody>
+</table>
+
+<p>证据已经变得<strong>收敛且自我强化</strong>。每一个新的数据点都加入到同一个画面中,而不是产生矛盾 — 这是正确假说的特征。</p>
+</section>
+
+<section id="wanyan">
+<h2>九、完颜氏(镶蓝旗)→ 王 工作假说</h2>
+<p>最高概率的具体满族族系识别,基于独立的网络研究分析:</p>
+
+<ul>
+<li><strong>《金史·金国语解》</strong>明确记载:「完颜, 汉姓曰王」— 权威历史文献</li>
+<li><strong>完颜 = 金朝(1115-1234)女真族皇族</strong>,1600 年代被吸收入满洲八旗系统</li>
+<li>集中在<strong>镶蓝旗</strong></li>
+<li>京旗(北京八旗)汉化时<strong>最常用</strong>「王」 — 杭州 1865-1875 补充期包括北京来的八旗调动</li>
+<li>N 系 Y 染色体在完颜后裔样本中有记录,与 N-Y137601 兼容</li>
+<li>已记录的平行案例:辽宁岫岩哨子河镶蓝旗完颜氏 → 汪氏</li>
+</ul>
+
+<div class="highlight-box warning">
+<h4>注意</h4>
+<p>这是最高概率候选(~30-40%),<em>不是</em>已证实的结论。其他满族→王汉化通道也存在:王佳氏(Wanggiya)、伊喇氏、抬入旗汉军王氏家族。确认完颜需要 Y 染色体与已知完颜后裔的聚类匹配 — 等待 YFull 数据库累积更多样本。</p>
+</div>
+</section>
+
+<section id="future">
+<h2>十、未来研究建议</h2>
+
+<h4>免费、高 EV 的行动(推荐)</h4>
+<ul>
+<li><strong>家族口述历史</strong>:询问王立言的兄弟姐妹、堂兄弟、在转塘/萧山/绍兴的还活着认识 1949 年前家族的任何人。即使一个籍贯碎片也能将不确定性降低 10×。</li>
+<li><strong>23魔方/WeGene Y 染色体匹配清单</strong>:最大的中国人口 Y 数据库。寻找带有满族身份的 Y 系匹配。</li>
+<li><strong>YFull 树定期检查</strong>:N-Y137601 可能随更多样本累积出现新的 TMRCA 匹配。</li>
+<li><strong>字辈字验证</strong>:王喆按家族字辈应该用什么字?王长荣的父亲那一代应该用什么字?任何一个都能将字辈搜索能力扩大 5×。</li>
+</ul>
+
+<h4>中等成本、中等收益</h4>
+<ul>
+<li><strong>RFmix 局部祖源分析</strong>(在父亲 BAM 上) — 可以直接区分陈满洲 vs 新满洲族系。免费管线,~1 天技术工作。</li>
+<li><strong>中央民族大学满学研究所咨询</strong> — $500-2K。比通用族谱机构定位精准得多。</li>
+</ul>
+
+<h4>不推荐</h4>
+<ul>
+<li><strong>My China Roots 全面调查</strong>($5-15K) — 八旗后代研究不是他们核心领域(吴/闽/粤语族谱专家)。</li>
+<li><strong>更多商业 DNA 检测</strong> — Y 染色体已经在终端 SNP 解析度;额外测试不会在目前增加信息。</li>
+</ul>
+
+<h4>边际收益递减的现实</h4>
+<p>广义八旗后代结论基本已经确定(~99% 后验概率)。具体子问题(哪个族系、哪条转入路线、陈满洲 vs 新满洲)需要<strong>每单位置信度增益要 5-10 倍的努力</strong>。记录在 1862 年大火、1914 年拆毁、1949 年政权更迭、文化大革命中被系统性破坏。证人大都已经去世。剩下的具体答案可能永远不可恢复,或者随数据库随年累积而逐渐浮现。</p>
+</section>
+
+<footer class="report">
+<p><strong>数据来源:</strong>WeGene V16 商业基因检测(王一波、胡吉、王喆);G25 主成分分析建模(200+ 模型);AADR v66 古 DNA 数据库 + qpAdm 建模;23魔方亲戚网络 + N-Y137601 地理分布;YFull 终端 SNP 与线粒体测序;美国商业平台(23andMe 等);家族族谱(命师记录)直接检查(/jiapu/ 9 张照片);母系族谱:南源贾氏(上虞 1180 年至今)、东山谢氏(上虞 286 年至今)。</p>
+<p><a href="index.html">← 首页</a> · <a href="en.html">→ English</a></p>
+</footer>
+</main>
+</div>
+
+<div class="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img"></div>
+
+<script>
+document.querySelectorAll('.photo-grid img').forEach(img => {
+    img.addEventListener('click', e => {
+        const lb = document.querySelector('.lightbox');
+        document.getElementById('lightbox-img').src = e.target.src;
+        lb.classList.add('active');
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wang Family Ancestry Report / 王氏家族祖源报告</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d0 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #2a2a2a;
+}
+.container {
+    max-width: 800px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 60px 50px;
+    text-align: center;
+}
+h1 {
+    font-size: 2.4em;
+    color: #3a3050;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.subtitle {
+    color: #707080;
+    font-size: 1.1em;
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+.lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.lang-card {
+    padding: 40px 30px;
+    border: 2px solid #e0d8c8;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    display: block;
+}
+.lang-card:hover {
+    border-color: #8a7050;
+    background: #faf8f3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(138, 112, 80, 0.15);
+}
+.flag {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.lang-name {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #3a3050;
+    margin-bottom: 8px;
+}
+.lang-desc {
+    color: #909090;
+    font-size: 0.95em;
+}
+.footer {
+    margin-top: 40px;
+    color: #b0a890;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+.summary {
+    background: #f9f5ec;
+    border-left: 4px solid #b89868;
+    padding: 18px 22px;
+    margin: 30px 0 40px;
+    text-align: left;
+    border-radius: 4px;
+    color: #4a4030;
+    line-height: 1.7;
+    font-size: 0.95em;
+}
+@media (max-width: 600px) {
+    .lang-grid { grid-template-columns: 1fr; }
+    .container { padding: 40px 25px; }
+    h1 { font-size: 1.8em; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Wang Family Ancestry Report</h1>
+<h1 style="font-size: 1.8em; color: #6a5040; margin-top: 5px;">王氏家族祖源报告</h1>
+<p class="subtitle">A DNA + documentary investigation of paternal Manchu Banner descent<br>基于 DNA 与文献的父系满族八旗后裔研究</p>
+
+<div class="summary">
+<strong>Key finding · 核心发现:</strong> 王一波 (Yi Bo Wang) is descended from Manchu Banner cohort on the paternal line, most likely from the Hangzhou garrison that dispersed after the 1914 demolition. Maternal line traces deep Wu Han 世家 (贾氏 since 1180 CE, 谢氏 since 286 CE). · 父系为满族八旗后裔(很可能源于 1914 年解散的杭州驻防营),母系为上虞两大汉族世家(南源贾氏自 1180 年,东山谢氏自 286 年)。
+</div>
+
+<div class="lang-grid">
+<a href="en.html" class="lang-card">
+<div class="flag">🇺🇸</div>
+<div class="lang-name">English</div>
+<div class="lang-desc">Full analytical report</div>
+</a>
+<a href="zh.html" class="lang-card">
+<div class="flag">🇨🇳</div>
+<div class="lang-name">中文</div>
+<div class="lang-desc">完整分析报告</div>
+</a>
+</div>
+
+<p class="footer">
+Report date · 报告日期: 2026-05-13<br>
+Based on WeGene V16 · G25 PCA · AADR v66 qpAdm · YFull Y-DNA · 23mofang · American commercial platforms · 命师 family register · 1180-CE 贾氏 / 286-CE 谢氏 maternal 族谱
+</p>
+</div>
+</body>
+</html>

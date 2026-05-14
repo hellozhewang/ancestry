@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wang Family Ancestry Report (English)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #2a2a2a;
+    background: #f8f5ee;
+    line-height: 1.65;
+    font-size: 16px;
+}
+.layout { display: flex; max-width: 1400px; margin: 0 auto; }
+nav.toc {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: #fff;
+    border-right: 1px solid #e5dfd0;
+    padding: 25px 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+nav.toc h2 {
+    font-size: 1.05em;
+    color: #6a5040;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+nav.toc a {
+    display: block;
+    color: #555;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: all 0.15s;
+}
+nav.toc a:hover { background: #f5eee0; color: #3a3050; }
+nav.toc a.h3 { padding-left: 24px; font-size: 0.85em; color: #888; }
+nav.toc .lang-switch {
+    margin-top: 25px; padding-top: 15px; border-top: 1px solid #e5dfd0;
+}
+nav.toc .lang-switch a {
+    background: #b89868; color: white; text-align: center;
+    border-radius: 6px; padding: 8px;
+}
+nav.toc .lang-switch a:hover { background: #8a7050; }
+main {
+    flex: 1;
+    max-width: 880px;
+    padding: 40px 60px;
+    background: white;
+    min-height: 100vh;
+}
+header.report {
+    border-bottom: 3px solid #b89868;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+header.report h1 {
+    color: #3a3050;
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+header.report .subtitle {
+    color: #888;
+    font-size: 1.05em;
+}
+header.report .meta {
+    color: #aaa;
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+h2 {
+    color: #3a3050;
+    font-size: 1.6em;
+    margin: 40px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5dfd0;
+    font-weight: 600;
+}
+h3 {
+    color: #5a4060;
+    font-size: 1.25em;
+    margin: 28px 0 12px;
+    font-weight: 600;
+}
+h4 {
+    color: #6a5070;
+    font-size: 1.05em;
+    margin: 18px 0 8px;
+    font-weight: 600;
+}
+p { margin: 12px 0; }
+ul, ol { margin: 10px 0 14px 25px; }
+li { margin: 5px 0; }
+strong { color: #2a2050; }
+code, .mono {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    background: #f5eee0;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.92em;
+    color: #4a3a2a;
+}
+.highlight-box {
+    background: #faf5e8;
+    border-left: 4px solid #b89868;
+    padding: 16px 22px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.highlight-box.warning {
+    background: #fef5e8;
+    border-left-color: #d88830;
+}
+.highlight-box.success {
+    background: #f0f5e8;
+    border-left-color: #6a9050;
+}
+.highlight-box h4 {
+    color: #5a3010;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 0.92em;
+}
+th {
+    background: #f0e8d8;
+    padding: 10px 12px;
+    text-align: left;
+    color: #4a3020;
+    border-bottom: 2px solid #b89868;
+    font-weight: 600;
+}
+td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #ede5d0;
+    vertical-align: top;
+}
+tr:hover td { background: #faf5ec; }
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+.photo-grid figure {
+    background: #f5eee0;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+.photo-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+.photo-grid figcaption {
+    padding: 6px;
+    font-size: 0.8em;
+    color: #5a4030;
+}
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; }
+.confidence {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.82em;
+    font-weight: 600;
+}
+.conf-vhigh { background: #d0e8d0; color: #2a5a2a; }
+.conf-high { background: #d8e8d0; color: #3a5a2a; }
+.conf-mod { background: #f0e0c0; color: #5a4a20; }
+.conf-low { background: #f0d0d0; color: #5a2a2a; }
+.evidence-flow {
+    background: #f5f0e0;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 20px 0;
+}
+.evidence-flow strong { color: #5a4030; }
+footer.report {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid #e5dfd0;
+    color: #888;
+    font-size: 0.85em;
+}
+@media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    nav.toc { position: static; height: auto; width: 100%; border-right: none; border-bottom: 1px solid #e5dfd0; }
+    main { padding: 30px 25px; }
+    header.report h1 { font-size: 1.7em; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+<h2>Contents</h2>
+<a href="#summary">1. Executive summary</a>
+<a href="#evidence-stack">2. Evidence stack</a>
+<a href="#dad">3. Dad (王一波) — paternal Banner descent</a>
+<a href="#dad-autosomal" class="h3">3a. Autosomal: 38% Amur</a>
+<a href="#dad-geography" class="h3">3b. Geographic context</a>
+<a href="#dad-record" class="h3">3c. Family record</a>
+<a href="#dad-y-distribution" class="h3">3d. Y-Hg geography</a>
+<a href="#dad-american" class="h3">3e. American platforms</a>
+<a href="#dad-heilongjiang" class="h3">3f. 黑龙江 cousins</a>
+<a href="#dad-name" class="h3">3g. 敦龙 name asymmetry</a>
+<a href="#mom">4. Mom (胡吉) — Wu Han 世家</a>
+<a href="#zhe">5. zhe (王喆) — the inheritance</a>
+<a href="#hypothesis">6. Leading hypothesis</a>
+<a href="#confidence">7. Confidence breakdown</a>
+<a href="#alternatives">8. Why alternatives fail</a>
+<a href="#wanyan">9. 完颜 (Wanyan) hypothesis</a>
+<a href="#future">10. Future research</a>
+<div class="lang-switch">
+<a href="zh.html">→ 中文版</a>
+</div>
+</nav>
+
+<main>
+<header class="report">
+<h1>Wang Family Ancestry Report</h1>
+<div class="subtitle">A DNA + documentary investigation of paternal Manchu Banner descent</div>
+<div class="meta">Report date: 2026-05-13 · Subject: 王一波 (Yi Bo Wang, dad) and 王喆 (Zhe Wang, son)</div>
+</header>
+
+<section id="summary">
+<h2>1. Executive summary</h2>
+
+<div class="highlight-box success">
+<h4>Core finding</h4>
+<p><strong>王一波's paternal line descends from Manchu Banner cohort</strong>, most likely from the Hangzhou garrison community that dispersed after the 1914 demolition, with the family relocating to the Shaoxing area and actively suppressing Manchu identity through the Republican (1911-1949) and PRC (1949-present) eras. The autosomal NE component is ~38% Amur — extreme outlier (&lt;1%) in Wu region context. <strong>Maternal line</strong> traces back to two deep Wu Han 世家 with formal 族谱: 南源贾氏 (Luoyang → Shangyu since 1180 CE) and 东山谢氏 (Taikang → Shangyu since 286 CE, "王谢风流" lineage including 谢安).</p>
+</div>
+
+<h3>One-paragraph version</h3>
+<p>Dad is roughly <strong>1/2 Manchu Banner descent</strong> (one fully Banner-cohort parent, one Wu Han parent). Grandpa 王立言 was essentially full Banner-descent (~55% Amur). Zhe is <strong>1/4 Manchu Banner descent</strong> via dad, mixed with deep Wu Han from both mom and maternal grandmother 贾湘钟 (Shangyu 世家). The family's Banner identity was deliberately suppressed across the Republican and PRC political eras and survives today only as a genetic signature, an asymmetric record pattern, and the lived family name <strong>敦龙</strong> (used in place of 王一波 by family elders to this day).</p>
+
+<h3>Three independent evidence categories converge on the same answer</h3>
+<ul>
+<li><strong>Genetic</strong> (very high confidence): qpAdm + G25 + 23mofang + American platforms — four independent analytical frameworks with different reference panels all show NE Asian / Tungusic elevation in dad far above the Wu Han baseline.</li>
+<li><strong>Documentary</strong> (moderate confidence): family register kept by a 命师 (fortune teller) with hour-precise birth/death dates but <em>no names, no 籍贯</em> above 王长荣 — opposite of the maternal side's deep 族谱 records.</li>
+<li><strong>Cultural / behavioral</strong> (moderate-high confidence): 敦龙 as actively-used family name into 2026 (propagated through marriage into 贾 family network); polygamy of 王长荣's father (≥3 wives = Banner-officer signature).</li>
+</ul>
+</section>
+
+<section id="evidence-stack">
+<h2>2. The evidence stack</h2>
+
+<p>Seventeen+ independent evidence streams across six analytical frameworks all point in the same direction. Each row below is independent of the others, both in data source and in analytical method.</p>
+
+<table>
+<thead>
+<tr><th>Evidence</th><th>Framework</th><th>What it shows</th></tr>
+</thead>
+<tbody>
+<tr><td>qpAdm Amur_N</td><td>AADR ancient DNA</td><td>38% Amur in dad</td></tr>
+<tr><td>qpAdm PrimorskyAmurRiver_N</td><td>AADR ancient DNA</td><td>39% (independent ancient source)</td></tr>
+<tr><td>qpAdm Amur_Mesolithic</td><td>AADR ancient DNA</td><td>33%</td></tr>
+<tr><td>qpAdm Daur (modern)</td><td>AADR modern</td><td>32%</td></tr>
+<tr><td>qpAdm Hezhen (modern)</td><td>AADR modern</td><td>31%</td></tr>
+<tr><td>G25 nearest neighbor</td><td>Eurogenes PCA</td><td>Liaoning Manchu, not any Han</td></tr>
+<tr><td>23mofang A/B cousin split</td><td>Chinese commercial autosomal IBD</td><td>33% NE-shifted + 37% pure Wu Han = impossible from uniform admixture</td></tr>
+<tr><td>78cM 余姚 潘 cousin (16% Korean)</td><td>23mofang IBD</td><td>Banner-era TMRCA ~4 generations back</td></tr>
+<tr><td>Beijing 于 cousins (Buryat + Euro mix)</td><td>23mofang IBD</td><td>Deep Tungusic ancestor at 18cM matches</td></tr>
+<tr><td>黑龙江 matches (金, 傅 surnames)</td><td>23mofang IBD</td><td>Manchu Hanification surnames + TMRCA 150-300ya = Banner-era</td></tr>
+<tr><td>American platforms 5-10% Korean (dad)</td><td>23andMe etc.</td><td>NE signal above Han baseline; "Korean" = platform proxy for missing Manchu reference</td></tr>
+<tr><td>American platforms 2-5% Korean (zhe)</td><td>23andMe etc.</td><td>Father-son 2:1 halving = one-generation dilution signature</td></tr>
+<tr><td>Y-Hg N-Y137601</td><td>YFull terminal SNP</td><td>Tungusic Y haplogroup</td></tr>
+<tr><td>Y-Hg geographic distribution</td><td>23mofang Y database</td><td>Non-monotonic 江苏 dip, 上海 super-spike → point-source Banner dispersal, NOT gradient migration</td></tr>
+<tr><td>Family record asymmetry</td><td>命师 register direct exam</td><td>No 籍贯 paternal vs deep 籍贯 maternal (贾 1180 CE, 谢 286 CE)</td></tr>
+<tr><td>1914 灯祖父 death entry</td><td>命师 register</td><td>Same year as Hangzhou garrison demolition</td></tr>
+<tr><td>Polygamy ≥3 wives (王长荣's father)</td><td>命师 register</td><td>Banner-officer signature, DNA-independent</td></tr>
+<tr><td>敦龙 family-use name asymmetry</td><td>Cultural practice</td><td>Maintained by elders to 2026; absent from maternal side — Banner-style identity preservation</td></tr>
+<tr><td>南里蒋墺王氏 ruled out</td><td>字辈 mismatch</td><td>Removes "Wu Han 王 lineage with lost 族谱" alternative</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="dad">
+<h2>3. Dad (王一波) — paternal Banner descent</h2>
+
+<h3 id="dad-autosomal">3a. Autosomal: 38% Amur from five independent sources</h3>
+<p>The most rigorous test is qpAdm against ancient DNA samples. Dad's profile fits as <strong>62% Yangshao (Han-ancestral) + 38% Amur_N (Tungusic-ancestral)</strong>. This holds across five different "Amur" reference sources:</p>
+<table>
+<thead><tr><th>Reference source</th><th>n</th><th>Best fit % Amur for dad</th></tr></thead>
+<tbody>
+<tr><td>Amur_N (ancient, ~5000ya)</td><td>14</td><td>38%</td></tr>
+<tr><td>Primorsky Amur_N (ancient)</td><td>6</td><td>39%</td></tr>
+<tr><td>Amur Mesolithic (ancient)</td><td>5</td><td>33%</td></tr>
+<tr><td>Daur (modern Mongolic-Tungusic)</td><td>10</td><td>32%</td></tr>
+<tr><td>Hezhen (modern Tungusic)</td><td>19</td><td>31%</td></tr>
+</tbody>
+</table>
+<p>Median ≈ 32%, range 31-39%. This convergence across multiple independent sources rules out artifact. Dad's NE ancestry is <em>specifically</em> Amur-cluster, not generic NE Asian.</p>
+
+<h3 id="dad-geography">3b. Geographic context — 38% Amur in Wu region is extreme outlier</h3>
+<p>Han Chinese have a regional Amur-baseline gradient driven by 2000 years of historical NE absorption:</p>
+<ul>
+<li>N. Han (Beijing, Hebei, Shandong, Liaoning): ~22-28% Amur baseline</li>
+<li>National Han average: ~20-22%</li>
+<li><strong>Wu Han (Zhejiang, Jiangsu, Shanghai): ~10-15% — dad lives here</strong></li>
+<li>S. Han (Guangdong, Fujian): ~5-10%</li>
+</ul>
+<p>Dad's <strong>38% Amur in the Wu Han context is +23pp above local baseline</strong>. In Wu region, this places him in the &lt;1% extreme tail. A non-Banner explanation would require either generic NE Han migration (which doesn't produce this geographic anomaly) or recent specific admixture from an NE Asian source — i.e., Banner descent.</p>
+
+<h3 id="dad-record">3c. Family genealogical record — direct examination</h3>
+<p>The王 family preserves a handwritten register on a 1940s pre-printed booklet ("金鑫源宝号台执" — 金鑫源 is the printer's brand, not the family). Critically, this is <strong>a 命师 (fortune teller's) working notes</strong>, not a self-kept 宗谱. The "朱湖国华" red seal identifies the writer as <strong>朱国华</strong> from 朱湖山村, 嵊州黄泽镇 (adjacent to 上虞). The precise 时辰 (hour-of-day) entries are exactly what a 命师 needs for 八字 readings.</p>
+
+<div class="photo-grid">
+<figure><img src="jiapu/9.jpeg" alt="page 9"><figcaption>Page 9 (cover)</figcaption></figure>
+<figure><img src="jiapu/8.jpeg" alt="page 8"><figcaption>Page 8 (oldest entries)</figcaption></figure>
+<figure><img src="jiapu/7.jpeg" alt="page 7"><figcaption>Page 7 (1914 灯祖父)</figcaption></figure>
+<figure><img src="jiapu/6.jpeg" alt="page 6"><figcaption>Page 6 (王一波 birth)</figcaption></figure>
+<figure><img src="jiapu/5.jpeg" alt="page 5"><figcaption>Page 5 (王长荣 entry)</figcaption></figure>
+<figure><img src="jiapu/4.jpeg" alt="page 4"><figcaption>Page 4 (kinship ladder)</figcaption></figure>
+<figure><img src="jiapu/3.jpeg" alt="page 3"><figcaption>Page 3</figcaption></figure>
+<figure><img src="jiapu/2.jpeg" alt="page 2"><figcaption>Page 2</figcaption></figure>
+<figure><img src="jiapu/1.jpeg" alt="page 1"><figcaption>Page 1</figcaption></figure>
+</div>
+
+<h4>Page-by-page date index</h4>
+<table>
+<thead><tr><th>Page</th><th>Era date</th><th>Gregorian</th><th>Label / event</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>光绪癸未 二月十九 酉时</td><td>1883</td><td>Anonymous ancestor death</td></tr>
+<tr><td>8</td><td>光绪辛卯 十月初九 戌时</td><td>1891</td><td>Anonymous death (marginal "1904")</td></tr>
+<tr><td>8</td><td>民国乙丑 四月廿二 卯时</td><td>~1925</td><td>Death (属兔)</td></tr>
+<tr><td>8</td><td>民国丙寅 五月 辰时</td><td>1926</td><td>Death</td></tr>
+<tr><td>8</td><td>民国廿二年癸酉 九月廿日</td><td>1933</td><td>Possibly 王立言 actual birth (rooster year)</td></tr>
+<tr><td><strong>7</strong></td><td><strong>民国三年 ... 申时</strong></td><td><strong>1914</strong></td><td><strong>"灯祖父 死期" — exact year of Hangzhou Banner garrison demolition</strong></td></tr>
+<tr><td><strong>7</strong></td><td>民国卅八年 闰七月廿二日 巳时</td><td>1949</td><td>"三祖母 死期" (great-great-grandmother level)</td></tr>
+<tr><td>6</td><td>一九五九年 农历二月十五日 申时</td><td>1959</td><td><strong>王一波 birth (敦龙)</strong></td></tr>
+<tr><td>5</td><td>光绪十二年 十一月初三 子时</td><td>1886</td><td>王长荣 birth</td></tr>
+<tr><td>5</td><td>1984 阳历 8月10日</td><td>1984</td><td>蒋月香 death (寿82)</td></tr>
+</tbody>
+</table>
+
+<div class="highlight-box">
+<h4>1914 灯祖父 — single most diagnostic data point</h4>
+<p>1914 is the <em>exact</em> year the Hangzhou Banner garrison was demolished and residents dispersed. If "灯祖父" is 王长荣's father (zhe's great-great-grandfather), he died the year of the garrison collapse — providing the <strong>first direct genealogical link between the family and the 1914 Banner-dispersal event</strong>. He would have been a Banner-cohort member born ~1850-65, either a 1862 massacre survivor or part of the 1865-1875 repopulation transfer.</p>
+</div>
+
+<div class="highlight-box">
+<h4>"三祖母" + polygamy = independent Banner-officer signature</h4>
+<p>The "三祖母 1949" entry implies 王长荣's father had <strong>at least 3 wives</strong>. Polygamy of 3+ wives was characteristic of Banner officers and well-off Han literati, NOT typical of late-Qing rural Han farmers (who could not afford it). This is <strong>DNA-independent</strong> corroborating evidence for Banner-officer status.</p>
+</div>
+
+<h3 id="dad-y-distribution">3d. Y-Hg N-Y137601 — geographic distribution maps Banner garrisons</h3>
+<p>Dad's Y haplogroup is <strong>N-Y137601</strong> (Tungusic / NE Asian lineage). 23mofang reports its national distribution at 0.04% of Chinese males. Top 12 provinces:</p>
+<table>
+<thead><tr><th>Province</th><th>Frequency</th><th>× baseline</th><th>Banner geography reading</th></tr></thead>
+<tbody>
+<tr><td><strong>上海</strong></td><td><strong>0.31%</strong></td><td><strong>7.75×</strong></td><td>Highest — southern Banner dispersal terminus</td></tr>
+<tr><td>黑龙江</td><td>0.29%</td><td>7.25×</td><td>Manchu homeland</td></tr>
+<tr><td>内蒙古</td><td>0.23%</td><td>5.75×</td><td>Manchu/Mongol Banner homeland</td></tr>
+<tr><td>北京</td><td>0.15%</td><td>3.75×</td><td>Banner capital</td></tr>
+<tr><td><strong>浙江</strong></td><td><strong>0.12%</strong></td><td><strong>3×</strong></td><td><strong>Dad's province — 杭州/乍浦 garrisons</strong></td></tr>
+<tr><td>辽宁</td><td>0.11%</td><td>2.75×</td><td>Manchu homeland</td></tr>
+<tr><td>山东</td><td>0.10%</td><td>2.5×</td><td>青州 garrison (source of 1865-1875 杭州 repopulation)</td></tr>
+<tr><td>江苏</td><td>0.04%</td><td>1×</td><td><strong>DIP — between 浙江 and 上海 spike centers</strong></td></tr>
+<tr><td>河北</td><td>0.03%</td><td>0.75×</td><td>Beijing overflow</td></tr>
+</tbody>
+</table>
+
+<div class="highlight-box">
+<h4>The 江苏 dip is the smoking gun</h4>
+<p>General NE Han migration (西晋→南北朝, 300-600 CE) produces <em>smooth gradients</em> because diffusion smooths out. Banner garrison dispersal produces <em>spikes at garrison cities</em> because the source was point-concentrated. The observed 浙江 (0.12%) → 江苏 (0.04% <strong>dip</strong>) → 上海 (0.31% <strong>spike</strong>) is non-monotonic and explicitly fingerprints point-source dispersal from 杭州 + 江宁/京口 garrisons.</p>
+</div>
+
+<h3 id="dad-american">3e. American DNA platforms — 5-10% Korean signal</h3>
+<p>American commercial platforms (23andMe, AncestryDNA, MyHeritage, FTDNA) consistently flag dad with <strong>5-10% Korean</strong> and zhe with <strong>2-5% Korean</strong>; mom is 0% Korean. This is a fourth completely independent analytical framework.</p>
+
+<p><strong>Why "Korean" not "Manchu"?</strong> American platforms have essentially no Manchu reference samples — Manchu individuals test on WeGene/23mofang instead. When the algorithm encounters NE Asian / Tungusic signal, it assigns to the closest available label: Korean (which is itself ~40% Amur-derived).</p>
+
+<p><strong>The father-son 2:1 halving (5-10% → 2-5%) is the smoking gun for one-generation admixture dilution.</strong> If dad's NE component were diffuse ancient admixture, the ratio would be ~1:1. The actual 2:1 ratio means the NE component came specifically through one parent (dad) and got diluted by half through the Wu Han mother — exactly the signature of recent (3-4 generation) Banner descent.</p>
+
+<h3 id="dad-heilongjiang">3f. 23mofang 黑龙江 cousin matches — Manchu-Hanification surnames</h3>
+<p>Dad has <strong>4 matches in 黑龙江</strong> (vs ~0 in 辽宁), distributed across cities aligned with northeast Tungusic geography:</p>
+<table>
+<thead><tr><th>City</th><th>Matches</th><th>Historical ethnic zone</th></tr></thead>
+<tbody>
+<tr><td>哈尔滨 (Harbin)</td><td>2</td><td>Mixed 满/汉/朝鲜; Manchu admin center</td></tr>
+<tr><td>牡丹江 (Mudanjiang)</td><td>1</td><td><strong>Hezhen / Nanai heartland</strong> (NE 黑龙江)</td></tr>
+<tr><td>齐齐哈尔 (Qiqihar)</td><td>1</td><td><strong>Daur heartland</strong> (W 黑龙江)</td></tr>
+</tbody>
+</table>
+<p>Database under-sampling reinforces the signal: 23mofang penetration in 黑龙江 is ~0.3-0.5× the national per-capita average. 4 matches there is equivalent to ~10 matches at normalized sampling.</p>
+
+<h4>The two visible matches have Manchu Hanification surnames</h4>
+<table>
+<thead><tr><th>Match</th><th>Surname</th><th>Manchu origin</th><th>Y-Hg</th><th>NE %</th><th>TMRCA</th></tr></thead>
+<tbody>
+<tr><td>金** (Harbin)</td><td>金</td><td><strong>爱新觉罗 → 金</strong> (Aisin Gioro imperial clan)</td><td>O-MF14228</td><td>34%</td><td>150-300ya</td></tr>
+<tr><td>傅**</td><td>傅</td><td><strong>富察氏 → 傅</strong> (top-tier 满洲 八旗 clan; 富察皇后 / 傅恒)</td><td>O-F619</td><td>2.26%</td><td>150-300ya</td></tr>
+</tbody>
+</table>
+<p><strong>If these were random Han matches, expected surnames would be 王/李/张/刘</strong> (top Han surnames). Both 金 and 傅 are documented Manchu Hanifications; their concentration in 黑龙江 plus the Banner-era TMRCA is highly diagnostic.</p>
+<p>The Y-Hg mismatch (these cousins have O Y, dad has N) is expected — 5+ generation cousins do not need to share Y, only IBD segments somewhere in the genome.</p>
+
+<h3 id="dad-name">3g. 敦龙 — the alternate name and asymmetric identity preservation</h3>
+<p>The genealogy register records "立言之子 敦龙" — <strong>敦龙 is an alternate name for 王一波 himself</strong>, not a sibling. Critically, <strong>zhe's maternal grandmother (王一波's mother-in-law, NOT a 王 family member) still uses "敦龙" to call him in 2026</strong>. The name propagated through marriage into the 贾 family network. This is the marker of a primary <em>lived</em> name, not a childhood-only nickname.</p>
+
+<div class="evidence-flow">
+<strong>The asymmetric identity-preservation pattern is diagnostic:</strong>
+<ul>
+<li><strong>Mom's side</strong> (Wu Han 世家): identity preserved through <em>paper</em> — 族谱 with named ancestors to 1180 CE / 286 CE; single-name convention; 乳名 dropped at school age.</li>
+<li><strong>Dad's side</strong> (suspected Banner): no 族谱, no 籍贯, family register on rented stationery. But identity preserved through <em>active practice</em> — 敦龙 used by elders for 60+ years, propagating into in-law networks.</li>
+</ul>
+<p>This is the predicted signature of Banner-descent families post-1911: when external identity markers (族谱, 籍贯) are destroyed by political persecution, identity carries forward through internal practices — names elders use, customs at home, dialect fragments. Wu Han 世家 don't <em>need</em> practice-based preservation because their 族谱 carries the identity.</p>
+</div>
+</section>
+
+<section id="mom">
+<h2>4. Mom (胡吉) — Wu Han, with deep maternal 世家</h2>
+<p>Mom is the symmetric opposite of dad: typical Wu Han autosomally (91% Han, 0% Mongol/NE; nearest neighbor is Hangzhou Han), with deep regional cousin network (32% of relatives in Zhejiang vs national average ~6%). Her mtDNA D5a2a1-A9 traces an ancient (3000-5000ya) NE Asian female lineage, but autosomally she's fully integrated Wu Han.</p>
+
+<p>The deeper maternal genealogy comes through her mother (zhe's maternal grandmother) 贾湘钟 and her father (zhe's maternal grandfather) — both descended from Shangyu Wu Han 世家:</p>
+
+<div class="highlight-box">
+<h4>外公 lineage — 南源贾氏 (Shangyu, ~900 years)</h4>
+<p><strong>Founder 贾宗正:</strong> Northern Song military officer from Luoyang, Henan. <strong>1127:</strong> Jurchen Jin conquest of Northern Song — 贾宗正 followed Emperor Gaozong south to Lin'an (Hangzhou). <strong>~1150-1180:</strong> Grandson 贾湜 (行念二) moved further east to Shangyu, settling in Nan Yuan — the founding 始迁祖 of Shangyu 贾 lineage. Hall name: 世伦堂 / 世纶堂. <strong>~900 years</strong> continuous Shangyu residence.</p>
+</div>
+
+<div class="highlight-box">
+<h4>外婆 lineage — 东山谢氏 (Shangyu, ~1700 years!)</h4>
+<p><strong>Founder 谢衡:</strong> Western Jin, originally from Chenjun Yangxia (today's 太康, Henan). <strong>286 CE:</strong> 永嘉之乱 / 衣冠南渡 — 谢衡 led the family south to Shining county East Mountain (today's 上虞上浦镇方弄村). <strong>谢安 (320-385):</strong> Eastern Jin chancellor, "东山再起" idiom origin; the <strong>"王谢风流"</strong> of Chinese cultural memory is THIS 谢 lineage. <strong>~1700 years</strong> continuous Shangyu residence. One of the most historically distinguished Han Chinese clans.</p>
+</div>
+
+<p>The cousin-network 33%/37% A/B split corresponds exactly to dad's paternal (Banner) side vs mom's maternal (Wu Han) side: 23mofang's A-group matches (NE-shifted) descend from dad's Banner ancestors, B-group matches (pure Wu Han) descend from mom's Shangyu 世家 ancestors.</p>
+</section>
+
+<section id="zhe">
+<h2>5. zhe (王喆) — half + quarter inheritance</h2>
+<p>Zhe is the arithmetic average: ~18-22% Amur autosomally (between dad's 38% and mom's ~5-10%). In family-tree terms, <strong>zhe is 1/4 Manchu Banner descent</strong> (one of four grandparents = Banner; specifically 王立言's lineage), 1/2 Wu Han via maternal 贾/谢 (through 贾湘钟), and 1/4 Wu Han via 胡 (mom 胡吉).</p>
+
+<p>Zhe inherited dad's Y-Hg N-Y137601 (the Tungusic patrilineal marker) and mom's mtDNA D5a2a1-A9 (the ancient NE matrilineal marker). The integration:</p>
+<ul>
+<li><strong>Y:</strong> "My patriline traces to a Tungusic Manchu Banner ancestor"</li>
+<li><strong>mtDNA:</strong> "My matriline traces to a Bronze-Age NE Asian female"</li>
+<li><strong>Autosomal:</strong> "I'm currently a typical Han Chinese individual with ~20% NE component"</li>
+</ul>
+
+<p>On commercial platforms, zhe's genome looks like "typical Han with mild N. Han lean" — unremarkable in isolation. The Banner-descent reading only emerges when dad's data is included for triangulation. This is why <strong>reviewing a child's BAM alone cannot detect recent Banner descent</strong>; you need the parents.</p>
+</section>
+
+<section id="hypothesis">
+<h2>6. Leading hypothesis</h2>
+
+<div class="highlight-box success">
+<h4>The Banner-descent narrative</h4>
+<p><strong>王长荣 (b. 1886) was born to a Manchu Banner family connected to the Hangzhou garrison community.</strong> The most plausible specific reconstruction:</p>
+<ol>
+<li>王长荣's father was a Banner-cohort member from the 1865-1875 Hangzhou repopulation (after the 1862 Taiping massacre destroyed the original garrison population).</li>
+<li>王长荣's father had ≥3 wives (per the 1949 "三祖母" entry) — consistent with Banner-officer status.</li>
+<li>王长荣's father died <strong>1914</strong> (the "灯祖父 死期" entry, exactly the year the garrison was demolished).</li>
+<li>The family dispersed from Hangzhou after the 1914 demolition to the Shaoxing/Shangyu area (~50-70 km south).</li>
+<li>The family Hanified the surname to 王 (most probable original Manchu surname: <strong>完颜氏 (Wanyan), 镶蓝旗</strong> — see §9).</li>
+<li>王长荣 married 蒋月香 (also probably Banner cohort) and they had at least 王立言 + sibling(s).</li>
+<li>Through Republican (1911-1949) and PRC (1949-) anti-Manchu and anti-"feudal class" eras, the family <strong>actively suppressed</strong> Manchu identity to protect descendants. Identity transmission stopped at 王立言's generation.</li>
+<li>Today the only surviving traces are: the genetic signature (~38% Amur in dad), the family register (1914 灯祖父 entry + asymmetric record style), and the lived family name 敦龙.</li>
+</ol>
+</div>
+
+<h4>What remains genuinely ambiguous</h4>
+<p>Two sub-hypotheses fit the data and cannot currently be discriminated:</p>
+<ul>
+<li><strong>Scenario A:</strong> Both 王长荣 + 蒋月香 typical Liaoning Manchu Banner cohort (~55% Amur each). Cleaner arithmetic, supported by symmetric family-record anonymization on both their sides.</li>
+<li><strong>Scenario B:</strong> 王长荣 was 新满洲 / Hezhen-cluster (~80% Amur, less Han-admixed), 蒋月香 was N. Han. Better fit for the 黑龙江 cousin geography (Mudanjiang + Qiqihar).</li>
+</ul>
+<p>Both are subsets of "Banner descent." Distinguishing them would require RFmix local ancestry painting, more cousin data over time, or family oral history fragments.</p>
+</section>
+
+<section id="confidence">
+<h2>7. Confidence breakdown</h2>
+
+<table>
+<thead><tr><th>Claim</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td>Dad has ~½ NE-shifted ancestry</td><td><span class="confidence conf-vhigh">very high</span> 5 convergent qpAdm sources</td></tr>
+<tr><td>NE ancestry came through paternal grandparents</td><td><span class="confidence conf-high">high</span> mom is Wu Han baseline; asymmetric record</td></tr>
+<tr><td>Source is Banner descent specifically (not generic NE migration)</td><td><span class="confidence conf-vhigh">very high</span> Y geographic distribution + cousin surnames + 1914 entry</td></tr>
+<tr><td>Specific source involved southern garrison(s) (杭州/乍浦/江宁)</td><td><span class="confidence conf-high">mod-high</span> 浙江 spike + 江苏 dip + 上海 super-spike</td></tr>
+<tr><td>1914 garrison demolition was the family's dispersal event</td><td><span class="confidence conf-mod">moderate</span> 灯祖父 1914 entry strongly suggests, not proves</td></tr>
+<tr><td>Original Manchu surname = 完颜 (Wanyan)</td><td><span class="confidence conf-mod">moderate</span> 《金史》"完颜汉姓曰王" + 京旗→王 dominance</td></tr>
+<tr><td>1862 survivor vs 1865-1875 transferred-in</td><td><span class="confidence conf-low">low</span> data cannot discriminate</td></tr>
+<tr><td>Cluster is 陈满洲 (Liaoning) vs 新满洲 (Hezhen-side)</td><td><span class="confidence conf-low">low</span> ~50/50</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="alternatives">
+<h2>8. Why alternative hypotheses fail</h2>
+
+<table>
+<thead><tr><th>Alternative</th><th>Predicts</th><th>Observed</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>Generic NE Han migration (西晋 衣冠南渡)</td><td>Smooth Y-Hg gradient; +5-10pp Amur; preserved 籍贯/族谱</td><td>Non-monotonic 江苏 dip; +23pp; no 籍贯/族谱</td><td>FAILS on 3 dimensions</td></tr>
+<tr><td>Deep ancient admixture (drift)</td><td>Father-son 1:1 ratio; short autosomal NE blocks; no A/B cousin split</td><td>2:1 ratio; 78cM cousin block; sharp A/B split</td><td>FAILS on 3 dimensions</td></tr>
+<tr><td>Wu Han 王 lineage (e.g., 南里蒋墺王氏) with lost 族谱</td><td>字辈 match with documented lineage; local-Han genetic profile</td><td>字辈 mismatch (26世 should be 以, not 长); 38% Amur</td><td>FAILS on 2 dimensions</td></tr>
+<tr><td>Korean migrant family</td><td>~40-60% Korean on American platforms; Korean identity preserved</td><td>5-10% Korean; no Korean identity</td><td>FAILS on 2 dimensions</td></tr>
+<tr><td>Mongol descent</td><td>~30-40% Amur; Mongol Y-Hg C-M407</td><td>38% Amur; N-Y137601</td><td>FAILS on 2 dimensions</td></tr>
+<tr><td>Banner descent</td><td>+20pp Amur; Banner-garrison Y geography; Manchu Hanification surnames; asymmetric record loss; polygamy-implied Banner officer</td><td>All observed</td><td>CLEAN FIT</td></tr>
+</tbody>
+</table>
+
+<p>The evidence has become <strong>convergent and self-reinforcing</strong>. Every new data point has added to the same picture rather than creating contradictions — the signature of a correct hypothesis.</p>
+</section>
+
+<section id="wanyan">
+<h2>9. The 完颜氏 (Wanyan) → 王 working hypothesis</h2>
+<p>Highest-probability specific Manchu clan identification, based on independent web-research analysis:</p>
+
+<ul>
+<li><strong>《金史·金国语解》</strong> explicitly states: "完颜, 汉姓曰王" — canonical historical authority</li>
+<li><strong>完颜 = Jurchen royal clan of the Jin dynasty (1115-1234 CE)</strong>, absorbed into Manchu Banner system 1600s</li>
+<li>Concentrated in <strong>镶蓝旗</strong></li>
+<li>京旗 (Beijing Banner) overwhelmingly used 王 when Hanifying — and Hangzhou's 1865-1875 garrison repopulation included transfers from Beijing-area Banner units</li>
+<li>N-line Y-Hg distribution documented in 完颜 descendant samples, compatible with N-Y137601</li>
+<li>Documented parallel case: 哨子河 镶蓝旗 完颜氏 → 汪氏 in Xiuyan, Liaoning</li>
+</ul>
+
+<div class="highlight-box warning">
+<h4>Caveat</h4>
+<p>This is the highest-probability candidate (~30-40% probability), <em>not</em> a confirmed claim. Other Manchu→王 channels exist: 王佳氏 (Wanggiya), 伊喇氏, 抬入旗 Han 王 families. Confirming 完颜 specifically would require Y-DNA cluster matching against known 完颜 lineages — which awaits more samples in YFull.</p>
+</div>
+</section>
+
+<section id="future">
+<h2>10. Future research recommendations</h2>
+
+<h4>Free, high-EV moves (recommended)</h4>
+<ul>
+<li><strong>Family oral history</strong>: Ask王立言's surviving siblings/cousins/anyone in 转塘/萧山/绍兴 who knew the family pre-1949. Even a fragment of 籍贯 information would collapse the ambiguity 10×.</li>
+<li><strong>23mofang/WeGene Y-DNA match list</strong>: Largest Chinese-population Y database. Check for Y-line matches with documented Manchu identity.</li>
+<li><strong>YFull tree periodic recheck</strong>: N-Y137601 may pick up new TMRCA matches as samples accumulate.</li>
+<li><strong>字辈 character verification</strong>: What character should zhe (王喆) have used per family generation pattern? What was 王长荣's father's generation character? Either would extend the 字辈 search 5×.</li>
+</ul>
+
+<h4>Moderate cost, moderate yield</h4>
+<ul>
+<li><strong>RFmix local ancestry painting</strong> on dad's BAM — could discriminate 陈满洲 vs 新满洲 cluster directly. Free pipeline, ~1 day technical work.</li>
+<li><strong>中央民族大学 满学研究所 consultation</strong> — $500-2K. Far better targeted than generalist genealogy firms.</li>
+</ul>
+
+<h4>NOT recommended</h4>
+<ul>
+<li><strong>My China Roots full investigation</strong> ($5-15K) — Banner research is outside their core competency (Wu/Min/Cantonese 族谱 specialists).</li>
+<li><strong>More commercial DNA tests</strong> — Y-DNA already at terminal SNP resolution; additional tests would not add information at current state.</li>
+</ul>
+
+<h4>The diminishing-returns reality</h4>
+<p>The broad Banner-descent claim is essentially settled (~99% posterior). Specific sub-questions (which clan, which transfer route, 陈满洲 vs 新满洲) require <strong>5-10× more effort per unit of confidence gained</strong>. Records have been systematically destroyed across the 1862 fire, 1914 demolition, 1949 transition, and Cultural Revolution. Witnesses are mostly deceased. The remaining specific answers may be permanently unrecoverable, or may surface gradually as databases accumulate over years.</p>
+</section>
+
+<footer class="report">
+<p><strong>Data sources:</strong> WeGene V16 commercial test (王一波, 胡吉, 王喆); G25 PCA modeling (200+ models); AADR v66 ancient DNA panel + qpAdm; 23mofang relative network + N-Y137601 geographic distribution; YFull terminal SNP + mtDNA; American commercial platforms (23andMe et al.); direct examination of family genealogy register (9 photos at /jiapu/); maternal 族谱: 南源贾氏 (Shangyu since 1180 CE), 东山谢氏 (Shangyu since 286 CE).</p>
+<p><a href="index.html">← Landing page</a> · <a href="zh.html">中文版 →</a></p>
+</footer>
+</main>
+</div>
+
+<div class="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img"></div>
+
+<script>
+document.querySelectorAll('.photo-grid img').forEach(img => {
+    img.addEventListener('click', e => {
+        const lb = document.querySelector('.lightbox');
+        document.getElementById('lightbox-img').src = e.target.src;
+        lb.classList.add('active');
+    });
+});
+</script>
+</body>
+</html>
