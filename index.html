@@ -38,8 +38,8 @@ h1 {
 }
 .lang-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
     margin-bottom: 30px;
 }
 .lang-card {
@@ -88,7 +88,7 @@ h1 {
     line-height: 1.7;
     font-size: 0.95em;
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .lang-grid { grid-template-columns: 1fr; }
     .container { padding: 40px 25px; }
     h1 { font-size: 1.8em; }
@@ -98,12 +98,7 @@ h1 {
 <body>
 <div class="container">
 <h1>Wang Family Ancestry Report</h1>
-<h1 style="font-size: 1.8em; color: #6a5040; margin-top: 5px;">王氏家族祖源报告</h1>
-<p class="subtitle">A DNA + documentary investigation of paternal Manchu Banner descent<br>基于 DNA 与文献的父系满族八旗后裔研究</p>
-
-<div class="summary">
-<strong>Key finding · 核心发现:</strong> 王一波 (Yi Bo Wang) is descended from Manchu Banner cohort on the paternal line, most likely from the Hangzhou garrison that dispersed after the 1914 demolition. Maternal line traces deep Wu Han 世家 (贾氏 since 1180 CE, 谢氏 since 286 CE). · 父系为满族八旗后裔(很可能源于 1914 年解散的杭州驻防营),母系为上虞两大汉族世家(南源贾氏自 1180 年,东山谢氏自 286 年)。
-</div>
+<h1 style="font-size: 1.8em; color: #6a5040; margin-top: 5px; margin-bottom: 40px;">王氏家族祖源报告</h1>
 
 <div class="lang-grid">
 <a href="en.html" class="lang-card">
@@ -115,6 +110,11 @@ h1 {
 <div class="flag">🇨🇳</div>
 <div class="lang-name">中文</div>
 <div class="lang-desc">完整分析报告</div>
+</a>
+<a href="debug.html" class="lang-card">
+<div class="flag">🔬</div>
+<div class="lang-name">Raw data</div>
+<div class="lang-desc">Full statistics &amp; debug</div>
 </a>
 </div>
 

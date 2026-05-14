@@ -1,0 +1,203 @@
+Parsed 504 WeGene rows: 42 ethnic averages + 5 individuals.
+52 component columns, 42 ethnic + 10 continental.
+
+======================================================================
+FAMILY ADMIXTURE PROFILES (WeGene)
+======================================================================
+
+[Zhe Wang (me)] Y=N-Y137601 MT=D5a2  Province=上海市 (Shanghai) City=普陀区 (Putuo District)
+  Han_North=45.66  Han_South=30.26  (combined Han=75.92%)
+  NE-cluster: mongolian=15.27  korean=0.00  japanese=8.76  tungus=0.00  (NE total=24.03%)
+  SE-cluster: dai=0.00  she=0.00  miao_yao=0.00  kinh=0.00  gaoshan=0.00  (SE total=0.00%)
+  Continental: chinese_nation=0.00%  ne_asian=0.00%  se_asian=0.00%
+  All non-zero ethnic components (≥0.3%):
+             han_northern: 45.66
+             han_southern: 30.26
+                mongolian: 15.27
+                 japanese: 8.76
+
+[Yi Bo Wang (dad)] Y=N-Y137601 MT=B4a  Province=上海市 (Shanghai) City=普陀区 (Putuo District)
+  Han_North=50.40  Han_South=20.77  (combined Han=71.17%)
+  NE-cluster: mongolian=18.46  korean=1.26  japanese=7.98  tungus=0.00  (NE total=27.70%)
+  SE-cluster: dai=1.06  she=0.00  miao_yao=0.00  kinh=0.00  gaoshan=0.00  (SE total=1.06%)
+  Continental: chinese_nation=0.00%  ne_asian=0.00%  se_asian=0.00%
+  All non-zero ethnic components (≥0.3%):
+             han_northern: 50.40
+             han_southern: 20.77
+                mongolian: 18.46
+                 japanese: 7.98
+                   korean: 1.26
+                      dai: 1.06
+
+[Ji Hu (mom)] Y=- MT=D5a2  Province=上海市 (Shanghai) City=普陀区 (Putuo District)
+  Han_North=60.77  Han_South=30.18  (combined Han=90.95%)
+  NE-cluster: mongolian=0.00  korean=0.39  japanese=6.07  tungus=0.00  (NE total=6.46%)
+  SE-cluster: dai=0.00  she=0.00  miao_yao=1.64  kinh=0.00  gaoshan=0.87  (SE total=2.51%)
+  Continental: chinese_nation=0.00%  ne_asian=0.00%  se_asian=0.00%
+  All non-zero ethnic components (≥0.3%):
+             han_northern: 60.77
+             han_southern: 30.18
+                 japanese: 6.07
+                 miao_yao: 1.64
+                  gaoshan: 0.87
+                   korean: 0.39
+
+======================================================================
+FAMILY vs Han_Average (deviations from baseline Han)
+======================================================================
+
+[Zhe Wang (me)] component-level deltas vs Han Average:
+          han_northern: -8.76%   (target=45.66, han_avg=54.42)
+             mongolian: +8.55%   (target=15.27, han_avg=6.72)
+              japanese: +6.23%   (target=8.76, han_avg=2.53)
+                    ny: -2.91%   (target=0.00, han_avg=2.91)
+          han_southern: +2.80%   (target=30.26, han_avg=27.46)
+               gaoshan: -0.96%   (target=0.00, han_avg=0.96)
+                korean: -0.82%   (target=0.00, han_avg=0.82)
+                   dai: -0.70%   (target=0.00, han_avg=0.70)
+                   she: -0.63%   (target=0.00, han_avg=0.63)
+                  kinh: -0.59%   (target=0.00, han_avg=0.59)
+
+[Yi Bo Wang (dad)] component-level deltas vs Han Average:
+             mongolian: +11.74%   (target=18.46, han_avg=6.72)
+          han_southern: -6.69%   (target=20.77, han_avg=27.46)
+              japanese: +5.45%   (target=7.98, han_avg=2.53)
+          han_northern: -4.02%   (target=50.40, han_avg=54.42)
+                    ny: -2.91%   (target=0.00, han_avg=2.91)
+               gaoshan: -0.96%   (target=0.00, han_avg=0.96)
+                   she: -0.63%   (target=0.00, han_avg=0.63)
+                  kinh: -0.59%   (target=0.00, han_avg=0.59)
+               tibetan: -0.47%   (target=0.00, han_avg=0.47)
+                korean: +0.44%   (target=1.26, han_avg=0.82)
+
+[Ji Hu (mom)] component-level deltas vs Han Average:
+             mongolian: -6.72%   (target=0.00, han_avg=6.72)
+          han_northern: +6.35%   (target=60.77, han_avg=54.42)
+              japanese: +3.54%   (target=6.07, han_avg=2.53)
+                    ny: -2.91%   (target=0.00, han_avg=2.91)
+          han_southern: +2.72%   (target=30.18, han_avg=27.46)
+              miao_yao: +1.26%   (target=1.64, han_avg=0.38)
+                   dai: -0.70%   (target=0.00, han_avg=0.70)
+                   she: -0.63%   (target=0.00, han_avg=0.63)
+                  kinh: -0.59%   (target=0.00, han_avg=0.59)
+               tibetan: -0.47%   (target=0.00, han_avg=0.47)
+
+======================================================================
+FAMILY → CLOSEST ETHNIC AVERAGES (Euclidean on WeGene components)
+======================================================================
+
+[Zhe Wang (me)] top 10 closest ethnic averages:
+   10.51  Gelao Average
+   14.44  Han Average
+   17.84  Tujia Average
+   23.43  Hui Average
+   28.57  Manchu Average
+   28.66  Sibe Average
+   28.66  Miao Average
+   30.22  Mongol Average
+   32.67  Tu Average
+   33.32  Dongxiang Average
+
+[Yi Bo Wang (dad)] top 10 closest ethnic averages:
+   10.43  Gelao Average
+   13.58  Hui Average
+   15.48  Han Average
+   18.74  Sibe Average
+   20.09  Manchu Average
+   22.11  Mongol Average
+   23.49  Tu Average
+   24.82  Dongxiang Average
+   25.82  Tujia Average
+   30.23  Daur Average
+
+[Ji Hu (mom)] top 10 closest ethnic averages:
+   10.84  Han Average
+   16.27  Gelao Average
+   20.64  Tujia Average
+   23.41  Manchu Average
+   28.61  Hui Average
+   28.72  Sibe Average
+   35.86  Miao Average
+   37.50  Tu Average
+   40.16  Mongol Average
+   42.29  Dongxiang Average
+
+======================================================================
+FAMILY-MEMBER DISTANCES (WeGene component space)
+======================================================================
+  Zhe Wang (me)             ↔ Yi Bo Wang (dad)           d=11.23
+  Zhe Wang (me)             ↔ Ji Hu (mom)                d=21.73
+  Yi Bo Wang (dad)          ↔ Ji Hu (mom)                d=23.36
+
+  Distances from Cecilia Wang (wife):
+    ↔ Zhe Wang (me): d=80.55
+    ↔ Yi Bo Wang (dad): d=91.32
+    ↔ Ji Hu (mom): d=88.53
+
+  Distances from Korean friend:
+    ↔ Zhe Wang (me): d=51.11
+    ↔ Yi Bo Wang (dad): d=48.11
+    ↔ Ji Hu (mom): d=53.01
+
+======================================================================
+RELATIVES GEOGRAPHIC DISTRIBUTION (匹配亲属省份分布)
+======================================================================
+
+[zhe] 30 provinces, 450 total relatives:
+  By region:
+    East         254  ( 56.4%)
+    North         47  ( 10.4%)
+    Central       21  (  4.7%)
+    South         43  (  9.6%)
+    SouthWest     28  (  6.2%)
+    NorthEast     19  (  4.2%)
+    NorthWest      9  (  2.0%)
+    Other         29  (  6.4%)
+  Top 8 provinces:
+    浙江          100  ( 22.2%)
+    江苏           46  ( 10.2%)
+    广东           36  (  8.0%)
+    上海           33  (  7.3%)
+    福建           28  (  6.2%)
+    山东           27  (  6.0%)
+    北京           15  (  3.3%)
+    安徽           14  (  3.1%)
+
+[dad] 33 provinces, 1439 total relatives:
+  By region:
+    East         559  ( 38.8%)
+    North        264  ( 18.3%)
+    Central       98  (  6.8%)
+    South        148  ( 10.3%)
+    SouthWest    144  ( 10.0%)
+    NorthEast     90  (  6.3%)
+    NorthWest     56  (  3.9%)
+    Other         80  (  5.6%)
+  Top 8 provinces:
+    浙江          174  ( 12.1%)
+    江苏          141  (  9.8%)
+    广东          120  (  8.3%)
+    山东           89  (  6.2%)
+    四川           82  (  5.7%)
+    北京           65  (  4.5%)
+    河南           63  (  4.4%)
+    上海           59  (  4.1%)
+
+[mom] 22 provinces, 136 total relatives:
+  By region:
+    East          84  ( 61.8%)
+    North         12  (  8.8%)
+    Central       11  (  8.1%)
+    South         11  (  8.1%)
+    SouthWest     11  (  8.1%)
+    NorthEast      1  (  0.7%)
+    Other          6  (  4.4%)
+  Top 8 provinces:
+    浙江           43  ( 31.6%)
+    上海           18  ( 13.2%)
+    江苏           15  ( 11.0%)
+    广东            7  (  5.1%)
+    四川            6  (  4.4%)
+    湖北            6  (  4.4%)
+    湖南            5  (  3.7%)
+    安徽            4  (  2.9%)

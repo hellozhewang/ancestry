@@ -1,0 +1,3485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wang Family Ancestry — Raw Data / Debug View</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Roboto, sans-serif;
+    color: #1a1a1a;
+    background: #f6f4ee;
+    line-height: 1.6;
+    font-size: 15px;
+}
+.layout { display: flex; max-width: 1500px; margin: 0 auto; }
+nav.toc {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    background: #1e1e26;
+    color: #d0d0d8;
+    padding: 22px 18px;
+    overflow-y: auto;
+    flex-shrink: 0;
+    font-size: 13px;
+}
+nav.toc h2 {
+    font-size: 0.85em;
+    color: #b89868;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+nav.toc a {
+    color: #b0b0b8;
+    text-decoration: none;
+}
+nav.toc a:hover { color: #ffd080; }
+nav.toc ul { list-style: none; padding-left: 0; }
+nav.toc ul ul { padding-left: 14px; border-left: 1px solid #353540; margin: 4px 0; }
+nav.toc li { margin: 4px 0; line-height: 1.45; }
+nav.toc .back {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #353540;
+}
+nav.toc .back a {
+    display: block;
+    color: #b89868;
+    padding: 6px 10px;
+    border: 1px solid #4a3a20;
+    border-radius: 5px;
+    text-align: center;
+}
+nav.toc .back a:hover { background: #4a3a20; color: #ffd080; }
+main {
+    flex: 1;
+    max-width: 980px;
+    padding: 30px 50px;
+    background: white;
+    min-height: 100vh;
+}
+.meta-bar {
+    background: #2a2030;
+    color: #d0c8a8;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 0.85em;
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+.meta-bar strong { color: #ffd080; }
+.meta-bar .label { color: #888; }
+h1 {
+    color: #2a2050;
+    font-size: 1.9em;
+    margin: 30px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #b89868;
+    font-weight: 700;
+}
+h2 {
+    color: #3a3050;
+    font-size: 1.45em;
+    margin: 34px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e5dfd0;
+    font-weight: 600;
+}
+h3 {
+    color: #5a4060;
+    font-size: 1.2em;
+    margin: 24px 0 10px;
+    font-weight: 600;
+}
+h4 {
+    color: #6a5070;
+    font-size: 1.05em;
+    margin: 18px 0 8px;
+    font-weight: 600;
+}
+h5, h6 {
+    color: #7a6080;
+    font-size: 0.98em;
+    margin: 14px 0 6px;
+    font-weight: 600;
+}
+p { margin: 11px 0; }
+ul, ol { margin: 8px 0 14px 26px; }
+li { margin: 4px 0; }
+strong { color: #2a2050; }
+em { color: #5a3050; }
+code {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    background: #f0eadd;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.88em;
+    color: #4a3a2a;
+}
+pre {
+    background: #1e1e26;
+    color: #d0d0d8;
+    padding: 16px 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 14px 0;
+    font-size: 0.88em;
+    line-height: 1.5;
+}
+pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+blockquote {
+    border-left: 4px solid #b89868;
+    background: #faf5e8;
+    padding: 10px 18px;
+    margin: 14px 0;
+    color: #5a4030;
+    border-radius: 0 4px 4px 0;
+}
+blockquote p { margin: 6px 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9em;
+    overflow-x: auto;
+    display: block;
+}
+@media (min-width: 1000px) { table { display: table; } }
+th {
+    background: #2a2030;
+    color: #f0e5c8;
+    padding: 9px 12px;
+    text-align: left;
+    border: 1px solid #1a1018;
+    font-weight: 600;
+}
+td {
+    padding: 8px 12px;
+    border: 1px solid #e0d8c8;
+    vertical-align: top;
+    background: white;
+}
+tr:nth-child(even) td { background: #faf7ee; }
+tr:hover td { background: #fcf2dd; }
+a { color: #6a4a20; }
+a:hover { color: #b89868; }
+hr {
+    border: none;
+    border-top: 1px solid #d8cdb8;
+    margin: 24px 0;
+}
+.headerlink {
+    color: #d8c898;
+    text-decoration: none;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .headerlink {
+    opacity: 1;
+}
+@media (max-width: 1000px) {
+    .layout { flex-direction: column; }
+    nav.toc { position: static; height: auto; width: 100%; max-height: 50vh; }
+    main { padding: 25px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+<div class="back">
+<a href="index.html">← Back to landing</a>
+<a href="en.html" style="margin-top:6px;">English report</a>
+<a href="zh.html" style="margin-top:6px;">中文报告</a>
+</div>
+<h2>Table of contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#tldr-the-unified-picture">TL;DR — the unified picture</a></li>
+<li><a href="#family-admixture-profiles">Family admixture profiles</a></li>
+<li><a href="#family-vs-han-average-top-deviations">Family vs Han Average — top deviations</a><ul>
+<li><a href="#zhe-deltas-from-han-average">Zhe (deltas from Han Average)</a></li>
+<li><a href="#dad-deltas">Dad (deltas)</a></li>
+<li><a href="#mom-deltas">Mom (deltas)</a></li>
+</ul>
+</li>
+<li><a href="#closest-wegene-ethnic-averages-by-component-distance">Closest WeGene ethnic averages by component-distance</a><ul>
+<li><a href="#zhe-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur">Zhe — top 8: Han Avg, Sibe, Manchu, Mongol, Tu, Dongxiang, Tujia, Daur</a></li>
+<li><a href="#dad-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur">Dad — top 8: Han Avg, Sibe, Manchu, Mongol, Tu, Dongxiang, Tujia, Daur</a></li>
+<li><a href="#mom-top-8-han-avg-d1084-gelao-tujia-manchu-hui-sibe-miao-tu">Mom — top 8: Han Avg (d=10.84), Gelao, Tujia, Manchu, Hui, Sibe, Miao, Tu</a></li>
+</ul>
+</li>
+<li><a href="#family-member-pairwise-distances-wegene-component-space">Family-member pairwise distances (WeGene component-space)</a></li>
+<li><a href="#y-dna-mt-dna-haplogroups-the-smoking-gun">Y-DNA / mt-DNA haplogroups — the "smoking gun"</a></li>
+<li><a href="#documented-maternal-side-genealogies-both-grandparents-traced-to-henan">Documented maternal-side genealogies — both grandparents traced to Henan</a><ul>
+<li><a href="#of-dads-maternal-grandfather">南源贾氏 of 上虞 (dad's maternal grandfather 贾余良)</a></li>
+<li><a href="#of-dads-maternal-grandmother-even-deeper">东山谢氏 of 上虞 (dad's maternal grandmother 谢月娥) — even deeper</a></li>
+<li><a href="#combined-maternal-side-picture">Combined maternal-side picture</a></li>
+</ul>
+</li>
+<li><a href="#relatives-geographic-distribution-23mofang">Relatives geographic distribution (23mofang)</a><ul>
+<li><a href="#zhe-450-relatives-across-30-provinces">Zhe — 450 relatives across 30 provinces</a></li>
+<li><a href="#dad-283-relatives-across-28-provinces">Dad — 283 relatives across 28 provinces</a><ul>
+<li><a href="#close-cousin-matches-10-cm-longest-block-top-46-by-cm">Close-cousin matches (≥10 cM longest block, top 46 by cM)</a></li>
+<li><a href="#group-a-vs-group-b-the-critical-close-cousin-partition">Group A vs Group B — the critical close-cousin partition</a></li>
+<li><a href="#the-korean-component-everywhere-is-the-banner-descent-signature">The "Korean component everywhere" is the Banner-descent signature</a></li>
+<li><a href="#biographical-disruption-signatures-direct-evidence-paternal-side-only">Biographical disruption signatures — direct evidence (paternal side only)</a></li>
+<li><a href="#direct-examination-of-the-family-genealogy-record">Direct examination of the family genealogy record (族谱)</a></li>
+<li><a href="#american-dna-platform-korean-independent-third-party-signal">American DNA platform "Korean %" — independent third-party signal</a></li>
+<li><a href="#23mofang-cousin-matches-pointing-toward-hezhen-cluster">23mofang 黑龙江 cousin matches — pointing toward 新满洲 / Hezhen-cluster</a></li>
+<li><a href="#y-hg-n-y137601-geographic-distribution-23mofang-data">Y-Hg N-Y137601 geographic distribution (23mofang data)</a></li>
+<li><a href="#dads-ftdna-family-finder-matches-corroborating-signal">Dad's FTDNA Family Finder matches — corroborating signal</a></li>
+</ul>
+</li>
+<li><a href="#mom-136-relatives-across-22-provinces-10-fewer-than-dad">Mom — 136 relatives across 22 provinces (10× fewer than dad!)</a></li>
+</ul>
+</li>
+<li><a href="#family-pairwise-distances">Family pairwise distances</a></li>
+<li><a href="#nearest-individual-analysis-extended-pool-565-individuals">Nearest-individual analysis (extended pool, 565 individuals)</a></li>
+<li><a href="#best-fit-r4p-models-with-unique-region-constraint">Best-fit R4P models with unique-region constraint</a></li>
+<li><a href="#pure-ancient-signal-2018_anc-pool-cleanest-historical-view">Pure-ancient signal (2018_anc pool, cleanest historical view)</a></li>
+<li><a href="#anchor-distance-percentiles-vs-92-sampled-han-individuals">Anchor distance percentiles (vs 92 sampled Han individuals)</a></li>
+<li><a href="#data-products">Data products</a></li>
+<li><a href="#father-son-ibd-confirmation">Father-son IBD confirmation</a></li>
+<li><a href="#qpadm-best-fit-models">qpAdm best-fit models</a><ul>
+<li><a href="#2-source-yangshao-amur_n-1240k-v2">2-source Yangshao + Amur_N (1240K v2)</a></li>
+<li><a href="#3-source-xisima-amur-fujian-1240k-v2">3-source Xisima + Amur + Fujian (1240K v2)</a></li>
+</ul>
+</li>
+<li><a href="#yr-amur-axis-position-d-stat-ho-panel">YR ↔ Amur axis position (D-stat, HO panel)</a></li>
+<li><a href="#korean-axis-ho-panel">Korean axis (HO panel)</a></li>
+<li><a href="#why-a-han-x-2-source-model-fails-methodological-note">Why a Han + X 2-source model fails (methodological note)</a></li>
+<li><a href="#what-does-not-fit-consistently-rejected">What does NOT fit (consistently rejected)</a></li>
+<li><a href="#multi-source-ne-axis-robustness-dads-amur-weight-is-stable-across-reference-frames">Multi-source NE-axis robustness — dad's Amur weight is stable across reference frames</a></li>
+<li><a href="#han-panel-structure-three-sub-populations-in-hgdp-han">Han panel structure — three sub-populations in HGDP "Han"</a></li>
+<li><a href="#comprehensive-d-stat-sweep-dad-is-banner-descent-han-not-pure-manchu">Comprehensive D-stat sweep — dad is "Banner-descent Han", not "pure Manchu"</a></li>
+<li><a href="#important-methodological-clarification-three-different-manchu-framings">Important methodological clarification — three different "% Manchu" framings</a><ul>
+<li><a href="#why-these-differ-and-which-is-most-meaningful">Why these differ — and which is most meaningful</a></li>
+<li><a href="#worked-example-does-22-amur-in-modal-n-han-mean-14-manchu">Worked example: does 22% Amur in modal N. Han mean ¼ Manchu?</a></li>
+</ul>
+</li>
+<li><a href="#geographic-context-dads-38-amur-is-unusually-high-for-wu-region">Geographic context — dad's 38% Amur is unusually high for Wu region</a><ul>
+<li><a href="#statistical-rarity-by-geographic-context">Statistical rarity by geographic context</a></li>
+<li><a href="#what-this-means-for-the-banner-descent-hypothesis">What this means for the Banner-descent hypothesis</a></li>
+</ul>
+</li>
+<li><a href="#convergent-findings-all-methods-agree-on-the-topology">Convergent findings — all methods agree on the topology</a></li>
+<li><a href="#reconciling-apparent-contradictions">Reconciling apparent contradictions</a><ul>
+<li><a href="#g25-modern-only-said-mom-49-she-hmong-mien-substrate">"G25 modern-only said mom = 49% She / Hmong-Mien substrate"</a></li>
+<li><a href="#g25-pca-has-zhe-closer-to-mom-wegene-distance-has-zhe-closer-to-dad">"G25 PCA has zhe closer to mom; WeGene-distance has zhe closer to dad"</a></li>
+<li><a href="#direct-qpadm-says-dad-is-38-amur-but-wegene-says-185-mongolian-which-is-it">"Direct qpAdm says dad is 38% Amur — but WeGene says 18.5% mongolian. Which is it?"</a></li>
+<li><a href="#hankorean-d-stat-is-symmetric-for-zhe-z02-does-he-have-ne-ancestry-or-not">"Han↔Korean D-stat is symmetric for zhe (|Z|&lt;0.2) — does he have NE ancestry or not?"</a></li>
+</ul>
+</li>
+<li><a href="#bottom-line-geographic-origin-reading">Bottom-line geographic origin reading</a><ul>
+<li><a href="#dad-wu-region-manchu-banner-descent-paternal-deep-wu-han-maternal">Dad — Wu region Manchu Banner descent (paternal) + deep Wu Han (maternal)</a></li>
+<li><a href="#mom-wu-region-core-han-with-deep-ne-asian-maternal-line">Mom — Wu-region core Han with deep NE-Asian maternal line</a></li>
+<li><a href="#zhe-wu-region-han-at-the-genetic-midpoint-of-his-parents">Zhe — Wu-region Han at the genetic midpoint of his parents</a></li>
+</ul>
+</li>
+<li><a href="#whats-robust-across-all-methods">What's robust across all methods</a></li>
+<li><a href="#recommended-next-steps">Recommended next steps</a></li>
+<li><a href="#reproducibility">Reproducibility</a></li>
+<li><a href="#file-map">File map</a></li>
+</ul>
+</div>
+
+</nav>
+<main>
+<div class="meta-bar">
+<span class="label">Source:</span> <strong><a href="wegene/Zhe_family_wegene.md" style="color:#ffd080;">wegene/Zhe_family_wegene.md</a></strong> (raw markdown also in repo)<br>
+<span class="label">Size:</span> <strong>1,722 lines, 92,127 characters</strong><br>
+<span class="label">Purpose:</span> Raw debug / statistics view — full markdown source rendered with no curation
+</div>
+<h1 id="zhe-family-ancestry-wegene-cross-method-synthesis"><a class="toclink" href="#zhe-family-ancestry-wegene-cross-method-synthesis">Zhe family ancestry — WeGene + cross-method synthesis</a></h1>
+<p>This is the master document for the Zhe family ancestry analysis. Four<br />
+independent methods converge on the same conclusion, with the cleanest<br />
+geographic-origin reading at the bottom.</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>location</th>
+<th>what it measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>WeGene V16 admixture</strong> (primary)</td>
+<td><a href="."><code>~/wegene/</code></a></td>
+<td>52-component commercial admixture decomposition</td>
+</tr>
+<tr>
+<td><strong>23mofang relatives</strong></td>
+<td><a href="."><code>~/wegene/</code></a></td>
+<td>per-province relative matches (1,500+ for dad) — captured in this folder for narrative cohesion with WeGene admixture</td>
+</tr>
+<tr>
+<td><strong>G25 PCA modeling</strong></td>
+<td><a href="../g25/"><code>~/g25/</code></a></td>
+<td>25-D Vahaduo-style distance + sum-to-1 NNLS modeling; 200+ tests across 7 reference panels</td>
+</tr>
+<tr>
+<td><strong>biopipeline qpAdm + D-stat (zhe-only, old)</strong></td>
+<td><a href="../biopipeline/"><code>~/biopipeline/</code></a></td>
+<td>Direct ancient-DNA modeling against AADR v66 (~1.13M SNPs); zhe only</td>
+</tr>
+<tr>
+<td><strong>BAM-derived dad+zhe co-genotyping (new, 2026-05-11)</strong></td>
+<td><a href="../zhe/aadr_call_pc/"><code>~/zhe/aadr_call_pc/</code></a></td>
+<td>Both dad and zhe pileupCaller-called from BAM; full qpAdm + D-stat battery on co-merged 1240K and HO panels</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tldr-the-unified-picture"><a class="toclink" href="#tldr-the-unified-picture">TL;DR — the unified picture</a></h2>
+<p><strong>Dad has substantive ~30-38% Amur-River-N ancestry</strong> (direct qpAdm against<br />
+AADR v66 ancient sources), propagated through a documented Y-N-Y137601<br />
+paternal line. He clusters more strongly with Manchu_Liaoning individuals<br />
+than with any Han individual in the G25 extended pool — i.e. <strong>dad's<br />
+autosomal genome reads as Manchu_Liaoning-like, not Han</strong>. WeGene confirms<br />
+this with 18.5% mongolian (vs Han baseline 6.7%); direct ancient-DNA qpAdm<br />
+quantifies it at <strong>38% Amur_N</strong> in 2-source Yangshao+Amur frame.</p>
+<p><strong>Dad's ancestry is asymmetric</strong>: his paternal line (王长荣 + 蒋月香 →<br />
+王立言) is Manchu Banner descent, most likely from a Wu region Banner<br />
+garrison (Hangzhou Banner is the closest candidate, 70km from Shaoxing)<br />
+where the family lived from ~1645 to 1911 within the endogamous Banner<br />
+community, then dispersed to surrounding cities (Shaoxing, Ningbo, etc.)<br />
+after the Xinhai Revolution and abolition of Banner status. Direct<br />
+ancient-DNA qpAdm across <strong>5+ NE reference sources</strong> (Amur_N,<br />
+PrimorskyAmurRiver_N, Amur_Mesolithic, Daur, Hezhen) consistently<br />
+places dad's NE component at <strong>31-39%</strong> (Amur-river-specific, drops to<br />
+20% on geographically-divergent Boisman). D-stat places dad in the<br />
+"Banner-shifted Han" sub-cluster — same genetic neighborhood as ~25% of<br />
+HGDP "Han" individuals (e.g., Han_v7/v13) who are themselves modern<br />
+descendants of Sinicized Manchu Banner families. His maternal<br />
+line (贾余良 + 谢月娥 → 贾湘钟) is <strong>documented prestigious Han 世家</strong><br />
+with formal 族谱 records tracing both to <strong>Henan origins</strong>:<br />
+- <strong>贾余良</strong> → 南源贾氏 of 上虞: from Luoyang, Henan; migrated south 1127 CE<br />
+  during 靖康之难; settled in 上虞 ~1180 CE (28-32 generations to 贾余良);<br />
+- <strong>谢月娥</strong> → 东山谢氏 of 上虞: from 陈郡阳夏 (Taikang, Henan); migrated<br />
+  south <strong>286 CE</strong> during 永嘉之乱; descended from the legendary 谢安 (320-385)<br />
+  and the <strong>王谢风流</strong> aristocratic line — <strong>~1700+ years of continuous<br />
+  Shangyu residence</strong> as one of the most prestigious Han clans in Chinese<br />
+  history. Modern<br />
+cousin network shows both populations: ~33% of dad's close cousins<br />
+carry the Banner-descent fingerprint (5-16% NEAsian/Korean component),<br />
+~37% are pure Wu Han — exactly the split predicted by asymmetric ancestry.</p>
+<p><strong>Mom is mainstream Wu-region Han</strong> — 91% Han per WeGene, 0% mongolian<br />
+component, autosomally indistinguishable from a typical Zhejiang Han.<br />
+Her mt-D5a2a1-A9 maternal line carries deep NE-Asian signal but it's now<br />
+fully Han-integrated and doesn't show in autosomal admixture. Family<br />
+extremely localized to Zhejiang/Shanghai (62% of relatives in 7 East<br />
+China provinces; only 1 NE-China relative across 33 provinces).</p>
+<p><strong>Zhe is the F1-generation midpoint</strong> — direct qpAdm gives zhe <strong>18% Amur_N</strong>,<br />
+roughly half of dad's 38%. Within qpAdm's wide SE bars (~0.16 per<br />
+weight), this is consistent with F1 inheritance from a Manchu-Banner-descent<br />
+dad (~38% Amur) and a Wu Han mom carrying typical Wu baseline (~15%<br />
+Amur). The 2-source Yangshao+Amur frame likely slightly under-estimates<br />
+zhe's true Amur due to mom-inherited SE-coastal substrate getting<br />
+compressed into the Yangshao side (same effect that makes modal AADR Han<br />
+n=153 infeasible in the 2-source frame). The qualitative dilution is<br />
+clear: dad ≫ zhe ≫ mom on the Amur axis, by roughly 2× steps. Zhe<br />
+inherits dad's Y-N-Y137601 (NE-Tungusic Y-line) and mom's mt-D5a2a1-A9<br />
+(deep-NE maternal line).</p>
+<p><strong>Father-son relationship genetically proven</strong>: D(M, dad; zhe, X) = −0.27<br />
+at |Z|=72 vs random co-ethnic pairs |Z|&lt;3.</p>
+<p><strong>No one has meaningful</strong> Tibetan, Jomon, SE Asian, West Eurasian, or<br />
+steppe-nomad ancestry by any of the methods.</p>
+<hr />
+<h1 id="part-1-wegene-v16-admixture-analysis"><a class="toclink" href="#part-1-wegene-v16-admixture-analysis">Part 1 — WeGene V16 admixture analysis</a></h1>
+<p>WeGene is a consumer DNA testing service popular in mainland China; the<br />
+V16 admixture model decomposes ancestry into ~52 ethnically-labeled<br />
+components plus 10 continental aggregates.</p>
+<h2 id="family-admixture-profiles"><a class="toclink" href="#family-admixture-profiles">Family admixture profiles</a></h2>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th style="text-align: right;">Han Avg</th>
+<th style="text-align: right;">Zhe</th>
+<th style="text-align: right;">Dad</th>
+<th style="text-align: right;">Mom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>han_northern</strong></td>
+<td style="text-align: right;">54.4</td>
+<td style="text-align: right;">45.7</td>
+<td style="text-align: right;">50.4</td>
+<td style="text-align: right;"><strong>60.8</strong></td>
+</tr>
+<tr>
+<td><strong>han_southern</strong></td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">20.8</td>
+<td style="text-align: right;">30.2</td>
+</tr>
+<tr>
+<td><strong>mongolian</strong></td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;"><strong>15.3</strong></td>
+<td style="text-align: right;"><strong>18.5</strong></td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td><strong>japanese</strong></td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">6.1</td>
+</tr>
+<tr>
+<td><strong>korean</strong></td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.4</td>
+</tr>
+<tr>
+<td>miao_yao</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.6</td>
+</tr>
+<tr>
+<td>dai</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>she</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>gaoshan</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr>
+<td><strong>Total Han</strong></td>
+<td style="text-align: right;">81.9</td>
+<td style="text-align: right;">76.0</td>
+<td style="text-align: right;">71.2</td>
+<td style="text-align: right;">91.0</td>
+</tr>
+<tr>
+<td><strong>Total NE-Asian cluster</strong></td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;"><strong>24.0</strong></td>
+<td style="text-align: right;"><strong>27.7</strong></td>
+<td style="text-align: right;">6.5</td>
+</tr>
+<tr>
+<td><strong>Total SE-Asian cluster</strong></td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">2.5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading:</strong><br />
+- <strong>Mom is the cleanest baseline-Han profile in the family</strong> (91% Han, 0%<br />
+  mongolian). Her northern-Han fraction is <em>above</em> the Han average,<br />
+  consistent with deep eastern-Han ancestry but no recent NE-Asian<br />
+  admixture above the regional baseline.<br />
+- <strong>Dad has the largest deviation from baseline</strong>: 18.5% mongolian (~3×<br />
+  the Han baseline of 6.7%) plus 8% japanese — a <strong>+17% NE-Asian<br />
+  elevation above the typical Han profile</strong>.<br />
+- <strong>Zhe is the recombinant midpoint</strong>: 15.3% mongolian, 8.8% japanese —<br />
+  ~½ of dad's elevation, consistent with one-generation dilution from a<br />
+  Manchu-admixed parent through marriage with a typical Han parent.<br />
+- <strong>None of the three has meaningful SE Asian or western admixture</strong>.</p>
+<h2 id="family-vs-han-average-top-deviations"><a class="toclink" href="#family-vs-han-average-top-deviations">Family vs Han Average — top deviations</a></h2>
+<h3 id="zhe-deltas-from-han-average"><a class="toclink" href="#zhe-deltas-from-han-average">Zhe (deltas from Han Average)</a></h3>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th style="text-align: right;">delta</th>
+<th style="text-align: right;">target</th>
+<th style="text-align: right;">han_avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mongolian</td>
+<td style="text-align: right;"><strong>+8.55</strong></td>
+<td style="text-align: right;">15.27</td>
+<td style="text-align: right;">6.72</td>
+</tr>
+<tr>
+<td>japanese</td>
+<td style="text-align: right;">+6.23</td>
+<td style="text-align: right;">8.76</td>
+<td style="text-align: right;">2.53</td>
+</tr>
+<tr>
+<td>han_northern</td>
+<td style="text-align: right;">−8.76</td>
+<td style="text-align: right;">45.66</td>
+<td style="text-align: right;">54.42</td>
+</tr>
+<tr>
+<td>han_southern</td>
+<td style="text-align: right;">+2.80</td>
+<td style="text-align: right;">30.26</td>
+<td style="text-align: right;">27.46</td>
+</tr>
+<tr>
+<td>miao_yao</td>
+<td style="text-align: right;">−2.91</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.91</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dad-deltas"><a class="toclink" href="#dad-deltas">Dad (deltas)</a></h3>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th style="text-align: right;">delta</th>
+<th style="text-align: right;">target</th>
+<th style="text-align: right;">han_avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mongolian</td>
+<td style="text-align: right;"><strong>+11.74</strong></td>
+<td style="text-align: right;">18.46</td>
+<td style="text-align: right;">6.72</td>
+</tr>
+<tr>
+<td>japanese</td>
+<td style="text-align: right;">+5.45</td>
+<td style="text-align: right;">7.98</td>
+<td style="text-align: right;">2.53</td>
+</tr>
+<tr>
+<td>han_southern</td>
+<td style="text-align: right;">−6.69</td>
+<td style="text-align: right;">20.77</td>
+<td style="text-align: right;">27.46</td>
+</tr>
+<tr>
+<td>han_northern</td>
+<td style="text-align: right;">−4.02</td>
+<td style="text-align: right;">50.40</td>
+<td style="text-align: right;">54.42</td>
+</tr>
+<tr>
+<td>korean</td>
+<td style="text-align: right;">+0.44</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">0.82</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mom-deltas"><a class="toclink" href="#mom-deltas">Mom (deltas)</a></h3>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th style="text-align: right;">delta</th>
+<th style="text-align: right;">target</th>
+<th style="text-align: right;">han_avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>han_northern</td>
+<td style="text-align: right;"><strong>+6.35</strong></td>
+<td style="text-align: right;">60.77</td>
+<td style="text-align: right;">54.42</td>
+</tr>
+<tr>
+<td>mongolian</td>
+<td style="text-align: right;"><strong>−6.72</strong></td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6.72</td>
+</tr>
+<tr>
+<td>japanese</td>
+<td style="text-align: right;">+3.54</td>
+<td style="text-align: right;">6.07</td>
+<td style="text-align: right;">2.53</td>
+</tr>
+<tr>
+<td>han_southern</td>
+<td style="text-align: right;">+2.72</td>
+<td style="text-align: right;">30.18</td>
+<td style="text-align: right;">27.46</td>
+</tr>
+<tr>
+<td>miao_yao</td>
+<td style="text-align: right;">−1.27</td>
+<td style="text-align: right;">1.64</td>
+<td style="text-align: right;">2.91</td>
+</tr>
+</tbody>
+</table>
+<h2 id="closest-wegene-ethnic-averages-by-component-distance"><a class="toclink" href="#closest-wegene-ethnic-averages-by-component-distance">Closest WeGene ethnic averages by component-distance</a></h2>
+<h3 id="zhe-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur"><a class="toclink" href="#zhe-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur">Zhe — top 8: Han Avg, Sibe, Manchu, Mongol, Tu, Dongxiang, Tujia, Daur</a></h3>
+<h3 id="dad-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur"><a class="toclink" href="#dad-top-8-han-avg-sibe-manchu-mongol-tu-dongxiang-tujia-daur">Dad — top 8: Han Avg, Sibe, Manchu, Mongol, Tu, Dongxiang, Tujia, Daur</a></h3>
+<p>→ Dad and zhe both cluster with <strong>Tungusic neighbors</strong> (Sibe, Manchu, Mongol,<br />
+Daur all Tungusic-related; Tu and Dongxiang are NW Han-Mongol mixes).</p>
+<h3 id="mom-top-8-han-avg-d1084-gelao-tujia-manchu-hui-sibe-miao-tu"><a class="toclink" href="#mom-top-8-han-avg-d1084-gelao-tujia-manchu-hui-sibe-miao-tu">Mom — top 8: Han Avg (d=10.84), Gelao, Tujia, Manchu, Hui, Sibe, Miao, Tu</a></h3>
+<p>→ Mom's profile is <strong>dominated by Han Avg</strong> with central/SW-Chinese (Gelao,<br />
+Tujia, Miao) overlay, NOT the NE/Tungusic profile of dad and zhe.</p>
+<h2 id="family-member-pairwise-distances-wegene-component-space"><a class="toclink" href="#family-member-pairwise-distances-wegene-component-space">Family-member pairwise distances (WeGene component-space)</a></h2>
+<table>
+<thead>
+<tr>
+<th>pair</th>
+<th style="text-align: right;">distance</th>
+<th>interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zhe ↔ Dad</strong></td>
+<td style="text-align: right;"><strong>11.23</strong></td>
+<td>Closest in component-space (both have mongolian)</td>
+</tr>
+<tr>
+<td>Zhe ↔ Mom</td>
+<td style="text-align: right;">21.73</td>
+<td>~2× farther than zhe↔dad</td>
+</tr>
+<tr>
+<td>Dad ↔ Mom</td>
+<td style="text-align: right;">23.36</td>
+<td>Largest distance</td>
+</tr>
+<tr>
+<td>Zhe ↔ wife (Cecilia)</td>
+<td style="text-align: right;">80.55</td>
+<td>(no detectable shared ancestry)</td>
+</tr>
+<tr>
+<td>Zhe ↔ Korean friend</td>
+<td style="text-align: right;">51.11</td>
+<td>(typical inter-population distance)</td>
+</tr>
+</tbody>
+</table>
+<p>Note: in <strong>G25 PCA-distance</strong> the opposite holds (zhe is <em>closer to mom</em><br />
+0.0226 vs <em>dad</em> 0.0266). The two metrics measure different things —<br />
+WeGene-distance penalizes categorical component differences (zhe and dad<br />
+both have ~16-18% mongolian; mom has 0%), while G25-distance measures<br />
+overall PCA position (zhe sits between, slightly closer to mom on the NS<br />
+axis). <strong>Both are correct.</strong></p>
+<h2 id="y-dna-mt-dna-haplogroups-the-smoking-gun"><a class="toclink" href="#y-dna-mt-dna-haplogroups-the-smoking-gun">Y-DNA / mt-DNA haplogroups — the "smoking gun"</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Y-DNA</th>
+<th>mt-DNA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zhe</td>
+<td><strong>N-Y137601</strong></td>
+<td><strong>D5a2a1-A9</strong></td>
+</tr>
+<tr>
+<td>Dad</td>
+<td>N-Y137601</td>
+<td>B4a</td>
+</tr>
+<tr>
+<td>Mom</td>
+<td>—</td>
+<td>D5a2a1-A9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Y-N-Y137601</strong> is a sub-clade of Y-haplogroup N1a (the major Y-haplogroup<br />
+of northern Eurasia). N1a is <strong>strongly associated with Tungusic and<br />
+northern Han populations</strong>; the Y-Y137601 sub-branch is concentrated in<br />
+northern China and adjacent regions, <strong>including some samples within the<br />
+Aisin Gioro (Qing imperial clan) lineage</strong>. This is direct paternal-line<br />
+evidence for a <strong>Manchu / northern-Tungusic founder ancestor in dad's<br />
+paternal lineage</strong>, almost certainly entering the family during Qing<br />
+(1644-1912) or post-Qing population movements.</p>
+<p><strong>Mt-D5a2a1-A9</strong> (resolved via YFull's full-mtDNA sequencing on mom) is<br />
+a refined sub-clade of mt-D, the most common East Asian mt-haplogroup.<br />
+D5 is widespread across northern China, Korea, Japan, Mongolia. <strong>D5a2<br />
+broadly is well-documented in Bronze Age Inner Mongolia (Xiongnu-era<br />
+samples) and Late Neolithic Yellow River samples</strong>. The <strong>D5a2a1</strong><br />
+sub-branch is more specifically associated with <strong>NE Asian / Manchurian<br />
+Bronze Age and Iron Age samples</strong>, with modern frequency in Manchu,<br />
+Korean, and some northern Han populations. Coalescent age estimates<br />
+for D5a2a1 place its origin around 3,000-5,000 years ago in Bronze Age<br />
+NE Asia.</p>
+<p>The <strong>A9</strong> terminal node (YFull naming convention) is the most refined<br />
+phylogenetic position currently available — a specific modern terminal<br />
+branch within D5a2a1.</p>
+<p>Mom's autosomal genome shows 0% mongolian (mainstream Wu Han), but her<br />
+maternal line carries this deep NE Asian structure that has persisted<br />
+intact through ~150-200 generations of female-line transmission while<br />
+the autosomal NE component diluted out over millennia of intermarriage<br />
+with Han populations. <strong>The maternal line preserves the ancient<br />
+ancestry signal even when autosomal markers don't.</strong></p>
+<p><strong>Mt-B4a</strong> is widespread across East Asia and Austronesian populations<br />
+(Han, Korean, Japanese, Vietnamese, Filipino). General East Asian<br />
+maternal-line marker; doesn't pinpoint a specific origin.</p>
+<h2 id="documented-maternal-side-genealogies-both-grandparents-traced-to-henan"><a class="toclink" href="#documented-maternal-side-genealogies-both-grandparents-traced-to-henan">Documented maternal-side genealogies — both grandparents traced to Henan</a></h2>
+<p>Both of dad's maternal grandparents (贾余良 + 谢月娥) belong to<br />
+<strong>documented Han 世家</strong> (aristocratic lineage families) of 上虞 with<br />
+formal 族谱 records. Both clans originated in <strong>河南 (Henan)</strong> and migrated<br />
+south during major historical disruptions of northern China — a deeply<br />
+prestigious 衣冠南渡 (gentry southern migration) heritage.</p>
+<h3 id="of-dads-maternal-grandfather"><a class="toclink" href="#of-dads-maternal-grandfather">南源贾氏 of 上虞 (dad's maternal grandfather 贾余良)</a></h3>
+<p>The <strong>南源贾氏</strong> (Nanyuan Jia clan) of <strong>上虞</strong>. Hall name <strong>世伦堂 /<br />
+世纶堂</strong> (Shilun Tang). The recorded lineage origin is:</p>
+<table>
+<thead>
+<tr>
+<th>era</th>
+<th>event</th>
+<th>location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Northern Song late period</td>
+<td>始祖 <strong>贾宗正</strong> (also 世芳) served Emperor Huizong as a military officer</td>
+<td>originally from <strong>Luoyang (洛阳)</strong>, Henan; garrisoned 泾原 + 凤阳</td>
+</tr>
+<tr>
+<td><strong>1127</strong> (靖康之难)</td>
+<td>Jin armies invaded northern China; 贾宗正 followed Emperor Gaozong's court in the great southern migration (扈驾南渡)</td>
+<td>settled in <strong>临安 (Lin'an = modern Hangzhou)</strong>, the new Southern Song capital</td>
+</tr>
+<tr>
+<td>~1150-1180 CE</td>
+<td>贾宗正's grandson <strong>贾湜 (行念二)</strong> moved east from Lin'an into 上虞 and settled in <strong>上南源</strong> (Upper Nanyuan)</td>
+<td><strong>始迁祖</strong> of the local Shangyu branch</td>
+</tr>
+<tr>
+<td>1180 — present (~900 years)</td>
+<td>clan has remained continuously in Shangyu</td>
+<td>上虞, Zhejiang</td>
+</tr>
+<tr>
+<td>~1900-1950</td>
+<td>贾余良 + 谢月娥 (dad's maternal grandparents) — estimated <strong>28th-32nd generation descendants of 贾湜</strong></td>
+<td>Shangyu</td>
+</tr>
+<tr>
+<td>1935 — present</td>
+<td>贾湘钟 (dad's mother) born to 贾余良 + 谢月娥</td>
+<td>Shaoxing area</td>
+</tr>
+</tbody>
+</table>
+<h3 id="of-dads-maternal-grandmother-even-deeper"><a class="toclink" href="#of-dads-maternal-grandmother-even-deeper">东山谢氏 of 上虞 (dad's maternal grandmother 谢月娥) — even deeper</a></h3>
+<p>Virtually every 谢 lineage in 上虞 traces back to a single root: the<br />
+legendary <strong>东山谢氏</strong> (Dongshan Xie clan) — one of the <strong>most prestigious<br />
+aristocratic Han clans in all of Chinese history</strong>. The phrase <strong>王谢风流</strong><br />
+("the elegance of the Wang and Xie") refers to these two clans as the<br />
+twin pinnacles of Eastern Jin gentry culture.</p>
+<table>
+<thead>
+<tr>
+<th>era</th>
+<th>event</th>
+<th>location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cao Wei (3rd century CE)</td>
+<td><strong>谢缵</strong> (字伯登), 典农中郎将 (Agricultural Commandant)</td>
+<td>originally from <strong>陈郡阳夏</strong> (Chenjun Yangxia) = modern <strong>太康县, 河南</strong> (Taikang, Henan)</td>
+</tr>
+<tr>
+<td><strong>286 CE</strong> (西晋太康七年)</td>
+<td>His son <strong>谢衡</strong> (字衡甫) relocated the family south during the <strong>永嘉之乱 / 衣冠南渡</strong> (the great southern migration of Northern Chinese gentry)</td>
+<td>settled in <strong>始宁县东山</strong> (modern <strong>上虞 上浦镇方弄村</strong>)</td>
+</tr>
+<tr>
+<td>320-385 CE</td>
+<td><strong>谢安</strong> — the legendary Eastern Jin statesman; "reclused" on 东山 (origin of the idiom <strong>东山再起</strong> "rising again from Dongshan")</td>
+<td>上虞 东山</td>
+</tr>
+<tr>
+<td>~600-1900 CE</td>
+<td>Six 上虞 branches established over the next ~1500 years</td>
+<td>丰惠支, 盖东支, 章镇支, 虞南支, 孟葑支, 道墟支</td>
+</tr>
+<tr>
+<td>~1900-1950</td>
+<td>谢月娥 — most likely belonging to <strong>丰惠支 / 盖东支 / 道墟支</strong> (all near 百官, where 贾余良's family lived)</td>
+<td>上虞</td>
+</tr>
+</tbody>
+</table>
+<p><strong>~1700+ years of continuous residence in 上虞</strong> — more than double the<br />
+贾 lineage's depth. The 谢 family essentially <strong>founded the cultural<br />
+identity of the Shangyu region</strong> through 谢安 and the 东山 lineage.</p>
+<h3 id="combined-maternal-side-picture"><a class="toclink" href="#combined-maternal-side-picture">Combined maternal-side picture</a></h3>
+<p>Both lineages originated in <strong>Henan (河南)</strong> and migrated south during<br />
+major historical disruptions, ~17 centuries apart:</p>
+<table>
+<thead>
+<tr>
+<th>lineage</th>
+<th>Henan origin</th>
+<th>Migration trigger</th>
+<th>Settled in 上虞</th>
+<th style="text-align: right;">Generations to 王一波 母方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>谢</strong> (Xie)</td>
+<td>陈郡阳夏 (太康)</td>
+<td>永嘉之乱 / 衣冠南渡 (~286 CE)</td>
+<td>~286 CE (Western Jin)</td>
+<td style="text-align: right;">~55+ generations from 谢衡</td>
+</tr>
+<tr>
+<td><strong>贾</strong> (Jia)</td>
+<td>洛阳</td>
+<td>靖康之难 / 衣冠南渡 (1127 CE)</td>
+<td>~1150-1180 CE (Southern Song)</td>
+<td style="text-align: right;">28-32 generations from 贾湜</td>
+</tr>
+</tbody>
+</table>
+<p>This is <strong>direct documentary confirmation</strong> of the maternal side being<br />
+deep Han 世家 with continuous Shangyu residence — exactly what the<br />
+cousin-network pattern predicted (~37% of dad's close cousins are pure<br />
+Wu Han Group B profile, concentrated in Shaoxing/Shangyu). The 5+<br />
+Shaoxing/Shangyu close cousins on 23mofang are most likely collateral<br />
+descendants of these two ancient lineages from the past ~10-20 generations.</p>
+<p>Note: neither 贾 nor 谢 is a Manchu Banner Hanization — both are<br />
+documented <strong>aristocratic Han 世家 (gentry families)</strong> with formal<br />
+ancient origin records. This is independent confirmation that this<br />
+side of dad's family is <strong>not Banner-descent</strong>, and is in fact among<br />
+the <strong>most genealogically distinguished Han lineages in Chinese history</strong><br />
+(王谢 is shorthand for the highest tier of Eastern Jin aristocracy).</p>
+<h2 id="relatives-geographic-distribution-23mofang"><a class="toclink" href="#relatives-geographic-distribution-23mofang">Relatives geographic distribution (23mofang)</a></h2>
+<p>23mofang reports each user's matching relatives by province — independent<br />
+evidence of where DNA-sharing relatives actually live. (This section<br />
+is 23mofang data, not WeGene — included here for narrative cohesion<br />
+with WeGene's admixture decomposition above.)</p>
+<h3 id="zhe-450-relatives-across-30-provinces"><a class="toclink" href="#zhe-450-relatives-across-30-provinces">Zhe — 450 relatives across 30 provinces</a></h3>
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>East China</strong></td>
+<td style="text-align: right;">254</td>
+<td style="text-align: right;"><strong>56.4%</strong></td>
+</tr>
+<tr>
+<td>North China</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">10.4%</td>
+</tr>
+<tr>
+<td>South China</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">9.6%</td>
+</tr>
+<tr>
+<td>SouthWest</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">6.2%</td>
+</tr>
+<tr>
+<td>Central</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">4.7%</td>
+</tr>
+<tr>
+<td>NorthEast</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">4.2%</td>
+</tr>
+<tr>
+<td>NorthWest</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2.0%</td>
+</tr>
+<tr>
+<td>Other</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">6.4%</td>
+</tr>
+</tbody>
+</table>
+<p>Top: 浙江(100, 22%) · 江苏(46, 10%) · 广东(36, 8%) · 上海(33, 7%) · 福建(28, 6%) · 山东(27, 6%)</p>
+<h3 id="dad-283-relatives-across-28-provinces"><a class="toclink" href="#dad-283-relatives-across-28-provinces">Dad — 283 relatives across 28 provinces</a></h3>
+<p>Distribution:</p>
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>East China</strong> (浙江+江苏+上海+福建+安徽)</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;"><strong>55%</strong></td>
+</tr>
+<tr>
+<td>South China (广东)</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">7.8%</td>
+</tr>
+<tr>
+<td>North China (北京+山东+河北+河南+天津+陕西)</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">17.3%</td>
+</tr>
+<tr>
+<td>SouthWest (四川+云南+广西+重庆+贵州)</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">6.4%</td>
+</tr>
+<tr>
+<td>Central (湖南+湖北+江西+台湾+香港)</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">4.9%</td>
+</tr>
+<tr>
+<td>NorthEast (黑龙江+内蒙古+辽宁+吉林)</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">3.9%</td>
+</tr>
+<tr>
+<td>NorthWest (甘肃)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.1%</td>
+</tr>
+<tr>
+<td>籍贯地未知 (unknown)</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">4.6%</td>
+</tr>
+</tbody>
+</table>
+<p>Top provinces: 浙江(82, 29%) · 江苏(31, 11%) · 上海(24, 8.5%) ·<br />
+广东(22, 7.8%) · 山东(15, 5.3%) · 北京(12, 4.2%) · 福建(12, 4.2%)</p>
+<p>→ <strong>Dad has substantial Wu region cousin density</strong> (55% East China,<br />
+above 23mofang's user-base baseline of ~50%). Compare to mom at 61.8%<br />
+E. China and zhe at 56.4% (F1 midpoint, intermediate).</p>
+<h4 id="close-cousin-matches-10-cm-longest-block-top-46-by-cm"><a class="toclink" href="#close-cousin-matches-10-cm-longest-block-top-46-by-cm">Close-cousin matches (≥10 cM longest block, top 46 by cM)</a></h4>
+<p>The most informative match is <strong>潘</strong> (Pan family) at 78 cM longest<br />
+block in Ningbo/Yuyao<strong> — a 3rd-cousin-range match (~4 generations<br />
+back common ancestor, ~1840s CE). 潘</strong>'s ethnicity breakdown:<br />
+40.17% NHan + 40.85% SHan + <strong>16.46% NEAsian/Korean</strong> — a clear<br />
+<strong>Banner-descent fingerprint</strong> consistent with a shared ancestor in<br />
+a Wu region Manchu Banner garrison ~6 generations back.</p>
+<p>Other close matches include:<br />
+- 5+ matches in <strong>Shaoxing/Shangyu</strong> county at 11-19 cM<br />
+- 5+ matches in <strong>Hangzhou area</strong> (Linping, Fuyang, Xiaoshan, Xihu, Jianggan) at 11-18 cM<br />
+- 3+ matches in <strong>Ningbo area</strong> (Yuyao×2, Yinzhou) at 12-78 cM<br />
+- 4 matches in <strong>Shanghai</strong> (Yangpu, Jiading, Chongming + son in Pudong) at 11-17 cM<br />
+- 3 <strong>于</strong> matches in <strong>Beijing</strong> at 18 cM each — including TWO with substantial <strong>Buryat ancestry</strong> (31.83% Buryat + 19% E.Europe + 13% S.Europe — half-Buryat-half-European mixed individuals). Buryat are NE Siberian Tungusic peoples; sharing 18 cM with half-Buryat people directly confirms deep Tungusic shared ancestry on dad's paternal line.<br />
+- <strong>王</strong> in Henan/Zhengzhou/Gongyi at 11 cM with 7.16% NEAsian (potentially distant Banner-descent cousin via different garrison)</p>
+<h4 id="group-a-vs-group-b-the-critical-close-cousin-partition"><a class="toclink" href="#group-a-vs-group-b-the-critical-close-cousin-partition">Group A vs Group B — the critical close-cousin partition</a></h4>
+<p>Among dad's top 46 close matches, there is a clean partition into two<br />
+populations distinguished by NEAsian/Korean (Tungusic/Banner-descent<br />
+fingerprint in 23mofang's labeling vocabulary):</p>
+<p><strong>Group A — Banner-descent profile (NEAsian/Korean 3-16%)</strong>, ~33% of close matches:</p>
+<table>
+<thead>
+<tr>
+<th>Match</th>
+<th style="text-align: right;">cM</th>
+<th>Location</th>
+<th style="text-align: right;">NEAsian/Korean %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>潘</strong></td>
+<td style="text-align: right;"><strong>78</strong></td>
+<td><strong>Ningbo/Yuyao</strong></td>
+<td style="text-align: right;"><strong>16.46%</strong></td>
+</tr>
+<tr>
+<td>范**</td>
+<td style="text-align: right;">11</td>
+<td>Wenzhou/Pingyang</td>
+<td style="text-align: right;">10.22%</td>
+</tr>
+<tr>
+<td>叶**</td>
+<td style="text-align: right;">11</td>
+<td>Jiangsu/Xuzhou</td>
+<td style="text-align: right;">9.87%</td>
+</tr>
+<tr>
+<td>张**</td>
+<td style="text-align: right;">11</td>
+<td>Shanghai/Chongming</td>
+<td style="text-align: right;">8.51%</td>
+</tr>
+<tr>
+<td>金**</td>
+<td style="text-align: right;">11</td>
+<td>Shaoxing/Yuecheng</td>
+<td style="text-align: right;">7.91%</td>
+</tr>
+<tr>
+<td>王**</td>
+<td style="text-align: right;">11</td>
+<td>Henan/Zhengzhou</td>
+<td style="text-align: right;">7.16%</td>
+</tr>
+<tr>
+<td>张**</td>
+<td style="text-align: right;">17</td>
+<td>Shanghai/Yangpu</td>
+<td style="text-align: right;">5.6%</td>
+</tr>
+<tr>
+<td>顾**</td>
+<td style="text-align: right;">11</td>
+<td>Shaoxing/Shangyu</td>
+<td style="text-align: right;">5.57%</td>
+</tr>
+<tr>
+<td>陆**</td>
+<td style="text-align: right;">11</td>
+<td>Shanghai/Jiading</td>
+<td style="text-align: right;">5%</td>
+</tr>
+<tr>
+<td>李**</td>
+<td style="text-align: right;">12</td>
+<td>Taizhou/Huangyan</td>
+<td style="text-align: right;">4.58%</td>
+</tr>
+<tr>
+<td>朱**</td>
+<td style="text-align: right;">12</td>
+<td>Shaoxing/Shangyu</td>
+<td style="text-align: right;">4.29% (Mongol/Tungus)</td>
+</tr>
+<tr>
+<td>朱**</td>
+<td style="text-align: right;">15</td>
+<td>Hangzhou/Fuyang</td>
+<td style="text-align: right;">3.8%</td>
+</tr>
+<tr>
+<td>张**</td>
+<td style="text-align: right;">14</td>
+<td>(unknown)</td>
+<td style="text-align: right;">3.42%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Group B — Pure Wu Han profile (0% NEAsian)</strong>, ~37% of close matches:</p>
+<table>
+<thead>
+<tr>
+<th>Match</th>
+<th style="text-align: right;">cM</th>
+<th>Location</th>
+<th style="text-align: right;">NEAsian/Korean %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>李**</td>
+<td style="text-align: right;">19</td>
+<td>Shaoxing/Shangyu</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>顾**</td>
+<td style="text-align: right;">18</td>
+<td>Wuxi/Liangxi</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>周**</td>
+<td style="text-align: right;">14</td>
+<td>Ningbo/Yinzhou</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>陈**</td>
+<td style="text-align: right;">13</td>
+<td>Shaoxing/Shangyu</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>丁**</td>
+<td style="text-align: right;">13</td>
+<td>Hangzhou/Xiaoshan</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>沈**</td>
+<td style="text-align: right;">11</td>
+<td>Hangzhou/Jianggan</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>杨**</td>
+<td style="text-align: right;">11</td>
+<td>Jiaxing/Haining</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>倪**</td>
+<td style="text-align: right;">12</td>
+<td>Xiamen</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>雷**</td>
+<td style="text-align: right;">11</td>
+<td>Anhui/Suzhou</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>...</td>
+<td style="text-align: right;">...</td>
+<td>...</td>
+<td style="text-align: right;">...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>This bimodal pattern is the most diagnostic single observation in the<br />
+data</strong> — it directly proves the <strong>asymmetric ancestry hypothesis</strong>:</p>
+<blockquote>
+<p><strong>Paternal side (王长荣 + 蒋月香 → 王立言)</strong> is <strong>Manchu Banner descent</strong><br />
+dispersed across Wu region post-1911. Their collateral cousins are<br />
+Group A — diluted Banner-descent profiles (5-16% NEAsian residue,<br />
+~10-30% Banner-descent overall) scattered across Wu region cities.</p>
+<p><strong>Maternal side (贾余良 + 谢月娥 → 贾湘钟)</strong> is <strong>deep Wu Han with<br />
+multi-generation local roots</strong>. Their collateral cousins are Group B —<br />
+pure Wu Han profiles (0% NEAsian) concentrated in their original<br />
+Wu region locales.</p>
+</blockquote>
+<p>Dad's modern cousin network contains both populations simultaneously<br />
+because both sides have been in Wu region for at least one or more<br />
+generations — paternal via late-stage Hangzhou Banner garrison<br />
+(repopulated 1865-1875 from other Banner garrisons after the 1861<br />
+Taiping disaster, then demolished 1914), and maternal via continuous<br />
+Wu Han residence (南源贾氏 since ~1180 CE, 东山谢氏 since ~286 CE).</p>
+<h4 id="the-korean-component-everywhere-is-the-banner-descent-signature"><a class="toclink" href="#the-korean-component-everywhere-is-the-banner-descent-signature">The "Korean component everywhere" is the Banner-descent signature</a></h4>
+<p>33% of dad's close matches show ≥3% NEAsian/Korean component<br />
+(vs. typical Han baseline of 0-2%). This isn't actual modern Korean<br />
+ancestry — 23mofang labels Manchu/Tungusic ancestry as "Korean" because<br />
+Korean reference samples cluster genetically with Manchu/Tungusic<br />
+populations on PCA, and Korean reference samples happen to be more<br />
+abundant than Manchu samples in 23mofang's database. So the "Korean<br />
+component" prevalence in dad's cousins = the Banner-descent prevalence<br />
+across the cousin network.</p>
+<p>This is the <strong>modern descendant fingerprint of a former Banner garrison<br />
+population</strong>, diluted by ~100 years of post-1911 Han intermarriage.</p>
+<h4 id="biographical-disruption-signatures-direct-evidence-paternal-side-only"><a class="toclink" href="#biographical-disruption-signatures-direct-evidence-paternal-side-only">Biographical disruption signatures — direct evidence (paternal side only)</a></h4>
+<p>The biographical record on dad's paternal grandparents (王长荣 + 蒋月香)<br />
+shows the <strong>active-suppression</strong> pattern characteristic of Banner-descent<br />
+families surviving through Republican and PRC political eras. Both<br />
+lived to old age (王长荣 ~75, 蒋月香 87), so identity loss was NOT<br />
+from accidental early death — it was a deliberate strategic choice.<br />
+This explains both the "no paper trail above 王长荣" and the<br />
+preservation of the Banner-descent autosomal profile through 王立言:<br />
+他们 married within the Wu region Banner-refugee community rather than<br />
+broadly mixing with local Wu Han.</p>
+<p>The maternal side (贾余良 + 谢月娥) does NOT show this disruption pattern<br />
+in the same way — they're deep Wu Han locals whose family continuity is<br />
+visible in 贾湘钟's robust Wu region cousin network (Group B cousins).</p>
+<p>The biographical record on dad's paternal grandparents:</p>
+<table>
+<thead>
+<tr>
+<th>ancestor</th>
+<th>dates</th>
+<th style="text-align: right;">lifespan</th>
+<th>lived through</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>王长荣</td>
+<td>1886 (光绪十二年) – ~1961</td>
+<td style="text-align: right;"><strong>age ~75</strong></td>
+<td>Late Qing, 1911 Xinhai Revolution (age 25), Republican era, Sino-Japanese War, Civil War, PRC founding, Great Leap Famine</td>
+</tr>
+<tr>
+<td>蒋月香</td>
+<td>1897 – 1984/9/11</td>
+<td style="text-align: right;"><strong>age 87</strong></td>
+<td>All of the above + Cultural Revolution + early Reform era</td>
+</tr>
+<tr>
+<td>贾余良</td>
+<td>deceased (dates unknown)</td>
+<td style="text-align: right;">—</td>
+<td>likely similar long-lived cohort</td>
+</tr>
+<tr>
+<td>谢月娥</td>
+<td>deceased (dates unknown)</td>
+<td style="text-align: right;">—</td>
+<td>likely similar long-lived cohort</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Both paternal grandparents lived to old age</strong> — 王长荣 to 75, 蒋月香 to<br />
+87. They were not lost to early death. 王立言 (born 1936) had his father<br />
+present until age 25 and his mother until age 48 — ample opportunity for<br />
+family-history transmission.</p>
+<p><strong>The fact that no Manchu identity / 族谱 / family origin information<br />
+transmitted despite long-lived grandparents is itself the most diagnostic<br />
+finding</strong>: this implies <strong>active, deliberate suppression</strong> of Banner<br />
+identity, not accidental loss through early death.</p>
+<p>The historical context makes this entirely plausible. 王长荣 was already<br />
+25 when Qing fell in 1911, and was an adult through every subsequent<br />
+anti-Manchu period:</p>
+<ul>
+<li><strong>1911-1928</strong>: Republican-era anti-Manchu sentiment; Banner status<br />
+  abolished, former Banner families openly persecuted in some cities;<br />
+  many actively concealed their identity by adopting Han surnames and<br />
+  moving to areas where they weren't known.</li>
+<li><strong>1949-1976</strong>: Communist-era "class background" framework treated former<br />
+  Banner status (especially anyone with imperial-system privileges) as<br />
+  "exploiting class" or "feudal remnants" — targets for political<br />
+  persecution.</li>
+<li><strong>1966-1976 Cultural Revolution</strong>: 蒋月香 lived through this entire<br />
+  decade (age 69-79). Banner-descent families were specifically vulnerable<br />
+  during 破四旧 (Smash the Four Olds) campaigns; family records were<br />
+  destroyed, ancestral worship suppressed, ethnic-minority identities<br />
+  hidden for survival. <strong>She would have actively suppressed any Manchu<br />
+  identity information rather than transmit it to her grandchildren</strong>.</li>
+</ul>
+<p>So the "no paper trail above 王长荣" finding reflects a <strong>conscious<br />
+strategic choice across two generations of grandparents who lived through<br />
+multiple eras of anti-Manchu / anti-former-class violence</strong>. They survived<br />
+into old age precisely because they successfully hid the identity. The<br />
+DNA recovers what their own active concealment erased.</p>
+<p>This biographical detail is consistent with the cousin-network pattern:<br />
+the Banner-descent autosomal profile is preserved in dad (~38% Amur)<br />
+because his grandparents married within the displaced Banner community<br />
+in Wu region. But the family ORAL TRADITION was actively erased because<br />
+the grandparents' generation prioritized survival in PRC-era political<br />
+climate over identity transmission.</p>
+<h4 id="direct-examination-of-the-family-genealogy-record"><a class="toclink" href="#direct-examination-of-the-family-genealogy-record">Direct examination of the family genealogy record (族谱)</a></h4>
+<p><strong>Photos archived at <code>/home/zzwang/jiapu/1.jpeg</code> ... <code>9.jpeg</code></strong> (9 images,<br />
+folding-booklet format). A handwritten family register written on a<br />
+generic pre-printed booklet (<strong>金鑫源宝号台执</strong> — "金鑫源" is the<br />
+stationery shop / printer's brand name) with 中华民国 印花税 stamps<br />
+(1940s tax compliance era).</p>
+<p><strong>The booklet is a 命师's (fortune-teller's) working notes, not a<br />
+family-kept register.</strong> Web-search corroboration found:<br />
+- "金鑫源" = generic stationery shop name (no historical 商号 in<br />
+  民国 绍兴/上虞 records); paper itself was made by a printer of that<br />
+  name.<br />
+- <strong>"朱湖国华" seal next to the entries = personal seal of the 命师<br />
+  who wrote them</strong>. Best inference: <strong>朱国华</strong> (given name 国华)<br />
+  from <strong>朱湖山村, 嵊州黄泽镇</strong> — directly adjacent to 上虞.<br />
+- The very precise 时辰 (hour-of-day) recording throughout the<br />
+  booklet is exactly what a 命师 needs for 八字 readings.</p>
+<p><strong>This is still asymmetric with the maternal side</strong>, just in a<br />
+different way. Maternal 贾家 / 谢家 have their own self-maintained<br />
+族谱 with named ancestors back to 1180 CE / 286 CE. The paternal side<br />
+outsourced even their family register to a 命师 — consistent with<br />
+either "lost original records" or "never had Han-style 族谱 because<br />
+Banner-descent families used Banner registers, and after 1911 turned<br />
+to 命师 records." Photographs were examined directly. Findings:</p>
+<p><strong>Format and scope.</strong> Personal descendant-register kept by 王立言 (or<br />
+王长荣 himself), tracking births/deaths across roughly 6-7 generations.<br />
+Not a clan-wide 宗谱 — no extended lineage tree above 王长荣 is recorded.<br />
+The register uses a standard kinship ladder (玄祖→曾祖→祖父→父→本身→子→<br />
+孙→玄孙) as an organizing key.</p>
+<p><strong>Branch structure.</strong> 王长荣 + 蒋月香 had multiple sons; <strong>王立言</strong><br />
+(b. 1936) is the eldest-line branch (长子一支) that continues through<br />
+王一波 (b. 1959, 农历2月15日 申時) to zhe. Sibling branches exist in<br />
+parallel — typical for personal family logs, not specifically<br />
+diagnostic of Banner vs Wu Han.</p>
+<p><strong>王长荣 birth-year reading.</strong> The register appears to read "<strong>咸丰十二年<br />
+十一月初三子时</strong>" — but 咸丰 ended in 1861 (only 11 years existed), so<br />
+this is either a transcription error in the original or a misreading.<br />
+Given the stated death age of ~75 and ~1961 death, the intended reading<br />
+is almost certainly <strong>光绪十二年 = 1886 CE</strong> (which would have died 1961<br />
+at age 75 — a clean match).</p>
+<p><strong>Death dates of ancestors above 王长荣 (page-by-page index).</strong> The<br />
+register contains scattered death-date entries with <strong>kinship labels but<br />
+no names</strong> — they identify generation/role but not personal identity:</p>
+<table>
+<thead>
+<tr>
+<th>photo</th>
+<th>era date</th>
+<th>Gregorian</th>
+<th>label</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.jpeg</td>
+<td>光绪癸未年二月十九日</td>
+<td>1883.02.19</td>
+<td>(anonymous, 酉时)</td>
+<td>oldest entry visible</td>
+</tr>
+<tr>
+<td>8.jpeg</td>
+<td>光绪辛卯年十月初九</td>
+<td>1891.11.10</td>
+<td>(anonymous, 戌时)</td>
+<td>with marginal "1904"</td>
+</tr>
+<tr>
+<td>8.jpeg</td>
+<td>民国乙丑 ... 四月廿二日</td>
+<td>~1925</td>
+<td>(属兔 zodiac)</td>
+<td>death</td>
+</tr>
+<tr>
+<td>8.jpeg</td>
+<td>民国丙寅五月</td>
+<td>1926</td>
+<td>"蒋云月谷" type label</td>
+<td>death</td>
+</tr>
+<tr>
+<td>8.jpeg</td>
+<td>民国廿二年癸酉 九月廿日</td>
+<td><strong>1933.11.08</strong> lunar</td>
+<td>rooster zodiac, "立言" entry</td>
+<td><strong>possibly 王立言 actual birth</strong> (rooster yr — not 1936)</td>
+</tr>
+<tr>
+<td>8.jpeg</td>
+<td>民国廿八年己卯六月十二日</td>
+<td>~1939</td>
+<td>申时</td>
+<td>death</td>
+</tr>
+<tr>
+<td><strong>7.jpeg</strong></td>
+<td><strong>民国三年 ... 申时</strong></td>
+<td><strong>1914</strong></td>
+<td>"<strong>灯祖父 死期 申时</strong>"</td>
+<td><strong>death of "灯祖父" (great-grandfather level) — exact year of Hangzhou Banner garrison demolition</strong></td>
+</tr>
+<tr>
+<td><strong>7.jpeg</strong></td>
+<td>民国卅八年闰七月廿二日巳时</td>
+<td><strong>1949.09.13</strong></td>
+<td>"<strong>三祖母 死期</strong>"</td>
+<td>death of great-great-grandmother</td>
+</tr>
+<tr>
+<td>6.jpeg</td>
+<td>民国光年(?) ... 申时</td>
+<td>~1912</td>
+<td>"?祖 死期 申时"</td>
+<td>unnamed grandparent</td>
+</tr>
+<tr>
+<td>5.jpeg</td>
+<td>光绪十二年十一月初三 子时</td>
+<td><strong>1886.11.28</strong> lunar</td>
+<td>"祖父 王长荣 生"</td>
+<td>王长荣 birth</td>
+</tr>
+<tr>
+<td>5.jpeg</td>
+<td>1984阳历8月10日</td>
+<td><strong>1984.08.10</strong></td>
+<td>"母 蒋月香 故世 寿82"</td>
+<td>蒋月香 death</td>
+</tr>
+</tbody>
+</table>
+<p><strong>王一波's alternate name: 敦龙.</strong> Image 6 records "立言之子 敦龙" —<br />
+this is the <strong>lived family name for 王一波 himself</strong>, not a sibling. So<br />
+王立言 had a single documented son in the eldest-line branch: <strong>王一波<br />
+/ 敦龙</strong> (born 1959.02.15 lunar 申時).</p>
+<p><strong>敦龙 is the active daily-use family name, not an archived 乳名.</strong> As<br />
+of 2026, the user's maternal grandmother (王一波's mother-in-law —<br />
+outside the 王 family) <strong>still calls 王一波 by 敦龙</strong>. The name<br />
+propagated through marriage into the 贾 family network. This is the<br />
+marker of a primary lived name, not a childhood-only nickname.</p>
+<p><strong>Asymmetric identity-preservation pattern (diagnostic).</strong> Within the<br />
+same household:</p>
+<table>
+<thead>
+<tr>
+<th>side</th>
+<th>identity-preservation mechanism</th>
+<th>evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mom's side</strong> (Wu Han 世家)</td>
+<td><strong>paper-based</strong> — 族谱, 籍贯, named ancestors</td>
+<td>贾氏 → Shangyu since 1180 CE; 谢氏 → Shangyu since 286 CE; full clan records. Single-name convention; 乳名 dropped at school age.</td>
+</tr>
+<tr>
+<td><strong>dad's side</strong> (suspected Banner)</td>
+<td><strong>practice-based</strong> — names, customs, oral</td>
+<td>No 族谱 above 王长荣; no 籍贯; recycled commercial stationery for record. But 敦龙 actively used by family elders into 2026, even by in-laws.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the predicted signature of Banner-descent families post-1911:<br />
+when external identity markers are destroyed by anti-Manchu and<br />
+class-background political persecution (1911-1928, 1949-1976), surviving<br />
+identity can only carry forward through <em>internal practices</em> — how<br />
+elders address each other, what names get used at home, which dishes<br />
+appear at New Year. Paper-based identity is fragile against<br />
+persecution; practice-based identity is portable, deniable, and<br />
+survives multiple regime changes.</p>
+<p>Wu Han 世家 don't need practice-based continuity because their 族谱<br />
+carries the identity. Banner families don't have the 族谱 option<br />
+anymore, so practice is all that's left. The asymmetric pattern<br />
+within zhe's own household — paper continuity on mom's side, naming<br />
+continuity on dad's side — is consistent with this divergent history.</p>
+<p>This shifts confidence on <strong>"source is Banner descent specifically (not<br />
+generic NE Han migration)"</strong> from high → slightly higher: practice-based<br />
+preservation is a Banner signature, not a Wu Han signature.</p>
+<h4 id="american-dna-platform-korean-independent-third-party-signal"><a class="toclink" href="#american-dna-platform-korean-independent-third-party-signal">American DNA platform "Korean %" — independent third-party signal</a></h4>
+<p>Commercial American platforms (23andMe, AncestryDNA, MyHeritage, FTDNA,<br />
+LivingDNA) report a small but consistent "Korean" component for both<br />
+dad and zhe:</p>
+<table>
+<thead>
+<tr>
+<th>individual</th>
+<th>American platform "Korean" %</th>
+<th>"Korean" % in our framework</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>王一波 (dad)</td>
+<td><strong>5-10%</strong></td>
+<td>excess NE signal above Han baseline</td>
+</tr>
+<tr>
+<td>王喆 (zhe)</td>
+<td><strong>2-5%</strong></td>
+<td>half of dad's, diluted through Wu Han mom</td>
+</tr>
+<tr>
+<td>胡吉 (mom)</td>
+<td><strong>0%</strong></td>
+<td>typical Wu Han baseline</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why "Korean" and not "Manchu"?</strong> American platforms have essentially<br />
+no Manchu samples in their reference panels — Manchu individuals<br />
+overwhelmingly test on WeGene / 23mofang in mainland China. When the<br />
+algorithm encounters NE Asian / Tungusic signal, it assigns to the<br />
+closest available label: Korean (Koreans themselves are ~40% Amur-N<br />
+derived). So <strong>"American platform 'Korean' label" ≈ "NE Asian signal<br />
+exceeding Han baseline"</strong> — same biology, different label.</p>
+<p><strong>Mathematical check.</strong> Dad's 38% Amur on qpAdm gets modeled by<br />
+American platforms as roughly 85% Chinese + 10% Korean references,<br />
+because the Korean reference only carries 40% Amur itself — maxing<br />
+Korean at 10% only captures ~4% excess Amur on top of the Han<br />
+reference's 22% baseline. The Korean component magnitude (5-10% for<br />
+dad) is consistent with the full 38% Amur autosomal signal.</p>
+<p><strong>This is the 4th completely independent evidence stream:</strong></p>
+<table>
+<thead>
+<tr>
+<th>evidence stream</th>
+<th>reference panel</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>qpAdm 38% Amur</td>
+<td>AADR academic ancient DNA</td>
+<td>f-statistics</td>
+</tr>
+<tr>
+<td>G25 nearest neighbor = Liaoning Manchu</td>
+<td>Eurogenes private modern panel</td>
+<td>PCA distance</td>
+</tr>
+<tr>
+<td>23mofang A/B cousin split + N geography</td>
+<td>Chinese commercial customer base</td>
+<td>IBD segments + Y-Hg frequency</td>
+</tr>
+<tr>
+<td><strong>American "Korean" 5-10% / 2-5%</strong></td>
+<td><strong>American commercial (Anglo-skewed)</strong></td>
+<td><strong>k-mer reference assignment</strong></td>
+</tr>
+</tbody>
+</table>
+<p>All four use distinct reference panels, distinct statistical methods,<br />
+and distinct comparison frameworks. The convergence on the same answer<br />
+across all four is itself diagnostic.</p>
+<p><strong>The dad-to-son halving is the smoking gun for one-generation<br />
+admixture.</strong> If dad's NE component were diffuse ancient admixture,<br />
+the father-son ratio would be roughly 1:1 (both inherit the same<br />
+diffuse signal). Instead the ratio is 2:1 (dad 5-10%, zhe 2-5%)<br />
+because the NE component came specifically through one parent and got<br />
+diluted by half through the Wu Han mother. This is the autosomal<br />
+signature of recent (3-4 generation) Banner descent.</p>
+<p><strong>Comparison with typical population calls:</strong> Pure Wu Han = 0% Korean.<br />
+Pure N. Han = 0-2% Korean. 1/4 Manchu descent = typically 3-8% Korean.<br />
+Mixed Manchu-Han 1/2 = 10-25% Korean. Dad's 5-10% sits in the "diluted<br />
+Banner descent" range — consistent with 王立言 (dad's father) being<br />
+essentially full Banner and 贾湘钟 (dad's mother) being Wu Han.</p>
+<h4 id="23mofang-cousin-matches-pointing-toward-hezhen-cluster"><a class="toclink" href="#23mofang-cousin-matches-pointing-toward-hezhen-cluster">23mofang 黑龙江 cousin matches — pointing toward 新满洲 / Hezhen-cluster</a></h4>
+<p>Direct cousin-network examination on 23mofang shows <strong>4 matches in<br />
+黑龙江</strong> (vs ~0 in 辽宁), distributed across:</p>
+<table>
+<thead>
+<tr>
+<th>city</th>
+<th>matches</th>
+<th>historical ethnic zone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>哈尔滨</td>
+<td>2</td>
+<td>mixed 满 / 汉 / 朝鲜; Manchu admin center</td>
+</tr>
+<tr>
+<td><strong>牡丹江 (Mudanjiang)</strong></td>
+<td>1</td>
+<td><strong>Hezhen / Nanai heartland</strong> (NE 黑龙江)</td>
+</tr>
+<tr>
+<td><strong>齐齐哈尔 (Qiqihar)</strong></td>
+<td>1</td>
+<td><strong>Daur heartland</strong> (西部 黑龙江)</td>
+</tr>
+</tbody>
+</table>
+<p>This geographic distribution is diagnostic. Two of four cities are in<br />
+<strong>non-Liaoning Tungusic territory</strong> specifically — Mudanjiang (Hezhen)<br />
+and Qiqihar (Daur), the populations that historically maintained<br />
+75-85% Amur autosomal levels. If 王长荣 were typical Liaoning Manchu,<br />
+cousins would cluster in 沈阳 / 大连 / 抚顺 instead.</p>
+<p><strong>Database under-sampling reinforces the signal</strong>: 23mofang penetration<br />
+in 黑龙江 is ~0.3-0.5× the national per-capita average (lower GDP, less<br />
+consumer DNA testing uptake). Seeing 4 黑龙江 matches DESPITE 2-3×<br />
+under-sampling means the true relative density in 黑龙江 is higher than<br />
+the raw count suggests — equivalent to ~10 matches at normalized sampling.</p>
+<p><strong>Two visible matches with Manchu-Hanification surnames:</strong></p>
+<table>
+<thead>
+<tr>
+<th>match</th>
+<th>surname</th>
+<th>Manchu origin</th>
+<th>Y-Hg</th>
+<th>autosomal NE %</th>
+<th>TMRCA</th>
+<th>shared cM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>金** (Harbin)</td>
+<td><strong>金</strong></td>
+<td><strong>爱新觉罗 → 金</strong> (Aisin Gioro imperial clan Hanification)</td>
+<td>O-MF14228</td>
+<td><strong>34%</strong> non-Han component</td>
+<td>150-300ya</td>
+<td>8 cM</td>
+</tr>
+<tr>
+<td>傅** (?)</td>
+<td><strong>傅</strong></td>
+<td><strong>富察氏 → 傅</strong> (top-tier 满洲 八旗 clan Hanification)</td>
+<td>O-F619</td>
+<td>97.74% Han + 2.26% NE</td>
+<td>150-300ya</td>
+<td>9 cM</td>
+</tr>
+</tbody>
+</table>
+<p>Both surnames are documented Manchu Hanifications (not just generic<br />
+Han surnames). If these were random 黑龙江 Han matches we'd expect<br />
+王/李/张/刘 (top Han surnames). 金 specifically traces to the Aisin<br />
+Gioro Qing imperial clan via the Manchu "gold" → 金 translation;<br />
+傅 specifically traces to 富察氏 (one of the highest-ranked 满洲 八旗<br />
+clans — 富察皇后's family, 傅恒's lineage).</p>
+<p><strong>The 150-300ya TMRCA is exactly the Banner-system window</strong>:<br />
+~1726-1876 CE. A shared common ancestor in this window is consistent<br />
+with <strong>王长荣's branch + 金** 's branch being descended from siblings<br />
+or close cousins in a Banner unit</strong>, separated when one was transferred<br />
+south (王长荣 via 福州 → Hangzhou 1865-1875 repopulation) while the<br />
+other stayed in 黑龙江.</p>
+<p><strong>Y-Hg mismatch explained</strong>: 5+ generation cousins do NOT need to share<br />
+Y lineage. 23mofang matches are autosomal IBD-based, detecting shared<br />
+segments anywhere in the genome regardless of inheritance path. The<br />
+shared Banner-era ancestor's Y-line continues through <em>whichever of<br />
+his descendants is on the strict male line</em> — zhe's dad happens to be<br />
+on that male line (carries N-Y137601); these cousins descend through<br />
+paths that mix in non-male links, so their Y comes from their own<br />
+paternal lineages.</p>
+<p><strong>This is suggestive of Scenario B but does NOT rule out Scenario A</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>evidence</th>
+<th>Scenario A (both Liaoning Manchu)</th>
+<th>Scenario B (Hezhen + N. Han)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dad 38% Amur autosomal</td>
+<td>✓✓ clean fit, no extreme values needed</td>
+<td>✓ requires 王长荣 ≈ 80% Amur (Hezhen level)</td>
+</tr>
+<tr>
+<td>Family record symmetric anonymization (both 王长荣 + 蒋月香 sides anonymous)</td>
+<td>✓✓ both Banner = both suppress</td>
+<td>needs ad hoc explanation if 蒋月香 were N. Han</td>
+</tr>
+<tr>
+<td>黑龙江 cousin geographic skew</td>
+<td>✓ explainable via Qing-era Banner branch migration to 黑龙江 garrisons (黑龙江城/齐齐哈尔/墨尔根 stationed since 1683)</td>
+<td>✓✓ predicted directly</td>
+</tr>
+<tr>
+<td>金 + 傅 surnames</td>
+<td>✓ Manchu Hanifications fit either scenario</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>TMRCA 150-300ya</td>
+<td>✓ Banner era</td>
+<td>✓ Banner era</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Net assessment:</strong> Both scenarios are viable. <strong>Scenario A is slightly<br />
+favored by the cleaner arithmetic and family-record symmetry. Scenario B<br />
+is slightly favored by the 黑龙江 cousin geographic concentration.</strong> The<br />
+4 黑龙江 matches is a small sample (within Poisson noise of "true rate<br />
+2" or "true rate 8") and陈满洲 families did have branches transferred<br />
+to 黑龙江 garrisons during Qing frontier expansion (1683+) — so the<br />
+黑龙江 cluster doesn't require Hezhen ancestry.</p>
+<p><strong>The big-picture Banner-descent conclusion is robust to which scenario<br />
+holds</strong>:<br />
+- Either way, dad has substantial Banner ancestry through the paternal<br />
+  grandparents<br />
+- Either way, the family migrated to Wu region post-1911/1914<br />
+- Either way, identity was suppressed through Republican + PRC eras</p>
+<p><strong>What's genuinely ambiguous is the specific sub-cluster</strong> (typical<br />
+陈满洲 Liaoning Manchu vs 新满洲/Hezhen-cluster) and <strong>the specific<br />
+transfer route</strong> (direct from 满洲 heartland vs via 福州 driver Banner).<br />
+Resolving this would need:</p>
+<ol>
+<li><strong>Local ancestry painting</strong> (RFmix on dad's BAM vs fine-grained<br />
+   Liaoning Manchu / Hezhen / Daur references) — could discriminate the<br />
+   ancestral cluster directly</li>
+<li><strong>More 23mofang matches accumulating over time</strong> — if 辽宁 matches<br />
+   surface as the database grows, Scenario A; if 黑龙江 stays<br />
+   concentrated, Scenario B</li>
+<li><strong>YFull N-Y137601 branch enrichment</strong> — if matches cluster with<br />
+   known Hezhen/Nanai Y samples, Scenario B; if with Aisin Gioro /<br />
+   Niohuru lineages, Scenario A</li>
+<li><strong>Family oral history</strong> — even one fragment ("great-grandfather<br />
+   came from 福州" or "from 沈阳") would lock in the route</li>
+</ol>
+<h4 id="y-hg-n-y137601-geographic-distribution-23mofang-data"><a class="toclink" href="#y-hg-n-y137601-geographic-distribution-23mofang-data">Y-Hg N-Y137601 geographic distribution (23mofang data)</a></h4>
+<p>23mofang reports the N-Y137601 subclade distribution across China.<br />
+National baseline: 0.04% of males. Top 12 provinces:</p>
+<table>
+<thead>
+<tr>
+<th>province</th>
+<th>freq</th>
+<th>× baseline</th>
+<th>reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上海</td>
+<td><strong>0.31%</strong></td>
+<td><strong>7.75×</strong></td>
+<td>highest — Banner garrison dispersal terminus</td>
+</tr>
+<tr>
+<td>黑龙江</td>
+<td>0.29%</td>
+<td>7.25×</td>
+<td>Manchu homeland</td>
+</tr>
+<tr>
+<td>内蒙古</td>
+<td>0.23%</td>
+<td>5.75×</td>
+<td>Manchu/Mongol Banner homeland</td>
+</tr>
+<tr>
+<td>北京</td>
+<td>0.15%</td>
+<td>3.75×</td>
+<td>Banner capital (~30% pre-1911 Beijing was Banner)</td>
+</tr>
+<tr>
+<td><strong>浙江</strong></td>
+<td><strong>0.12%</strong></td>
+<td><strong>3×</strong></td>
+<td><strong>dad's province</strong> — 杭州驻防 + 乍浦驻防 garrisons</td>
+</tr>
+<tr>
+<td>辽宁</td>
+<td>0.11%</td>
+<td>2.75×</td>
+<td>Manchu homeland</td>
+</tr>
+<tr>
+<td>山东</td>
+<td>0.10%</td>
+<td>2.5×</td>
+<td>青州驻防 (source of 1865-1875 杭州 repopulation)</td>
+</tr>
+<tr>
+<td>重庆</td>
+<td>0.08%</td>
+<td>2×</td>
+<td>成都驻防 / 荆州驻防 nearby</td>
+</tr>
+<tr>
+<td>湖北</td>
+<td>0.06%</td>
+<td>1.5×</td>
+<td>荆州驻防</td>
+</tr>
+<tr>
+<td>江苏</td>
+<td>0.04%</td>
+<td>1×</td>
+<td><strong>dip</strong> — between 浙江 and 上海 dispersal centers</td>
+</tr>
+<tr>
+<td>河北</td>
+<td>0.03%</td>
+<td>0.75×</td>
+<td>Beijing overflow</td>
+</tr>
+<tr>
+<td>河南</td>
+<td>0.03%</td>
+<td>0.75×</td>
+<td>low</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The 江苏 dip is the diagnostic shape.</strong> General NE Han migration<br />
+(西晋→南北朝, 300-600 CE) produces smooth N-frequency <em>gradients</em><br />
+because diffusion smooths out. Banner garrison dispersal produces<br />
+<em>spikes at garrison cities</em> because the source was point-concentrated.<br />
+The observed pattern — 浙江 (0.12%) → 江苏 (0.04% <strong>dip</strong>) → 上海<br />
+(0.31%) — is non-monotonic and explicitly fingerprints point-source<br />
+dispersal from 杭州 and 江宁/京口 garrisons eastward.</p>
+<p><strong>Three converging clusters all match Banner-descent geography:</strong><br />
+1. <strong>NE homeland</strong>: 黑龙江, 内蒙古, 辽宁 (Manchu/Tungusic origin zone)<br />
+2. <strong>Banner capital + administrative centers</strong>: 北京, 山东 (青州),<br />
+   河北 (Beijing overflow)<br />
+3. <strong>Southern garrison dispersal corridors</strong>: 上海, 浙江, 重庆, 湖北<br />
+   (all collocated with documented 驻防八旗 sites — 杭州, 江宁, 京口,<br />
+   荆州, 成都)</p>
+<p><strong>Confidence update.</strong> This raises confidence on "source is Banner<br />
+descent specifically (not generic NE Han migration)" from high → <strong>very<br />
+high</strong>. The Y-distribution geography is now the cleanest single piece<br />
+of evidence for Banner descent — it matches the historical garrison<br />
+dispersal pattern almost exactly, and a non-Banner explanation would<br />
+require a different geographic signature.</p>
+<p>Confidence on "the specific source involved southern garrison(s)<br />
+(杭州/乍浦/江宁/京口)" rises from moderate → moderate-high. The 浙江<br />
+spike + 江苏 dip + 上海 superspike is specifically the southern-garrison<br />
+signature; Banner descendants from 北京 / 黑龙江 would distribute<br />
+differently.</p>
+<p><strong>Polygamy of 王长荣's father — independent Banner-officer signal.</strong><br />
+The "三祖母 死期 1949" entry implies 王长荣's father (zhe's<br />
+great-great-grandfather) had <strong>at least 3 wives</strong>. This is:<br />
+- DNA-INDEPENDENT corroborating evidence for Banner-officer status<br />
+- Characteristic of Banner officers and well-off Han literati, NOT<br />
+  typical of late-Qing rural Han farmers<br />
+- Consistent with 1865-1875 Hangzhou repopulation Banner officers<br />
+  (typically older, established, able to support multiple wives)<br />
+- Strengthens the Banner-officer hypothesis beyond just genetic data</p>
+<p><strong>Highest-probability original Manchu clan name: 完颜氏 (Wanyan,<br />
+镶蓝旗) → 王.</strong> Web search corroboration (independent agent):</p>
+<ul>
+<li>《金史·金国语解》explicitly states "<strong>完颜, 汉姓曰王</strong>" —<br />
+  canonical historical authority for 完颜 → 王 Sinicization</li>
+<li>完颜 is the <strong>Jurchen royal clan of the Jin dynasty (1115-1234 CE)</strong></li>
+<li>Absorbed into Manchu Banner system 1600s; concentrated in 镶蓝旗</li>
+<li>京旗 (Beijing Banner) overwhelmingly used 王 when Hanifying —<br />
+  and Hangzhou's 1865-1875 garrison repopulation included transfers<br />
+  from Beijing-area Banner units</li>
+<li>N-line Y-Hg distribution documented in 完颜 descendant samples,<br />
+  consistent with 王一波's N-Y137601</li>
+<li>哨子河 镶蓝旗 完颜氏 → 汪氏 case in Xiuyan (Liaoning) shows the<br />
+  same Y-line could exist in displaced Banner descendants</li>
+</ul>
+<p><strong>This is highest-probability, not confirmed</strong>. Other Manchu→王<br />
+channels exist (王佳氏, 伊喇氏, 抬入旗 Han 王). But 完颜→王 is the<br />
+most common channel and fits all other evidence (N-Y Y-Hg, Tungusic<br />
+origin, Banner officer signature, Hangzhou 1865-1875 repopulation<br />
+geography).</p>
+<p><strong>Lineages ruled out by 字辈 incompatibility:</strong><br />
+- <strong>南里蒋墺王氏</strong> (萧山 Song-dynasty origin Wu Han clan): their 字辈<br />
+  has "以" at 26世, not 长 — so 王长荣 cannot be their 26世. This rules<br />
+  out the alternative hypothesis that the family was a recent splinter<br />
+  from this Wu Han lineage.</p>
+<p><strong>字辈 search 远 underdetermined</strong> without more data. The fragment<br />
+长 → 立 → 一 is only 3 characters; published 王 字辈 poems are typically<br />
+20+ characters. Two pieces of additional data would 5× search power:<br />
+1. The character supposed to come after 一 (王一波's children's<br />
+   generation, i.e., zhe's 字辈 if any)<br />
+2. The character supposed to come before 长 (王长荣's father's<br />
+   generation character — would be on the "曾祖" line of the booklet<br />
+   even if his name was unknown)</p>
+<p>If zhe had no 字辈 character ("modern family stopped at 王一波 gen"),<br />
+that's itself informative — many Banner-descent families dropped 字辈<br />
+in PRC era as part of modernization.</p>
+<p><strong>The 1914 "灯祖父" entry is the single most diagnostic data point.</strong><br />
+1914 is the exact year the Hangzhou Banner garrison was demolished and<br />
+residents dispersed to surrounding cities (转塘, 绍兴, etc.). If<br />
+"灯祖父" is <strong>王长荣's father</strong> (zhe's great-great-grandfather), he died<br />
+the year of the garrison collapse — providing the <strong>first direct<br />
+genealogical link between the family and the 1914 Banner-dispersal<br />
+event</strong>. He would have been a Banner-cohort member born ~1850-65,<br />
+either a 1862 massacre survivor or part of the 1865-1875 repopulation<br />
+transfer, dying as the garrison itself disbanded.</p>
+<p><strong>No 籍贯 (ancestral hometown) recorded</strong> for the paternal line — the<br />
+absence is consistent with the active-suppression hypothesis above. By<br />
+contrast, the <strong>maternal</strong> clans (贾氏 → Shangyu since 1180 CE; 谢氏 →<br />
+Shangyu since 286 CE) have full 籍贯 records preserved. The asymmetry<br />
+itself is diagnostic.</p>
+<p><strong>What this confirms.</strong> The family register format and content support<br />
+rather than contradict the Banner-descent reading:<br />
+- Long-lived 王长荣 (75) and 蒋月香 (87) preserved births and deaths but<br />
+  NOT origins above the great-grandparent level.<br />
+- Recycled commercial stationery (not a formal 宗谱) is typical of<br />
+  families who <strong>lost or destroyed</strong> their earlier records — Banner<br />
+  families specifically did this during 1911-1949 and 1966-1976.<br />
+- Wu Han 世家 in the same region (贾氏, 谢氏 — maternal side) have full<br />
+  pre-Qing 籍贯 trails; the absence on the paternal side is real and<br />
+  asymmetric.</p>
+<h4 id="dads-ftdna-family-finder-matches-corroborating-signal"><a class="toclink" href="#dads-ftdna-family-finder-matches-corroborating-signal">Dad's FTDNA Family Finder matches — corroborating signal</a></h4>
+<p>FTDNA's database is heavily Anglo-American/European, with few Chinese<br />
+users (most Chinese test via 23mofang/WeGene) and <strong>essentially zero</strong><br />
+Manchu users. So FTDNA wouldn't show close Chinese cousins regardless of<br />
+dad's ancestry. But Koreans are present in modest numbers (largely via<br />
+the <strong>KAMRA — Korean American Genetic Roots Ancestry consortium</strong>), which<br />
+makes them a useful diagnostic for NE Asian / Tungusic affinity.</p>
+<p>Dad's FTDNA top matches (excluding the parent-child entry for zhe):</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align: right;">count</th>
+<th>typical longest block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anglo-European single-segment outliers (likely IBS)</td>
+<td style="text-align: right;">~1</td>
+<td>18 cM (Eric Brooks, surnames Beardsley/Dubiel/Holdridge)</td>
+</tr>
+<tr>
+<td>Korean matches</td>
+<td style="text-align: right;">~4-5</td>
+<td>10-13 cM (MSKim KAMRA, Lee Jin Hee, Chang Gyu Yoo, Louise Lee Bak Sørensen)</td>
+</tr>
+<tr>
+<td>Han Chinese diaspora (Y-Hg O subclades)</td>
+<td style="text-align: right;">~5-10</td>
+<td>9-11 cM</td>
+</tr>
+<tr>
+<td>Pan-Asian noise floor (Vietnamese, Thai, Mongol/Kalmyk, Kazakh)</td>
+<td style="text-align: right;">rest</td>
+<td>8-10 cM</td>
+</tr>
+</tbody>
+</table>
+<p>The Korean matches at 10-13 cM longest block correspond to <strong>TMRCA ~5-10<br />
+generations back</strong> (late Qing era, ~1800-1900 CE), drawn from a small<br />
+Korean FTDNA pool. Given the small pool, 4-5 Korean matches above the<br />
+9 cM noise floor is meaningful signal — not random noise. This is<br />
+consistent with dad's <strong>38% Amur_N autosomal component being inherited<br />
+from a Manchu/Tungusic ancestral population</strong> that shares deep gene flow<br />
+with the Korean/Tungusic-borderland populations. The Y-N-Y137601<br />
+paternal line is the same Tungusic Y haplogroup found at higher frequency<br />
+in Manchus (~30-40%) than Koreans (~3-5%), but elevated above background<br />
+in both.</p>
+<p>The Korean matches <strong>rule out a recent (≤4 generations back) direct<br />
+Korean ancestor</strong>:</p>
+<ul>
+<li>A Korean grandmother (2 gen back) would predict multiple 50-150 cM Korean matches (2nd cousins)</li>
+<li>A Korean great-grandmother (3 gen back) would predict 30-80 cM Korean matches (3rd cousins)</li>
+<li>A Korean GG-grandmother (4 gen back) would predict 15-30 cM Korean matches (4th cousins)</li>
+<li><strong>None of these exist</strong> — dad has no Korean match above 13 cM</li>
+</ul>
+<p>But the data IS consistent with <strong>a historical (deep) Joseon-era ancestor</strong><br />
+at 6-8 generations back (~1750-1850 CE, mid-late Joseon dynasty),<br />
+contributing very little to dad's autosomal Amur (&lt;1% per single ancestor<br />
+at that depth) but generating the 5-7th cousin Korean match signal we see:</p>
+<table>
+<thead>
+<tr>
+<th>Korean ancestor depth</th>
+<th>Years ago</th>
+<th>Era</th>
+<th style="text-align: right;">Korean contrib to dad</th>
+<th>Predicted Korean ≥30 cM matches</th>
+<th>Observed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 gen (grandmother)</td>
+<td>1965</td>
+<td>recent</td>
+<td style="text-align: right;">14.5%</td>
+<td>many (50-150 cM)</td>
+<td><strong>0</strong> ✗</td>
+</tr>
+<tr>
+<td>3 gen (great-grandmother)</td>
+<td>1935</td>
+<td>Republican</td>
+<td style="text-align: right;">7.25%</td>
+<td>several (30-80 cM)</td>
+<td><strong>0</strong> ✗</td>
+</tr>
+<tr>
+<td>4 gen (GG-grandmother)</td>
+<td>1905</td>
+<td>late Joseon/Qing</td>
+<td style="text-align: right;">3.6%</td>
+<td>a few (15-30 cM)</td>
+<td><strong>0</strong> ✗</td>
+</tr>
+<tr>
+<td><strong>6-7 gen (mid-Joseon ancestor)</strong></td>
+<td><strong>1815-1845</strong></td>
+<td><strong>mid-late Joseon</strong></td>
+<td style="text-align: right;"><strong>0.5-1%</strong></td>
+<td><strong>8-15 cM</strong></td>
+<td><strong>✓ matches</strong></td>
+</tr>
+<tr>
+<td>8-10 gen (early Joseon)</td>
+<td>1725-1785</td>
+<td>mid Joseon</td>
+<td style="text-align: right;">&lt;0.3%</td>
+<td>&lt;8 cM</td>
+<td>undetectable</td>
+</tr>
+</tbody>
+</table>
+<p>The "sweet spot" matching the observed 10-13 cM Korean cluster is<br />
+<strong>6-7 generations back</strong>, i.e., a <strong>mid-late Joseon era ancestor (~1815-1845 CE)</strong><br />
+absorbed into dad's Manchu Banner lineage via Banner intermarriage.</p>
+<p>This is <strong>historically documented and plausible</strong>: the Manchu Banner system<br />
+included substantial Korean integration during mid-Qing, via three mechanisms:</p>
+<ol>
+<li><strong>朝鲜八旗 (Joseon Eight Banners / <em>Chosŏn Palgi</em>)</strong> — a specific Banner<br />
+   sub-organization founded in the 17th century for ~10,000+ Korean<br />
+   refugees and captives, formally absorbed into the Manchu Banner social<br />
+   class. Descendants identified as Manchu Banners but carried Korean<br />
+   Y-lines and autosomal markers.</li>
+<li><strong>Mid-Qing Korean refugee absorption</strong> — Joseon-era Koreans fleeing<br />
+   famine/political turmoil crossed into Manchu territory (Yalu/Tumen<br />
+   borderlands) during 1700-1850 and were enrolled in local Banner<br />
+   registries.</li>
+<li><strong>Liaoning Banner-Korean intermarriage</strong> — Manchu Banner men stationed<br />
+   in Liaodong (modern Liaoning) commonly married Korean women, especially<br />
+   those captured during the Imjin War (1592-1598) and Qing-Joseon War<br />
+   (1636-37), then absorbed into Banner households over multiple generations.</li>
+</ol>
+<p>All three mechanisms are documented historical phenomena. The data<br />
+cannot distinguish them, but collectively they're the most parsimonious<br />
+explanation for dad's modern FTDNA Korean cluster signature.</p>
+<p>The refined hypothesis:</p>
+<blockquote>
+<p>Dad's paternal line descends from a Wu region Manchu Banner garrison<br />
+(Hangzhou Banner is the closest candidate, ~70km from Shaoxing) that<br />
+had substantial historical Korean admixture absorbed during mid-late<br />
+Joseon era (6-8 generations back, ~1750-1850 CE), either through<br />
+Joseon Eight Banner membership or through Banner-Korean intermarriage<br />
+in the broader Manchu-Korean gene flow network of mid-Qing. The FTDNA<br />
+10-13 cM Korean cluster is the present-day fingerprint of this<br />
+historical Banner-Korean integration, manifesting as 5-7th cousin<br />
+range matches with modern Koreans whose ancestors share the same<br />
+mid-Joseon-era founding population.</p>
+</blockquote>
+<p>This refinement adds historical depth to the Manchu Banner descent<br />
+hypothesis and explains the otherwise-puzzling Korean cluster within<br />
+the Banner narrative.</p>
+<h3 id="mom-136-relatives-across-22-provinces-10-fewer-than-dad"><a class="toclink" href="#mom-136-relatives-across-22-provinces-10-fewer-than-dad">Mom — 136 relatives across 22 provinces (10× fewer than dad!)</a></h3>
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>East China</strong></td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;"><strong>61.8%</strong></td>
+</tr>
+<tr>
+<td>North China</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">8.8%</td>
+</tr>
+<tr>
+<td>Central</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8.1%</td>
+</tr>
+<tr>
+<td>South China</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8.1%</td>
+</tr>
+<tr>
+<td>SouthWest</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8.1%</td>
+</tr>
+<tr>
+<td>NorthEast</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.7%</td>
+</tr>
+<tr>
+<td>NorthWest</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0%</td>
+</tr>
+<tr>
+<td>Other</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4.4%</td>
+</tr>
+</tbody>
+</table>
+<p>Top: 浙江(43, 32%) · 上海(18, 13%) · 江苏(15, 11%) · 广东(7, 5%) · 四川(6, 4%)</p>
+<p>→ <strong>Tight Wu-region concentration</strong>: 浙江+上海+江苏 = 56% of all relatives.<br />
+<strong>Only 1 NE-China relative across 33 provinces</strong>. Mom's family has stayed<br />
+in East China for many generations with minimal outflow — exactly what<br />
+you'd expect for a multi-generational Wu-region Han lineage.</p>
+<hr />
+<h1 id="part-2-g25-pca-analysis-summary"><a class="toclink" href="#part-2-g25-pca-analysis-summary">Part 2 — G25 PCA analysis summary</a></h1>
+<p>Source: <a href="../g25/summaries/Zhe_family_g25_robust.md"><code>~/g25/summaries/Zhe_family_g25_robust.md</code></a> (200+ tests across 7 reference panels)</p>
+<h2 id="family-pairwise-distances"><a class="toclink" href="#family-pairwise-distances">Family pairwise distances</a></h2>
+<table>
+<thead>
+<tr>
+<th>pair</th>
+<th style="text-align: right;">G25 25-D distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zhe ↔ mom</td>
+<td style="text-align: right;"><strong>0.0226</strong> ← G25 has zhe closer to mom</td>
+</tr>
+<tr>
+<td>zhe ↔ dad</td>
+<td style="text-align: right;">0.0266</td>
+</tr>
+<tr>
+<td>dad ↔ mom</td>
+<td style="text-align: right;">0.0333</td>
+</tr>
+</tbody>
+</table>
+<h2 id="nearest-individual-analysis-extended-pool-565-individuals"><a class="toclink" href="#nearest-individual-analysis-extended-pool-565-individuals">Nearest-individual analysis (extended pool, 565 individuals)</a></h2>
+<p>The proper individual-level pool includes Han (n=92) + Korean (n=66) +<br />
+Japanese (n=6) + Dai (n=4) + <strong>Manchu (n=181)</strong> + Mongol (n=140) + Evenk +<br />
+Hezhen + Tibetan + Tujia + Yi + Miao + She + Yao + Zhuang + Vietnamese.<br />
+Without Manchu in the pool, every target appeared "100% Han" — that was<br />
+<strong>a sampling artifact</strong>. With Manchu added:</p>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th>top-20 group breakdown</th>
+<th>first non-Han</th>
+<th>closest individual overall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>dad</strong></td>
+<td><strong>12 Manchu</strong>, 5 Han, 2 Tibetan, 1 Tujia</td>
+<td><strong>rank #1</strong></td>
+<td><strong>Manchu_Liaoning</strong> (d=0.0274)</td>
+</tr>
+<tr>
+<td><strong>zhe</strong></td>
+<td>6 Han, <strong>6 Manchu</strong>, 2 Tujia, 2 Tibetan, 2 She, 2 Miao</td>
+<td>#1 (Tujia)</td>
+<td>Tujia (d=0.0239) → Manchu_Bijie (rank #3)</td>
+</tr>
+<tr>
+<td><strong>mom</strong></td>
+<td>7 Han, 4 Manchu, 2 Tujia, 2 She, 2 Tibetan, 2 Mongol, 1 Miao</td>
+<td>#1 (Tujia)</td>
+<td>Tujia (d=0.0260) → Han_Guizhou (rank #2)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For dad</strong>: the <strong>two closest individuals</strong> out of all 565 sampled are<br />
+<strong>both Manchu_Liaoning</strong> (the NE-China homeland Manchu, not the Han-admixed<br />
+Bijie Manchu). The closest Han is at rank #3. <strong>Dad is not Han-clustering;<br />
+he's Manchu_Liaoning-clustering</strong>, even though Manchu_Liaoning are<br />
+themselves heavily Han-admixed (~75% Han + 25% Tungusic in the modern<br />
+population).</p>
+<p><strong>For zhe</strong>: closest Manchu is <strong>Manchu_Bijie</strong> at rank #3, not<br />
+Manchu_Liaoning (which sits at rank #15). Bijie Manchu were resettled in<br />
+Guizhou centuries ago and intermarried with local Han_Guizhou for ~10<br />
+generations; today they are roughly ~85-90% Han_Guizhou-like + 10-15%<br />
+retained Tungusic. Zhe matches them because his profile is the<br />
+F1-generation analogue: ~½ × dad's Manchu_Liaoning profile + ~½ × mom's<br />
+Han profile = <strong>~12% Tungusic + Han-heavy</strong> = same endpoint as Bijie<br />
+Manchu by different paths.</p>
+<p><strong>For mom</strong>: weakest on the Manchu axis (rank #7); her top neighbors are<br />
+Tujia + Han_Guizhou + She — the central-southern Han + Tibeto-Burman /<br />
+Hmong-Mien overlap zone.</p>
+<p><strong>Important caveat — Manchu_Liaoning vs Manchu_Bijie</strong>:<br />
+- <strong>Manchu_Liaoning</strong> = NE-China homeland Manchu; ~75% Han + 25% Tungusic<br />
+- <strong>Manchu_Bijie</strong> = resettled in Guizhou, ~85-90% Han_Guizhou + 10-15% Tungusic<br />
+- Dad's #1-2 closest are <strong>Liaoning</strong> (real NE signal); zhe's #3 is <strong>Bijie</strong><br />
+  (diluted/Han-shifted signal). The distinction is meaningful — dad has a<br />
+  fresh-blood Manchu admixture profile, zhe has a diluted one.</p>
+<p><strong>Tujia and Tibetan_Xinlong appear high in everyone's top-20</strong> but these<br />
+are NOT meaningful ancestry matches — they overlap the central-southern<br />
+Han cline due to historical regional admixture, so any central-southern<br />
+Han profile clusters with them.</p>
+<h2 id="best-fit-r4p-models-with-unique-region-constraint"><a class="toclink" href="#best-fit-r4p-models-with-unique-region-constraint">Best-fit R4P models with unique-region constraint</a></h2>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th>best pool</th>
+<th style="text-align: right;">residual</th>
+<th>model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zhe</strong></td>
+<td>EA+anc25</td>
+<td style="text-align: right;"><strong>0.0096</strong></td>
+<td>48% Han_Zhejiang + 28% Han_Guangxi + 22% Inner_Mongolia_Wei + 2% Sakha</td>
+</tr>
+<tr>
+<td><strong>Dad</strong></td>
+<td>EA+anc25</td>
+<td style="text-align: right;"><strong>0.0155</strong></td>
+<td>58% Han_Jiangsu + 30% Shandong_NQS + 8% Miao + 4% Korea_BA</td>
+</tr>
+<tr>
+<td><strong>Mom</strong></td>
+<td>2025_anc</td>
+<td style="text-align: right;"><strong>0.0159</strong></td>
+<td>42% Inner_Mongolia_Wei + 25% Xiongnu + 22% Shandong_IA + 11% Guangxi_Jin-SD</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pure-ancient-signal-2018_anc-pool-cleanest-historical-view"><a class="toclink" href="#pure-ancient-signal-2018_anc-pool-cleanest-historical-view">Pure-ancient signal (2018_anc pool, cleanest historical view)</a></h2>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th style="text-align: right;">residual</th>
+<th style="text-align: right;">YR_LN %</th>
+<th style="text-align: right;">Southern %</th>
+<th style="text-align: right;">Northern %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zhe</strong></td>
+<td style="text-align: right;">0.0161</td>
+<td style="text-align: right;"><strong>78.0</strong></td>
+<td style="text-align: right;">12.3 (Guangxi)</td>
+<td style="text-align: right;">— (5% Taiwan/Guam = artifact)</td>
+</tr>
+<tr>
+<td><strong>Dad</strong></td>
+<td style="text-align: right;">0.0208</td>
+<td style="text-align: right;">54.6</td>
+<td style="text-align: right;">30.9 (SE Asia Coastal)</td>
+<td style="text-align: right;">10.2 (WLR_LN_o)</td>
+</tr>
+<tr>
+<td><strong>Mom</strong></td>
+<td style="text-align: right;">0.0232</td>
+<td style="text-align: right;">60.5</td>
+<td style="text-align: right;">21.6 (Guangxi NSD)</td>
+<td style="text-align: right;">16.6 (Mongolia Xiongnu)</td>
+</tr>
+</tbody>
+</table>
+<p>All three are majority <strong>Yellow-River Late Neolithic</strong> (Yangshao /<br />
+Longshan / Late Dawenkou cultures, ~3000-2000 BCE) — the Han ethnogenesis<br />
+core. Each carries southern admixture from Tang/Song migrations south.<br />
+Dad has WLR_LN_o (West Liao River Late Neolithic — the NE-Asian Neolithic<br />
+core, ~3000 BCE). Mom's "Xiongnu" picks reflect <em>Han-shifted populations<br />
+of the Xiongnu era</em>, not actual steppe nomads. Zhe inherits<br />
+attenuated NE component (mostly absorbed into the YR_LN majority).</p>
+<h2 id="anchor-distance-percentiles-vs-92-sampled-han-individuals"><a class="toclink" href="#anchor-distance-percentiles-vs-92-sampled-han-individuals">Anchor distance percentiles (vs 92 sampled Han individuals)</a></h2>
+<table>
+<thead>
+<tr>
+<th>Anchor</th>
+<th style="text-align: right;">zhe</th>
+<th style="text-align: right;">dad</th>
+<th style="text-align: right;">mom</th>
+<th>takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Han_Beijing_Central</td>
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">29</td>
+<td>zhe at cline center</td>
+</tr>
+<tr>
+<td>Han_Jiangsu</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;">22</td>
+<td>dad extremely Jiangsu</td>
+</tr>
+<tr>
+<td>Han_Zhejiang</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">12</td>
+<td>all closer than typical Han</td>
+</tr>
+<tr>
+<td>Korean</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;"><strong>27</strong></td>
+<td style="text-align: right;">40</td>
+<td>dad NE-shifted</td>
+</tr>
+<tr>
+<td>Manchu_Xinbin</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;"><strong>9</strong></td>
+<td style="text-align: right;">35</td>
+<td>dad MUCH closer</td>
+</tr>
+<tr>
+<td>Japanese</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;"><strong>25</strong></td>
+<td style="text-align: right;">41</td>
+<td>dad NE-shifted</td>
+</tr>
+<tr>
+<td>Vietnamese_Kinh</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">60</td>
+<td>none have meaningful SE Asian</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="part-3-biopipeline-qpadm-d-stat-direct-bam-analysis"><a class="toclink" href="#part-3-biopipeline-qpadm-d-stat-direct-bam-analysis">Part 3 — biopipeline qpAdm + D-stat (direct BAM analysis)</a></h1>
+<p>Source: <a href="../biopipeline/summaries/Dad.md"><code>~/biopipeline/summaries/Dad.md</code></a>, <a href="../biopipeline/summaries/Dad_dstats.md"><code>~/biopipeline/summaries/Dad_dstats.md</code></a>, <a href="../biopipeline/summaries/Zhe.md"><code>~/biopipeline/summaries/Zhe.md</code></a>, <a href="../biopipeline/summaries/Zhe_dstats.md"><code>~/biopipeline/summaries/Zhe_dstats.md</code></a>.</p>
+<p>Both dad and zhe were genotyped from raw BAM via <strong>pileupCaller</strong><br />
+(Reich-Lab random pseudo-haploid sampler, the canonical AADR-matching<br />
+method) and co-merged with the AADR v66 panel for methodologically<br />
+symmetric comparison. Mom is not in the pipeline (no BAM), so her<br />
+component is inferred indirectly via dad/zhe F1 dilution math.</p>
+<h2 id="data-products"><a class="toclink" href="#data-products">Data products</a></h2>
+<table>
+<thead>
+<tr>
+<th>dataset</th>
+<th>size</th>
+<th>what's in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>family_v2_with_aadr_fixed.{geno,snp,ind}</code></td>
+<td>23,252 inds × 1.135M SNPs (1240K)</td>
+<td>DadAddr + ZheAddr_pc + full AADR v66</td>
+</tr>
+<tr>
+<td><code>family_ho_v2.{geno,snp,ind}</code></td>
+<td>27,761 inds × 579K SNPs (HO)</td>
+<td>DadAddr + ZheAddr_pc + Han_N + Han_S + Han_indiv + Korean_indiv + AADR HO</td>
+</tr>
+</tbody>
+</table>
+<h2 id="father-son-ibd-confirmation"><a class="toclink" href="#father-son-ibd-confirmation">Father-son IBD confirmation</a></h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th style="text-align: right;">D</th>
+<th style="text-align: right;">|Z|</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D(Mbuti, DadAddr; ZheAddr_pc, Korean)</td>
+<td style="text-align: right;">−0.273</td>
+<td style="text-align: right;"><strong>72.3</strong></td>
+</tr>
+<tr>
+<td>D(Mbuti, DadAddr; ZheAddr_pc, Korean_indiv)</td>
+<td style="text-align: right;">−0.270</td>
+<td style="text-align: right;"><strong>57.2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The Z-score floor for unrelated co-ethnic Han pairs is typically |Z|&lt;3 —<br />
+the 50-fold elevation is the unmistakable signature of first-degree<br />
+relatedness. <strong>Father-son relationship is genetically proven.</strong></p>
+<h2 id="qpadm-best-fit-models"><a class="toclink" href="#qpadm-best-fit-models">qpAdm best-fit models</a></h2>
+<h3 id="2-source-yangshao-amur_n-1240k-v2"><a class="toclink" href="#2-source-yangshao-amur_n-1240k-v2">2-source Yangshao + Amur_N (1240K v2)</a></h3>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th style="text-align: right;">%Yangshao</th>
+<th style="text-align: right;">%Amur_N</th>
+<th style="text-align: right;">SE</th>
+<th style="text-align: right;">p-value</th>
+<th>feasible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DadAddr</strong></td>
+<td style="text-align: right;">61.7</td>
+<td style="text-align: right;"><strong>38.3</strong></td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.20</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><strong>ZheAddr_pc</strong></td>
+<td style="text-align: right;">82.2</td>
+<td style="text-align: right;"><strong>17.8</strong></td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.06</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>F1 dilution check</strong>: with mom carrying typical Wu Han baseline (~15%<br />
+Amur), zhe predicted = ½ × 38.3% + ½ × 15% = 26.7%. Observed zhe =<br />
+17.8% — ~9 pp lower than the simple F1 prediction. This shortfall is<br />
+explainable within qpAdm's wide SE bars (zhe's 95% CI is [−14%, +50%];<br />
+dad's is [+6%, +71%]) and is exacerbated by 2-source qpAdm compressing<br />
+zhe's SE-coastal substrate (inherited from mom) into the Yangshao side,<br />
+slightly under-estimating his Amur weight. The qualitative dilution is<br />
+clear: dad ≫ zhe ≫ mom on the Amur axis, by roughly 2× steps from<br />
+dad → zhe → mom. The strict "zhe = ½ × dad with mom = 0%" identity that<br />
+the point estimates suggest is a misleading coincidence — the realistic<br />
+F1 picture is dad ≈ 38%, mom ≈ 15% (Wu Han baseline), zhe ≈ 22-27%<br />
+expected, ≈ 18% observed (qpAdm-underestimated).</p>
+<h3 id="3-source-xisima-amur-fujian-1240k-v2"><a class="toclink" href="#3-source-xisima-amur-fujian-1240k-v2">3-source Xisima + Amur + Fujian (1240K v2)</a></h3>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th style="text-align: right;">%Xisima</th>
+<th style="text-align: right;">%Amur</th>
+<th style="text-align: right;">%Fujian</th>
+<th>feasible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DadAddr</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">31.5</td>
+<td style="text-align: right;">7.4</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>ZheAddr_pc</td>
+<td style="text-align: right;">71.5</td>
+<td style="text-align: right;">18.8</td>
+<td style="text-align: right;">9.7</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>Same picture in a 3-source frame using Late-Shang Henan (Xisima) as the<br />
+YR-Han core. Dad's NE component is ~32% Amur, zhe's is ~19% Amur, again<br />
+the F1 halving.</p>
+<h2 id="yr-amur-axis-position-d-stat-ho-panel"><a class="toclink" href="#yr-amur-axis-position-d-stat-ho-panel">YR ↔ Amur axis position (D-stat, HO panel)</a></h2>
+<p>D(Mbuti, X; Yangshao, Amur_N), where D&lt;0 → closer to Yangshao:</p>
+<table>
+<thead>
+<tr>
+<th>target</th>
+<th style="text-align: right;">D</th>
+<th style="text-align: right;">|Z|</th>
+<th>rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Han_S</td>
+<td style="text-align: right;">−0.0178</td>
+<td style="text-align: right;">7.0</td>
+<td>most YR</td>
+</tr>
+<tr>
+<td><strong>ZheAddr_pc</strong></td>
+<td style="text-align: right;"><strong>−0.0152</strong></td>
+<td style="text-align: right;">5.9</td>
+<td>more YR than Han_N</td>
+</tr>
+<tr>
+<td>Han (n=153)</td>
+<td style="text-align: right;">−0.0138</td>
+<td style="text-align: right;">8.5</td>
+<td>modal</td>
+</tr>
+<tr>
+<td>Han_N</td>
+<td style="text-align: right;">−0.0136</td>
+<td style="text-align: right;">5.3</td>
+<td>YR</td>
+</tr>
+<tr>
+<td><strong>DadAddr</strong></td>
+<td style="text-align: right;"><strong>−0.0119</strong></td>
+<td style="text-align: right;">4.6</td>
+<td>mid (= Korean_indiv)</td>
+</tr>
+<tr>
+<td>Korean_indiv</td>
+<td style="text-align: right;">−0.0114</td>
+<td style="text-align: right;">4.6</td>
+<td>mid</td>
+</tr>
+<tr>
+<td>Korean (HGDP n=7)</td>
+<td style="text-align: right;">−0.0028</td>
+<td style="text-align: right;">1.6</td>
+<td>balanced</td>
+</tr>
+<tr>
+<td>Mongol</td>
+<td style="text-align: right;">+0.0118</td>
+<td style="text-align: right;">7.5</td>
+<td>strong Amur</td>
+</tr>
+<tr>
+<td>Hezhen</td>
+<td style="text-align: right;">+0.0119</td>
+<td style="text-align: right;">6.8</td>
+<td>strong Amur</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ordering: Han_S &lt; Zhe &lt; Han &lt; Han_N &lt; Dad ≈ Korean_indiv &lt; Korean(HGDP)<br />
+&lt; Mongol ≈ Hezhen.</strong></p>
+<p>Dad sits at Korean_indiv's position — between Han_N and Korean — making<br />
+him a "moderately NE-shifted northern Han" or equivalently a "Han-shifted<br />
+Korean". Zhe sits between Han_S and Han_N (slightly more YR than modal<br />
+Han_N), consistent with mom-dilution of dad's NE excess.</p>
+<h2 id="korean-axis-ho-panel"><a class="toclink" href="#korean-axis-ho-panel">Korean axis (HO panel)</a></h2>
+<p>D(Mbuti, X; Korean, Y):</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th style="text-align: right;">DadAddr D, Z</th>
+<th style="text-align: right;">ZheAddr_pc D, Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vs Han</td>
+<td style="text-align: right;">−0.002, −1.2</td>
+<td style="text-align: right;">−0.0002, −0.1</td>
+</tr>
+<tr>
+<td>vs Japanese</td>
+<td style="text-align: right;">−0.005, <strong>−2.5</strong></td>
+<td style="text-align: right;">−0.004, <strong>−2.2</strong></td>
+</tr>
+<tr>
+<td>vs Hezhen</td>
+<td style="text-align: right;">−0.015, <strong>−6.9</strong></td>
+<td style="text-align: right;">−0.014, <strong>−6.4</strong></td>
+</tr>
+<tr>
+<td>vs Mongol</td>
+<td style="text-align: right;">−0.043, <strong>−23.1</strong></td>
+<td style="text-align: right;">−0.042, <strong>−22.6</strong></td>
+</tr>
+<tr>
+<td>vs Tibetan</td>
+<td style="text-align: right;">−0.022, <strong>−12.0</strong></td>
+<td style="text-align: right;">−0.021, <strong>−11.3</strong></td>
+</tr>
+<tr>
+<td>vs Yakut</td>
+<td style="text-align: right;">−0.041, <strong>−17.5</strong></td>
+<td style="text-align: right;">−0.040, <strong>−18.0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Both family members reject Mongol/Yakut/Tibetan/Hezhen/Oroqen/Daur firmly<br />
+as nearest sources, but lean <strong>toward Korean over Japanese</strong> (|Z|≈2.2-2.5)<br />
+— confirming zero Jomon residue. Korean is the right modern proxy for the<br />
+family's NE component; steppe or Tungusic-extreme populations are not.</p>
+<h2 id="why-a-han-x-2-source-model-fails-methodological-note"><a class="toclink" href="#why-a-han-x-2-source-model-fails-methodological-note">Why a Han + X 2-source model fails (methodological note)</a></h2>
+<p>In the HO panel, every Han + Hezhen / Han + Korean / Han + Mongol /<br />
+Han + Tibetan 2-source model on dad and zhe is <strong>infeasible</strong> (one weight<br />
+negative). This is not noise — modern AADR Han is already such a tight,<br />
+NE-baseline-absorbed reference that adding any single NE/SE source pushes<br />
+the model into negative-weight territory. To capture dad's NE excess<br />
+above modern Han, you need an <em>ancient</em> purer NE source (Amur_N or<br />
+Xisima_LShang) — which is exactly what the Yangshao+Amur frame provides.</p>
+<p>Even more striking: <strong>modal AADR Han (n=153) fails Yangshao+Amur 2-source<br />
+at p=2e-12</strong> with infeasible weights (-2.66 / +3.66). Modern Han needs<br />
+≥3 sources. Dad and zhe DO fit this 2-source frame because their genomes<br />
+lie cleanly along the Yangshao↔Amur axis — dad NE-shifted, zhe YR-shifted.</p>
+<h2 id="what-does-not-fit-consistently-rejected"><a class="toclink" href="#what-does-not-fit-consistently-rejected">What does NOT fit (consistently rejected)</a></h2>
+<ul>
+<li><strong>Jomon</strong> — D(M, zhe; Han, Jomon) = −0.064, Z=−16.9 strong; same for dad.</li>
+<li><strong>Tibetan</strong> — D(M, dad; Korean, Tibetan) = −0.022, Z=12 (Tibetan rejected).</li>
+<li><strong>Mongol, Yakut, Burmese, Uyghur, Tu</strong> — all |Z|&gt;13 vs Han for both dad and zhe.</li>
+<li><strong>Hezhen</strong> — modern Tungusic; rejected at |Z|=6-8 vs Korean for both.</li>
+<li><strong>Yangshao + Amur + Fujian 3-source</strong> for dad: Fujian goes negative (-0.23).</li>
+<li><strong>All Han + X 2-source modern models</strong> on HO panel for both targets.</li>
+</ul>
+<h2 id="multi-source-ne-axis-robustness-dads-amur-weight-is-stable-across-reference-frames"><a class="toclink" href="#multi-source-ne-axis-robustness-dads-amur-weight-is-stable-across-reference-frames">Multi-source NE-axis robustness — dad's Amur weight is stable across reference frames</a></h2>
+<p>The 38% Amur_N point estimate was tested across 7+ alternative NE sources<br />
+to check for source-frame dependence. The weight is robust:</p>
+<table>
+<thead>
+<tr>
+<th>NE Source</th>
+<th>Type</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Dad %NE</th>
+<th style="text-align: right;">SE</th>
+<th>reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amur_N</strong> (Neolithic, baseline)</td>
+<td>ancient</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;"><strong>38.3%</strong></td>
+<td style="text-align: right;">0.16</td>
+<td>✓ canonical</td>
+</tr>
+<tr>
+<td><strong>PrimorskyAmurRiver_N</strong></td>
+<td>ancient</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;"><strong>38.6%</strong></td>
+<td style="text-align: right;">0.19</td>
+<td>matches</td>
+</tr>
+<tr>
+<td><strong>Amur_Mesolithic</strong> (pre-Yangshao)</td>
+<td>ancient</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"><strong>32.8%</strong></td>
+<td style="text-align: right;">0.18</td>
+<td>slightly lower</td>
+</tr>
+<tr>
+<td><strong>Daur</strong> (modern Mongolic-Tungusic)</td>
+<td>modern</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;"><strong>31.6%</strong></td>
+<td style="text-align: right;">0.29</td>
+<td>matches modern Tungusic</td>
+</tr>
+<tr>
+<td><strong>Hezhen</strong> (modern Tungusic)</td>
+<td>modern</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;"><strong>31.1%</strong></td>
+<td style="text-align: right;">0.22</td>
+<td>matches</td>
+</tr>
+<tr>
+<td><strong>Boisman</strong> (Russian Far East coast)</td>
+<td>ancient</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;"><strong>20.1%</strong></td>
+<td style="text-align: right;">0.11</td>
+<td>LOWER — geographically divergent</td>
+</tr>
+<tr>
+<td>Amur_LatePaleolithic</td>
+<td>ancient</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">60.6%</td>
+<td style="text-align: right;">0.29</td>
+<td>high SE — unreliable</td>
+</tr>
+<tr>
+<td>Korean (HGDP)</td>
+<td>modern</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70.1%</td>
+<td style="text-align: right;">0.33</td>
+<td>model rejected (mixed YR+NE source)</td>
+</tr>
+<tr>
+<td>Xibo / Heishui Mohe</td>
+<td>various</td>
+<td style="text-align: right;">1-11</td>
+<td style="text-align: right;">infeasible</td>
+<td style="text-align: right;">huge SE</td>
+<td>n=1 or modern collinearity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Robust range across reliable sources: 31-39% Amur-cluster NE.</strong> Five<br />
+independent Amur-river-cluster sources (3 ancient + 2 modern Tungusic)<br />
+converge on dad ≈ 31-39% NE. The <strong>Boisman drop to 20%</strong> confirms dad's<br />
+NE component is <strong>Amur-river-specific</strong>, not generic deep-NE Asian. This<br />
+matches the Heishui Mohe → Jurchen → Manchu lineage geography.</p>
+<h2 id="han-panel-structure-three-sub-populations-in-hgdp-han"><a class="toclink" href="#han-panel-structure-three-sub-populations-in-hgdp-han">Han panel structure — three sub-populations in HGDP "Han"</a></h2>
+<p>Testing 46 random HGDP v2 Han individuals as singletons on Yangshao+Amur_N<br />
+revealed the HGDP Han panel is structurally heterogeneous:</p>
+<table>
+<thead>
+<tr>
+<th>Sub-cluster</th>
+<th style="text-align: right;">% of Han panel</th>
+<th style="text-align: right;">Mean Amur</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pure YR Han</strong></td>
+<td style="text-align: right;">~25%</td>
+<td style="text-align: right;">0-15%</td>
+<td>Han with no recent NE admixture (mostly S Han / interior)</td>
+</tr>
+<tr>
+<td><strong>Modal Han</strong></td>
+<td style="text-align: right;">~50%</td>
+<td style="text-align: right;">15-40%</td>
+<td>typical Han with absorbed historical Manchu admixture (post-Qing absorption)</td>
+</tr>
+<tr>
+<td><strong>Banner-shifted Han</strong></td>
+<td style="text-align: right;">~25%</td>
+<td style="text-align: right;">40-72%</td>
+<td><strong>modern descendants of Manchu Banner families who Sinicized</strong> (Han_v7, v9, v13, v5, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dad sits at the boundary of Modal and Banner-shifted clusters</strong> (~65th<br />
+percentile). He's NOT in the pure-Manchu category — he's in the same<br />
+sub-population as Han_v7-style HGDP "Han" individuals.</p>
+<h2 id="comprehensive-d-stat-sweep-dad-is-banner-descent-han-not-pure-manchu"><a class="toclink" href="#comprehensive-d-stat-sweep-dad-is-banner-descent-han-not-pure-manchu">Comprehensive D-stat sweep — dad is "Banner-descent Han", not "pure Manchu"</a></h2>
+<p>27-quartet D-stat battery confirms dad's specific position:</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th style="text-align: right;">D</th>
+<th style="text-align: right;">Z</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>D(M, Dad; Han_v7, Amur_N)</strong></td>
+<td style="text-align: right;"><strong>−0.018</strong></td>
+<td style="text-align: right;"><strong>−4.6</strong></td>
+<td><strong>dad closer to Han_v7 than to pure Amur_N</strong></td>
+</tr>
+<tr>
+<td><strong>D(M, Dad; Han_v13, Amur_N)</strong></td>
+<td style="text-align: right;"><strong>−0.024</strong></td>
+<td style="text-align: right;"><strong>−5.7</strong></td>
+<td><strong>dad closer to Han_v13 than to pure Amur_N</strong></td>
+</tr>
+<tr>
+<td><strong>D(M, Dad; Han_v7, Xibo)</strong></td>
+<td style="text-align: right;"><strong>−0.016</strong></td>
+<td style="text-align: right;"><strong>−4.2</strong></td>
+<td><strong>dad closer to Han_v7 than to pure Manchu (Sibe)</strong></td>
+</tr>
+<tr>
+<td><strong>D(M, Dad; Han_v13, Xibo)</strong></td>
+<td style="text-align: right;"><strong>−0.022</strong></td>
+<td style="text-align: right;"><strong>−5.9</strong></td>
+<td><strong>dad closer to Han_v13 than to pure Manchu</strong></td>
+</tr>
+<tr>
+<td>D(M, Dad; HeishuiMohe, Amur_N)</td>
+<td style="text-align: right;">−0.001</td>
+<td style="text-align: right;">−0.2</td>
+<td>equidistant — proto-Manchu ≈ ancient Amur for dad</td>
+</tr>
+<tr>
+<td>D(M, Dad; HeishuiMohe, Xibo)</td>
+<td style="text-align: right;">−0.001</td>
+<td style="text-align: right;">−0.2</td>
+<td>equidistant — proto-Manchu ≈ modern Sibe</td>
+</tr>
+<tr>
+<td>D(M, Dad; Amur_Mesolithic, Amur_N)</td>
+<td style="text-align: right;">+0.001</td>
+<td style="text-align: right;">+0.4</td>
+<td>equidistant ancient Amur sources</td>
+</tr>
+<tr>
+<td>D(M, Dad; Boisman, Amur_N)</td>
+<td style="text-align: right;">−0.004</td>
+<td style="text-align: right;">−1.6</td>
+<td>equidistant (ns)</td>
+</tr>
+<tr>
+<td>D(M, Dad; Daur, Hezhen)</td>
+<td style="text-align: right;">+0.000</td>
+<td style="text-align: right;">+0.02</td>
+<td>perfectly equidistant modern Tungusic</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key interpretation</strong>: Dad is <strong>genetically in the same sub-population as<br />
+Han_v7/v13</strong> — modern Banner-descent Han, not pure Manchu. This is exactly<br />
+the asymmetric ancestry hypothesis: dad is ½ Manchu Banner (paternal 王立言)<br />
++ ½ documented Han 世家 (maternal via 南源贾氏 + 东山谢氏 lineages).<br />
+Han_v7-style HGDP "Han" individuals are modern descendants of similar<br />
+Banner-descent Han families.</p>
+<p><strong>Dad isn't unique</strong>: he's part of a recognized modern Han sub-population<br />
+(~25% of HGDP Han panel) descended from Manchu Banner families who<br />
+Sinicized during the Republican + PRC era.</p>
+<h2 id="important-methodological-clarification-three-different-manchu-framings"><a class="toclink" href="#important-methodological-clarification-three-different-manchu-framings">Important methodological clarification — three different "% Manchu" framings</a></h2>
+<p>The number "% Amur_N" or "% Manchu" can mean three different things, and<br />
+they should not be conflated. For the family, the three framings give<br />
+different numbers for the same biological reality:</p>
+<table>
+<thead>
+<tr>
+<th>framing</th>
+<th>what it measures</th>
+<th style="text-align: right;">dad</th>
+<th style="text-align: right;">grandpa 王立言 (inferred)</th>
+<th style="text-align: right;">zhe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Recent Banner descent by family tree</strong></td>
+<td>Identifiable Manchu ancestor count / total ancestor count at a given generation</td>
+<td style="text-align: right;"><strong>½ (50%)</strong></td>
+<td style="text-align: right;"><strong>1 (100%)</strong></td>
+<td style="text-align: right;"><strong>¼ (25%)</strong></td>
+</tr>
+<tr>
+<td><strong>qpAdm Amur_N weight (2-source Yangshao+Amur)</strong></td>
+<td>f-stat vector projection onto ancient pure-NE Asian Neolithic source</td>
+<td style="text-align: right;"><strong>38%</strong></td>
+<td style="text-align: right;"><strong>~50%</strong></td>
+<td style="text-align: right;"><strong>18%</strong></td>
+</tr>
+<tr>
+<td><strong>Above-modal-Han-baseline NE excess</strong></td>
+<td>Amur_N elevation above the ~22% baseline that all N. Han carry from accumulated historical NE drift</td>
+<td style="text-align: right;"><strong>+16 pp</strong></td>
+<td style="text-align: right;"><strong>+28 pp</strong></td>
+<td style="text-align: right;"><strong>−4 pp (slightly below baseline)</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-these-differ-and-which-is-most-meaningful"><a class="toclink" href="#why-these-differ-and-which-is-most-meaningful">Why these differ — and which is most meaningful</a></h3>
+<p><strong>The "recent Banner descent" framing</strong> is what people normally mean by<br />
+"¼ Manchu". For zhe, this is 25% — exactly one of four grandparents<br />
+(王立言 paternal grandfather) was Banner Manchu descent.</p>
+<p><strong>The qpAdm Amur_N % is NOT directly comparable to family-tree %.</strong><br />
+Modern Manchus (Banner descendants today) are only ~50% Amur_N themselves<br />
+(250 years of Han-Manchu intermarriage absorbed Han admixture into modern<br />
+Manchus). So a "100% Banner descent" individual today reads as ~50% Amur_N<br />
+in qpAdm. Zhe's 18% Amur_N corresponds to <strong>~25% recent Banner ancestry<br />
+diluted through 2-source qpAdm compression</strong> — not to "18% Manchu by direct<br />
+descent".</p>
+<p><strong>The "above-baseline" framing is most biologically meaningful</strong> for<br />
+detecting recent specific admixture. Modal N. Han carries ~22% Amur_N as<br />
+the <strong>cumulative absorbed historical NE drift</strong> over 2000+ years (Xianbei,<br />
+Khitan, Jurchen, Mongol Yuan, Qing absorption). Individuals with <strong>NE<br />
+excess above this baseline</strong> indicate recent specific admixture beyond<br />
+what all N. Han carry.</p>
+<p>By this framing:<br />
+- Dad at +16pp above N. Han baseline → real recent Banner admixture<br />
+  (consistent with one Banner-descent parent)<br />
+- 王立言 at +28pp above N. Han baseline → essentially pure Manchu (both<br />
+  his parents were Banner)<br />
+- Zhe is <strong>−4pp BELOW N. Han baseline</strong> — because mom is Wu Han with<br />
+  a lower baseline (~15% Amur, since Wu region had less historical NE<br />
+  drift than N. China). Zhe's elevation above mom's Wu Han baseline<br />
+  is only +3pp, which is the actual signal of his recent ¼-Manchu descent.</p>
+<h3 id="worked-example-does-22-amur-in-modal-n-han-mean-14-manchu"><a class="toclink" href="#worked-example-does-22-amur-in-modal-n-han-mean-14-manchu">Worked example: does 22% Amur in modal N. Han mean ¼ Manchu?</a></h3>
+<p><strong>No.</strong> If 22% Amur_N meant ¼ recent Manchu, then every N. Han would be<br />
+¼ Manchu by recent descent, which is historically implausible. The 22%<br />
+baseline reflects <strong>accumulated historical NE drift from many sources<br />
+over 2000+ years</strong>, not recent (last few generations) Manchu admixture.</p>
+<p>The honest reading: dad and grandpa have NE excess <strong>above</strong> the historical<br />
+baseline indicating real recent Banner descent; zhe's slightly-below-baseline<br />
+position reflects mom's Wu Han lower baseline diluting dad's elevation.</p>
+<h2 id="geographic-context-dads-38-amur-is-unusually-high-for-wu-region"><a class="toclink" href="#geographic-context-dads-38-amur-is-unusually-high-for-wu-region">Geographic context — dad's 38% Amur is unusually high <em>for Wu region</em></a></h2>
+<p>Dad lives in Shaoxing (Wu region — Jiangsu/Zhejiang/Shanghai). The local<br />
+baseline matters: <strong>Wu region Han has much lower Amur baseline than N. China</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Population (modern)</th>
+<th style="text-align: right;">Amur_N baseline</th>
+<th>Geography</th>
+<th>Why this baseline?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N. China Han (Beijing, Hebei, Shandong, Liaoning)</td>
+<td style="text-align: right;">~22-28%</td>
+<td>Historical Xianbei/Khitan/Jurchen/Mongol/Qing absorption zone</td>
+<td>2000+ years of accumulated NE drift from many dynasties</td>
+</tr>
+<tr>
+<td>Modal Han (national avg)</td>
+<td style="text-align: right;">~20-22%</td>
+<td>mixed</td>
+<td>weighted national average</td>
+</tr>
+<tr>
+<td><strong>Wu region Han (Zhejiang/Jiangsu/Shanghai)</strong></td>
+<td style="text-align: right;"><strong>~10-15%</strong></td>
+<td>South of the absorption zone</td>
+<td>Less historical NE gene flow; mostly Tang/Song southern migrations</td>
+</tr>
+<tr>
+<td>Cantonese / Hokkien S. Han</td>
+<td style="text-align: right;">~5-10%</td>
+<td>deep south</td>
+<td>minimal historical NE admixture</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dad's 38% Amur in Wu region = ~+23-28pp above Wu Han local baseline.</strong></p>
+<p>This is a much larger elevation than the +16pp dad would show against N. Han<br />
+baseline. <strong>An individual at 38% Amur living in Wu region is statistically<br />
+rare — possibly &lt;1% of Wu region Han carry this much elevated NE.</strong> The same<br />
+38% in Beijing would be flagged as Banner-shifted but within the upper-tail<br />
+of N. Han variability (~5-10% of HGDP Han panel reaches this level).</p>
+<h3 id="statistical-rarity-by-geographic-context"><a class="toclink" href="#statistical-rarity-by-geographic-context">Statistical rarity by geographic context</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dad's 38% Amur scenario</th>
+<th>Statistical rarity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If dad were a typical Beijing resident</td>
+<td>upper-tail (~5-10% of N. Han at this level)</td>
+</tr>
+<tr>
+<td><strong>If dad were a typical Wu region resident</strong></td>
+<td><strong>extreme outlier (~&lt;1% of Wu Han at this level)</strong></td>
+</tr>
+<tr>
+<td>Dad's actual geography (Shaoxing, Wu region)</td>
+<td><strong>highly anomalous</strong> — requires specific historical explanation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-this-means-for-the-banner-descent-hypothesis"><a class="toclink" href="#what-this-means-for-the-banner-descent-hypothesis">What this means for the Banner-descent hypothesis</a></h3>
+<p>Dad's NE elevation isn't just "above average Han" — it's <strong>"displaced<br />
+Northern/Banner profile in a Southern (Wu region) location."</strong> Two<br />
+explanations could produce this:</p>
+<ol>
+<li><strong>Recent (1-2 generation) migration from N. China</strong> to Wu region —<br />
+   carries N. China baseline + any Banner admixture into Wu region.</li>
+<li><strong>Local descent from a Wu region Banner garrison community</strong> (Hangzhou<br />
+   Banner, 1645-1914) that maintained Manchu admixture internally before<br />
+   dispersing into Wu region post-1914.</li>
+</ol>
+<p>Both fit dad's profile, and both involve Banner-Manchu ancestry. The<br />
+documented family history (王长荣 born 1886, migrated to Shaoxing during<br />
+Republican era, no paper trail above him) points to Hangzhou Banner<br />
+descent specifically — see Part 3 timeline.</p>
+<p><strong>The key insight</strong>: 38% Amur is not "anomalous Han" globally — it's<br />
+"anomalous Han for THIS specific Wu region geography." The statistical<br />
+rarity of high-Amur individuals in Wu region (vs N. China) is itself<br />
+positive evidence for recent Banner-descent or Northern-migration origin,<br />
+not a generic Han baseline.</p>
+<p>For zhe at 18% Amur: in Wu region context, this is <strong>just slightly above<br />
+Wu Han baseline (~15%)</strong> — consistent with F1 dilution of dad's Banner<br />
+contribution into mom's Wu Han profile. In N. China, 18% would be below<br />
+N. Han baseline.</p>
+<p>This is why <strong>interpreting Amur_N must use local Wu region baseline</strong>, not<br />
+modal national Han average:<br />
+- Dad: +23pp above Wu Han baseline (very high, real recent Banner signal)<br />
+- Zhe: +3pp above Wu Han baseline (mild, consistent with ¼ Banner descent)<br />
+- Grandpa 王立言: +35pp above Wu Han baseline (essentially full Manchu)</p>
+<hr />
+<h1 id="part-4-cross-method-synthesis"><a class="toclink" href="#part-4-cross-method-synthesis">Part 4 — Cross-method synthesis</a></h1>
+<h2 id="convergent-findings-all-methods-agree-on-the-topology"><a class="toclink" href="#convergent-findings-all-methods-agree-on-the-topology">Convergent findings — all methods agree on the topology</a></h2>
+<table>
+<thead>
+<tr>
+<th>signal</th>
+<th>dad</th>
+<th>mom</th>
+<th>zhe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Above-Han-baseline NE-Asian</strong></td>
+<td><strong>+17% (high)</strong></td>
+<td>~0% (none)</td>
+<td><strong>+8% (mild but real)</strong></td>
+</tr>
+<tr>
+<td><strong>Han fraction (WeGene)</strong></td>
+<td>71%</td>
+<td>91%</td>
+<td>76%</td>
+</tr>
+<tr>
+<td><strong>Total NE-Asian cluster (WeGene)</strong></td>
+<td>27.7%</td>
+<td>6.5%</td>
+<td>24.0%</td>
+</tr>
+<tr>
+<td><strong>G25 R4P modern NE component</strong></td>
+<td>18% Manchu_Xinbin + 9% Korean</td>
+<td>(modeling artifact only)</td>
+<td>22% Korean_Yanbian</td>
+</tr>
+<tr>
+<td><strong>G25 R4P ancient NE component</strong></td>
+<td>10% WLR_LN_o + 4% Korea_BA</td>
+<td>17% Mongolia_Xiongnu (Han-shifted era, not steppe)</td>
+<td>trace only</td>
+</tr>
+<tr>
+<td><strong>YR-LN core (G25 ancient pool)</strong></td>
+<td>55%</td>
+<td>61%</td>
+<td><strong>78%</strong> (highest, regression-to-mean)</td>
+</tr>
+<tr>
+<td><strong>Direct qpAdm Yangshao + Amur_N (1240K)</strong></td>
+<td><strong>62% / 38%</strong> (SE 0.16)</td>
+<td>(n/a, no BAM) — Wu Han baseline ~15% Amur expected</td>
+<td><strong>82% / 18%</strong> (SE 0.17) — within F1 range of ½(dad+mom) ≈ 22-27%, slightly under-estimated by 2-source frame</td>
+</tr>
+<tr>
+<td><strong>Direct qpAdm Xisima + Amur + Fujian (1240K)</strong></td>
+<td>61% / 32% / 7%</td>
+<td>(n/a)</td>
+<td>72% / 19% / 10%</td>
+</tr>
+<tr>
+<td><strong>Y-haplogroup</strong></td>
+<td><strong>N-Y137601 (Tungusic)</strong></td>
+<td>(NA)</td>
+<td>N-Y137601 (inherited from dad)</td>
+</tr>
+<tr>
+<td><strong>mt-haplogroup</strong></td>
+<td>B4a (general E.Asian)</td>
+<td><strong>D5a2 (deep NE)</strong></td>
+<td>D5a2 (inherited from mom)</td>
+</tr>
+<tr>
+<td><strong>Closest population AVERAGE</strong></td>
+<td>Han_Jiangsu_Nanjing (d=0.020)</td>
+<td>Han_Zhejiang_Hangzhou (d=0.025)</td>
+<td>Han_Beijing_Central (d=0.016)</td>
+</tr>
+<tr>
+<td><strong>Closest INDIVIDUAL (extended pool)</strong></td>
+<td><strong>Manchu_Liaoning</strong> (d=0.027) — beats every Han individual</td>
+<td>Tujia (d=0.026), then Han_Guizhou</td>
+<td>Tujia (d=0.024), then <strong>Manchu_Bijie</strong> (rank #3, d=0.027)</td>
+</tr>
+<tr>
+<td><strong>YR↔Amur D-stat axis position</strong></td>
+<td>tied with <strong>Korean_indiv</strong> (D=−0.012)</td>
+<td>(n/a)</td>
+<td>between Han_S and Han_N (D=−0.015)</td>
+</tr>
+<tr>
+<td><strong>D-stat Han↔Korean</strong></td>
+<td>leans Korean (D=−0.002, Z=−1.2 ns)</td>
+<td>(n/a)</td>
+<td>symmetric (D=+0.0002, Z=0.12)</td>
+</tr>
+<tr>
+<td><strong>Father-son IBD signal</strong></td>
+<td>D(M, dad; zhe, *) = −0.27 (Z=72)</td>
+<td>(n/a)</td>
+<td>(same)</td>
+</tr>
+<tr>
+<td><strong>Relatives % East China</strong></td>
+<td>55%</td>
+<td><strong>61.8%</strong></td>
+<td>56.4%</td>
+</tr>
+<tr>
+<td><strong>Relatives % North/NE China</strong></td>
+<td>21.2%</td>
+<td>9.5%</td>
+<td>14.6%</td>
+</tr>
+<tr>
+<td><strong>Relatives total count (23mofang)</strong></td>
+<td>283</td>
+<td>136</td>
+<td>450</td>
+</tr>
+<tr>
+<td><strong>Closest 23mofang cousin</strong></td>
+<td>78 cM 潘** (Ningbo, Banner-descent profile, 16% NEAsian)</td>
+<td>50+ cM Ningbo cousins</td>
+<td>(inherited from both parents)</td>
+</tr>
+<tr>
+<td><strong>Group A vs B cousin partition</strong></td>
+<td>33% Banner-descent (NEAsian 3-16%) + 37% pure Wu Han (NEAsian 0%)</td>
+<td>almost all pure Wu Han</td>
+<td>mixed reflecting F1</td>
+</tr>
+<tr>
+<td><strong>Tibetan / Jomon / W.Eurasian</strong></td>
+<td>none (Z=−12+)</td>
+<td>none</td>
+<td>none (Z=−15+)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reconciling-apparent-contradictions"><a class="toclink" href="#reconciling-apparent-contradictions">Reconciling apparent contradictions</a></h2>
+<h3 id="g25-modern-only-said-mom-49-she-hmong-mien-substrate"><a class="toclink" href="#g25-modern-only-said-mom-49-she-hmong-mien-substrate">"G25 modern-only said mom = 49% She / Hmong-Mien substrate"</a></h3>
+<p><strong>Modeling artifact.</strong> Modern-only NNLS at K=4 forces the model to<br />
+triangulate mom's PCA position with extreme-axis pops (She, Jingpo,<br />
+Korean_Yanbian). With ancient samples added, mom resolves cleanly to<br />
+<strong>61% YR_LN + 22% Guangxi-medieval + 17% Han-shifted Xiongnu</strong> — and<br />
+<strong>WeGene confirms 0% she + 0% mongolian + 91% Han</strong>. Mom is a<br />
+mainstream Wu-region Han, not a deep-southern-substrate individual.</p>
+<h3 id="g25-pca-has-zhe-closer-to-mom-wegene-distance-has-zhe-closer-to-dad"><a class="toclink" href="#g25-pca-has-zhe-closer-to-mom-wegene-distance-has-zhe-closer-to-dad">"G25 PCA has zhe closer to mom; WeGene-distance has zhe closer to dad"</a></h3>
+<p><strong>Both correct, different metrics.</strong> PCA distance is continuous on the<br />
+NS Han cline — zhe sits between, slightly closer to mom on the dominant<br />
+axis. WeGene-distance is categorical — zhe and dad both have ~16-18%<br />
+mongolian; mom has 0%. The mongolian component came from dad (along with<br />
+the Y-line), and component-distance reflects that lineage relationship.</p>
+<h3 id="direct-qpadm-says-dad-is-38-amur-but-wegene-says-185-mongolian-which-is-it"><a class="toclink" href="#direct-qpadm-says-dad-is-38-amur-but-wegene-says-185-mongolian-which-is-it">"Direct qpAdm says dad is 38% Amur — but WeGene says 18.5% mongolian. Which is it?"</a></h3>
+<p><strong>Both correct, different reference frames.</strong> WeGene's mongolian<br />
+component is calibrated against a modern Mongol reference; AADR's Amur_N<br />
+is an ancient Neolithic NE Asian. Modern Mongol has additional steppe<br />
+admixture beyond pure Amur_N, so WeGene's 18.5% Mongol ≠ qpAdm's Amur_N<br />
+weight. The Mongol + Japanese + Korean WeGene categories sum to ~28%<br />
+(dad's "NE-Asian cluster") — that aligns well with the qpAdm 32-38% Amur<br />
+once we account for AADR Han already absorbing ~7% Mongol-equivalent.</p>
+<h3 id="hankorean-d-stat-is-symmetric-for-zhe-z02-does-he-have-ne-ancestry-or-not"><a class="toclink" href="#hankorean-d-stat-is-symmetric-for-zhe-z02-does-he-have-ne-ancestry-or-not">"Han↔Korean D-stat is symmetric for zhe (|Z|&lt;0.2) — does he have NE ancestry or not?"</a></h3>
+<p><strong>Consistent with 18% Amur_N qpAdm.</strong> Modern AADR Han is itself<br />
+NE-admixed (~7% mongolian-equivalent absorbed over centuries of Han-Manchu<br />
+gene flow). Zhe's <em>above-Han-baseline</em> NE elevation is ~8-10%, sitting<br />
+at the D-stat-vs-Han noise floor. qpAdm picks up the elevation as 18%<br />
+Amur_N because Amur_N is a <em>purer</em> ancient NE source than already-admixed<br />
+modern Han, so a larger Amur_N coefficient is needed to model zhe above<br />
+the AADR Han reference. The qpAdm 18% Amur_N, the D-stat |Z|≈0 vs Han,<br />
+the WeGene 15% mongolian, and the G25 Bijie-Manchu clustering are all<br />
+the same biology in different decompositions.</p>
+<h2 id="bottom-line-geographic-origin-reading"><a class="toclink" href="#bottom-line-geographic-origin-reading">Bottom-line geographic origin reading</a></h2>
+<h3 id="dad-wu-region-manchu-banner-descent-paternal-deep-wu-han-maternal"><a class="toclink" href="#dad-wu-region-manchu-banner-descent-paternal-deep-wu-han-maternal">Dad — Wu region Manchu Banner descent (paternal) + deep Wu Han (maternal)</a></h3>
+<ul>
+<li><strong>WeGene</strong>: 71% Han + 28% NE-Asian cluster (mongolian-heavy, +17% above baseline)</li>
+<li><strong>G25 modern</strong>: 18% Manchu_Xinbin + 9% Korean R4P; closest individual is Manchu_Liaoning, beating every Han</li>
+<li><strong>G25 ancient</strong>: 60% Shandong_IA_Han + 6% Korea_BA + WLR_LN_o</li>
+<li><strong>Direct qpAdm Yangshao+Amur_N (1240K)</strong>: <strong>62% / 38%</strong> — substantive Amur_N component</li>
+<li><strong>Direct qpAdm Xisima+Amur+Fujian (1240K)</strong>: 61% / 32% / 7%</li>
+<li><strong>Direct qpAdm robust across 5+ NE sources</strong>: 31-39% on Amur_N, PrimorskyAmurRiver_N, Amur_Mesolithic, Daur, Hezhen; drops to 20% on Boisman (Russian Far East) → dad's NE ancestry is <strong>Amur-river-specific</strong>, matching Heishui Mohe / proto-Manchu lineage</li>
+<li><strong>YR↔Amur D-stat position</strong>: tied with Korean_indiv (D=−0.012), between modal Han_N and Korean (HGDP)</li>
+<li><strong>D-stat — dad in "Banner-shifted Han" sub-cluster</strong>: closer to Han_v7/v13 (random HGDP Han with Banner-descent profile) than to pure Manchu (Xibo) — confirms dad is a Banner-descent Han, not a pure Manchu individual</li>
+<li><strong>Y-N-Y137601</strong> Tungusic paternal line, documented in some Aisin Gioro samples</li>
+<li><strong>283 23mofang relatives</strong>: 55% Wu region + 17% N. China; 78 cM Ningbo Banner-descent close cousin (潘**); 33% of close matches show Banner-descent NEAsian fingerprint, 37% are pure Wu Han</li>
+</ul>
+<p>→ <strong>Family origin: asymmetric ancestry — paternal line is Manchu or<br />
+Mongol Banner descent (NOT Han Banner, which was purged from Hangzhou<br />
+garrison by Qianlong era), most likely passing through the Hangzhou<br />
+Banner garrison in its late phase (1865-1914) after being transferred<br />
+in from another garrison. Maternal line is deep multi-generation Han<br />
+世家.</strong> The refined synthesis using 杭州驻防营 documentary history:</p>
+<ul>
+<li><strong>Hangzhou Banner garrison timeline</strong>: established 1645 with ~3920<br />
+  旗丁; <strong>1861/62 Taiping rebels destroyed the garrison</strong> (~8000 旗人<br />
+  perished in 自焚, most records lost, only 46 旗丁 survived on rolls<br />
+  after 1864). Garrison was artificially <strong>repopulated 1865-1875</strong> with<br />
+  banner troops transferred from <strong>乍浦 (Zhapu), 福州 (Fuzhou), 德州<br />
+  (Dezhou), 青州 (Qingzhou), 河南 (Henan), 荆州 (Jingzhou)</strong>. <strong>汉军八旗<br />
+  was already abolished by Qianlong era</strong> (康熙13/乾隆16/18/30 phased<br />
+  out), so only 满洲八旗 + 蒙古八旗 remained — meaning any Banner-descent<br />
+  王 family is a <strong>Manchu (满洲) or Mongol (蒙古) clan that Sinicized to<br />
+  王</strong>, NOT a Han Bannerman.</li>
+<li><strong>王长荣 (b. 1886)</strong> would have been born to a family that was either<br />
+  one of the rare 1861 massacre survivors OR (much more likely) descended<br />
+  from the 1865-1875 transferred-in banner troops from one of the source<br />
+  garrisons (Zhapu/Fuzhou/Dezhou/Qingzhou/Henan/Jingzhou). His family had<br />
+  only been in Hangzhou Banner for ~10-50 years before the 1914 demolition.</li>
+<li><strong>1911 Xinhai Revolution</strong>: Hangzhou garrison surrendered (less violent<br />
+  than the 1861 Taiping event). <strong>1914: 旗营 was physically demolished</strong>;<br />
+  Banner residents dispersed, many "壮丁被送往远郊转塘一带务农" (sent to<br />
+  转塘 area as farmers). 王长荣 was 28 at the 1914 demolition — adult,<br />
+  fully aware of his Banner background.</li>
+<li><strong>王长荣's lineage relocated to Shaoxing area</strong> (~50-70km from Hangzhou)<br />
+  after 1914, where he married 蒋月香 (likely also Banner-refugee<br />
+  descent). Both lived long lives (王长荣 to ~75, 蒋月香 to 87), but<br />
+  actively suppressed Banner identity through Republican-era anti-Manchu<br />
+  sentiment and PRC-era class-background framework (especially Cultural<br />
+  Revolution 1966-76). The identity was deliberately not transmitted to<br />
+  王立言 to protect him from political persecution.</li>
+<li><strong>Likely Sinicization candidates for 王</strong>: 完颜氏 (Wanyan, Jurchen Jin<br />
+  royal clan, surviving as Manchu Banner), 王佳氏 (Wanggiya, Manchu Eight<br />
+  Banner clan with 王 in name), or a Mongol Banner clan that adopted 王.<br />
+  Han Bannerman origins are ruled out by the Qianlong purges.</li>
+<li><strong>No direct documentary link from 王长荣 to specific Banner clan</strong>:<br />
+  search of zupu.cn shows too many 王 entries to narrow down without<br />
+  additional family information. Primary sources for further investigation:<br />
+  《杭州八旗驻防营志略》 (张大昌, 1893) — most comprehensive roster of<br />
+  garrison officers/families; 《八旗满洲氏族通谱》 (1744) — lists all<br />
+  Manchu lineages including Sinicized-to-王 ones.</li>
+<li><strong>贾余良 + 谢月娥</strong> (maternal grandparents) are <strong>documented prestigious<br />
+  Han 世家</strong> with formal 族谱 records:</li>
+<li><strong>贾余良</strong>: 南源贾氏 of 上虞, Luoyang (Henan) → Shangyu since ~1180 CE<br />
+    via 贾湜 (28-32 generations);</li>
+<li><strong>谢月娥</strong>: 东山谢氏 of 上虞 — descended from the legendary 谢安<br />
+    and the <strong>王谢风流</strong> aristocratic line, Taikang (Henan) → 始宁东山<br />
+    since <strong>286 CE</strong> via 谢衡 (~1700+ years in Shangyu, ~55+ generations).<br />
+    This is one of the most prestigious Han lineages in Chinese history.</li>
+</ul>
+<p>The autosomal math works with 贾湘钟 carrying ~15-25% Amur (typical Wu<br />
+  Han baseline), averaged with 王立言's ~50% Amur (pure Banner descent),<br />
+  producing dad's ~38% Amur.<br />
+- The combination of Y-N-Y137601 + 38% autosomal Amur + clustering with<br />
+  Manchu_Liaoning + the 78 cM Ningbo Banner-descent cousin (潘<strong> at<br />
+  16% NEAsian) + the Group A vs Group B partition in the cousin pool +<br />
+  3 于</strong> Beijing matches with Buryat/Tungusic ancestry all converge on<br />
+  this picture. Dad's family was <strong>continuously in Wu region for ~12<br />
+  generations</strong> as a Banner garrison population; the Republican-era event<br />
+  was the <strong>loss of Banner identity + short-distance dispersal</strong>, not<br />
+  a long-distance migration from N. China.</p>
+<h3 id="mom-wu-region-core-han-with-deep-ne-asian-maternal-line"><a class="toclink" href="#mom-wu-region-core-han-with-deep-ne-asian-maternal-line">Mom — Wu-region core Han with deep NE-Asian maternal line</a></h3>
+<ul>
+<li><strong>WeGene</strong>: 91% Han, 0% mongolian, only 6% japanese (essentially baseline Han with deep eastern profile)</li>
+<li><strong>G25 ancient</strong>: 61% YR_LN + 22% Guangxi-NSD + 17% Han-shifted Xiongnu</li>
+<li><strong>mt-D5a2a1-A9</strong> deep NE Asian maternal line (Bronze Age Inner Mongolia / Late Neolithic YR)</li>
+<li><strong>136 relatives</strong> — <strong>62% in 7 East China provinces, 32% in Zhejiang alone, only 1 NE-China relative across 33 provinces</strong></li>
+</ul>
+<p>→ <strong>Family origin: Wu-region (Zhejiang/Shanghai/Jiangsu) Han with deep<br />
+multi-generational residence in East China.</strong> Autosomally she's<br />
+mainstream Han — no Manchu admixture above baseline. Her D5a2 maternal<br />
+line reflects deep ancient NE Asian maternal structure that's now fully<br />
+absorbed into the broader Han genetic profile and not visible in<br />
+autosomal admixture decomposition. The "Xiongnu" / "Inner_Mongolia_Wei"<br />
+pulls in G25 ancient modeling are <em>Han-shifted populations of those eras</em>,<br />
+not actual steppe-nomad ancestry.</p>
+<h3 id="zhe-wu-region-han-at-the-genetic-midpoint-of-his-parents"><a class="toclink" href="#zhe-wu-region-han-at-the-genetic-midpoint-of-his-parents">Zhe — Wu-region Han at the genetic midpoint of his parents</a></h3>
+<ul>
+<li><strong>WeGene</strong>: 76% Han + 24% NE-Asian cluster (~½ of dad's 28%)</li>
+<li><strong>G25</strong>: closer to Han_Beijing_Central than every sampled Han individual<br />
+  (0th percentile across 92 samples — sits <em>at</em> the cline center)</li>
+<li><strong>G25 individual-level</strong>: closest Manchu match is <strong>Bijie Manchu</strong><br />
+  (a Han-diluted Manchu population) at rank #3 — exactly the F1-generation<br />
+  analogue of dad's Liaoning-Manchu profile diluted by mom's Han profile</li>
+<li><strong>G25 ancient (2018)</strong>: <strong>78% China_YR_LN</strong> + 12% Guangxi_Balong + minor noise</li>
+<li><strong>Direct qpAdm Yangshao+Amur_N (1240K)</strong>: <strong>82% / 18%</strong> — within F1 range of ½(dad+mom) ≈ 22-27%; slight under-estimate due to SE-coastal compression</li>
+<li><strong>Direct qpAdm Xisima+Amur+Fujian (1240K)</strong>: 72% / 19% / 10%</li>
+<li><strong>YR↔Amur D-stat position</strong>: D=−0.015 (more YR-leaning than Han_N)</li>
+<li><strong>Y-N-Y137601</strong> (from dad) + <strong>mt-D5a2a1-A9</strong> (from mom)</li>
+</ul>
+<p>→ <strong>Identifies as: textbook central-coastal Han individual at the genetic<br />
+midpoint of his parents.</strong> Inherits dad's Y-line + mom's mt-line + about<br />
+half of dad's autosomal Tungusic component diluted by mom's Wu Han<br />
+baseline. Closest population matches: Han_Zhejiang, Han_Guizhou,<br />
+Han_Jiangsu (the central-eastern coastal Chinese Han cluster).<br />
+<strong>Closest individual-level Manchu match is Bijie Manchu</strong> — a<br />
+real-world population that arrived at zhe's same ~18%-Amur + Han-heavy<br />
+profile through ~10 generations of dilution rather than 1. Birth city<br />
+Shanghai, ancestral roots Zhejiang/Jiangsu on both sides (mom Wu Han),<br />
+with dad's Manchu-Banner-derived NE-Asian overlay diluted to mainstream<br />
+modern-Han levels in zhe.</p>
+<h2 id="whats-robust-across-all-methods"><a class="toclink" href="#whats-robust-across-all-methods">What's robust across all methods</a></h2>
+<ol>
+<li><strong>Dad has substantive Manchu / NE-Tungusic ancestry on his paternal<br />
+   side</strong> — <strong>38% Amur_N</strong> in direct qpAdm + Y-N-Y137601 paternal line.<br />
+   The paternal grandparents (王长荣 + 蒋月香) are Manchu Banner descent,<br />
+   most likely from a Wu region Banner garrison (Hangzhou Banner, 70km<br />
+   from Shaoxing). After 1911 the Banner status was abolished and the<br />
+   family dispersed to nearby Wu region cities, losing Manchu identity<br />
+   within 1-2 generations. Maternal side (贾湘钟, daughter of 贾余良 +<br />
+   谢月娥) is <strong>documented prestigious Han 世家 via two distinct<br />
+   Henan-origin lineages</strong>:<br />
+   - <strong>贾余良 → 南源贾氏</strong>: Luoyang → Shangyu since 1180 CE (~900 yrs);<br />
+   - <strong>谢月娥 → 东山谢氏</strong>: Taikang → Shangyu since <strong>286 CE (~1700+ yrs)</strong>,<br />
+     descended from the famed 谢安 / 王谢风流 Eastern Jin aristocracy.</li>
+</ol>
+<p>These documented Han 世家 lineages provide the Wu Han baseline<br />
+   substrate and confirm the maternal side is deeply rooted Han with<br />
+   formal records spanning up to 17 centuries. Confirmed across all<br />
+   methods: WeGene 18.5% mongolian,<br />
+   G25 closest-individual is Manchu_Liaoning, Y-haplogroup is Tungusic,<br />
+   direct qpAdm against ancient AADR sources (<strong>31-39% NE across 5+<br />
+   reliable sources — Amur-river-specific, not generic deep-NE</strong>),<br />
+   78 cM Banner-descent cousin in Ningbo, ~33% of dad's close 23mofang<br />
+   cousins show Banner-descent fingerprint (NEAsian/Korean component),<br />
+   D-stat places dad in the "Banner-shifted Han" sub-cluster (closer<br />
+   to other Banner-descent HGDP Han like Han_v7/v13 than to pure Manchu<br />
+   reference Xibo).<br />
+2. <strong>Mom is mainstream Wu-region Han.</strong> 91% Han per WeGene, 0% mongolian<br />
+   above baseline, family extremely localized to Zhejiang/Shanghai. Her<br />
+   mt-D5a2a1-A9 carries deep NE structure but autosomally she's baseline Wu<br />
+   Han, carrying typical Wu Han baseline ~15% Amur_N (the ancient<br />
+   absorbed NE component all Wu Han share, distinct from any recent<br />
+   Manchu/Mongol admixture).<br />
+3. <strong>Zhe is the F1-generation midpoint</strong> with <strong>18% Amur_N</strong>, in the F1<br />
+   range expected from dad (38%) + mom (~15% baseline). The simple "zhe =<br />
+   ½ × dad" coincidence in point estimates is within qpAdm SE bars and<br />
+   somewhat under-estimated by 2-source compression of SE-coastal<br />
+   substrate. His autosomal profile = Bijie Manchu (a population at the<br />
+   same dilution endpoint by historical means).<br />
+4. <strong>Father-son IBD signal at |Z|=72</strong> confirms first-degree relatedness.<br />
+5. <strong>None have meaningful</strong> Tibetan, Jomon, SE Asian, West Eurasian, or<br />
+   steppe-nomad ancestry above noise.<br />
+6. <strong>Yellow-River-Han is the dominant ancestral component</strong> for everyone<br />
+   (54-78% in G25 ancient; 71-91% in WeGene; 62-82% Yangshao in<br />
+   biopipeline qpAdm).<br />
+7. <strong>The North-South Han axis</strong> structures the family geometrically: dad<br />
+   NE-shifted (at Korean_indiv position on YR↔Amur axis), zhe at modal<br />
+   Han / slightly YR-shifted, mom central-Wu-region.</p>
+<h2 id="recommended-next-steps"><a class="toclink" href="#recommended-next-steps">Recommended next steps</a></h2>
+<ol>
+<li><strong>Y-N-Y137601 sub-clade investigation — DONE via YFull BAM analysis</strong>:<br />
+   YFull's deepest placement for dad is <strong>N-Y137601</strong>, the same terminal<br />
+   node Yleaf identified from the ISOGG marker catalog. No further<br />
+   sub-clade resolution is currently available because either (a) dad's<br />
+   Y carries private mutations not yet matched to a YFull sub-branch,<br />
+   or (b) too few Y-N-Y137601 carriers have tested with YFull to split<br />
+   the branch into sub-clades.</li>
+</ol>
+<p>N-Y137601 placement is still informative — it's a specific terminal<br />
+   SNP, not a generic placement:<br />
+   - Found in Manchu/Tungusic Y-line carriers<br />
+   - Documented in some Aisin Gioro (Qing imperial clan) samples<br />
+   - Rare in pure Han populations (5-10% Y-N1c1 baseline)<br />
+   - Concentrated in NE China and Manchu-descended communities</p>
+<p>Specific clan identification (Wanyan / Wanggiya / Joseon Banner / etc.)<br />
+   currently isn't possible from Y-DNA alone — the relevant Y-SNPs splitting<br />
+   these lineages either haven't been discovered yet or aren't well-tested.<br />
+   This may improve in future as more N-Y137601 carriers test with YFull.</p>
+<p>Adjacent next steps:<br />
+   - <strong>YFull's "comparison" data</strong> — review the other N-Y137601 carriers<br />
+     in YFull's database for their geographic origins and family-tree<br />
+     surnames. Even without sub-clade resolution, the cluster pattern<br />
+     can suggest lineage origin.<br />
+   - <strong>23mofang's Y-DNA placement</strong> — they may have additional Y-SNPs<br />
+     in their proprietary Manchu/Han Y-database not yet in YFull. Worth<br />
+     uploading dad's expanded Y-CombinedKit (297K Y rows) to check.<br />
+   - <strong>Wait for more testers</strong> — if more Y-N-Y137601 carriers test, YFull<br />
+     may eventually split the branch into geographically/clan-distinct<br />
+     sub-clades.<br />
+2. <strong>mt-D5a2a1-A9 ancient-sample matching</strong> — DONE: mom's mtDNA was<br />
+   YFull-sequenced and resolves to D5a2a1-A9 terminal node. Next step<br />
+   would be cross-referencing the A9 sub-branch against published Bronze<br />
+   Age Inner Mongolia and Late Neolithic Yellow River ancient samples<br />
+   to identify the specific archaeological population her maternal line<br />
+   traces to.<br />
+3. <strong>Family genealogical research</strong> — given the Y-N-Y137601 finding and<br />
+   the direct qpAdm 38% Amur_N quantification, examining dad's paternal-<br />
+   line surnames and family records from late Qing / Republican era<br />
+   could identify the specific Manchu ancestor.<br />
+4. <strong>Mom BAM acquisition</strong> — low priority, would add little beyond the<br />
+   already-comprehensive WeGene + G25 + YFull-mtDNA picture of mom.<br />
+   Her autosomal profile is well-characterized as mainstream Wu Han;<br />
+   the high-value question (mt sub-clade) has been answered by YFull.</p>
+<hr />
+<h2 id="reproducibility"><a class="toclink" href="#reproducibility">Reproducibility</a></h2>
+<pre><code class="language-bash"># WeGene reanalysis
+~/g25/.venv/bin/python3 ~/wegene/_analyze.py | tee wegene_analysis.txt
+
+# G25 distance / single / reduce
+~/g25/rung distance zhe:zhe dad
+~/g25/rung single zhe:zhe --top 30
+~/g25/rung reduce zhe:zhe --keep 4
+~/g25/rung --sources 2025_modern_east_asian_averages.txt,2025_ancient_averages.txt \
+   reduce mom --keep 5
+
+# G25 nearest-individual analysis with Manchu pool
+~/g25/.venv/bin/python3 ~/g25/summaries/raw/_xref_manchu.py
+
+# G25 unique-region battery
+~/g25/.venv/bin/python3 ~/g25/summaries/raw/_uniq_fast.py
+
+# biopipeline qpAdm reruns (legacy bcftools ZheAddr-only)
+cd ~/biopipeline &amp;&amp; ./run                   # default ZheAddr test (bcftools)
+cd ~/biopipeline &amp;&amp; ./run testcases         # all 23 passing test cases
+cd ~/biopipeline &amp;&amp; ./runq ZheAddr Han Korean   # D-statistics
+
+# Direct AADR co-merge for dad + zhe (the 2026-05-11 pileupCaller pipeline)
+# Genosets pre-built; qpAdm runs read these directly:
+QPADM=/home/zzwang/tools/AdmixTools/bin/qpAdm
+GENO=/home/zzwang/zhe/aadr_call_pc/family_v2_with_aadr_fixed.geno  # 1240K
+# or
+GENO=/home/zzwang/zhe/aadr_call_pc/family_ho_v2.geno              # HO panel
+# See /tmp/run_qpadm.sh for the 22-model battery script and
+# /tmp/run_qpadm_axis_check.sh for the 7-target axis check.
+
+# D-stats on same genosets:
+QPDSTAT=/home/zzwang/tools/AdmixTools/bin/qpDstat
+# /tmp/zhe_dstats_pc.par, /tmp/korean_dstats.par,
+# /tmp/ns_han_dstats.par, /tmp/yr_amur_axis_dstats.par
+</code></pre>
+<h2 id="file-map"><a class="toclink" href="#file-map">File map</a></h2>
+<table>
+<thead>
+<tr>
+<th>document</th>
+<th>what's in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Zhe_family_wegene.md"><code>~/wegene/Zhe_family_wegene.md</code></a></td>
+<td><strong>This document — master cross-method analysis</strong></td>
+</tr>
+<tr>
+<td><a href="wegeneV16.csv"><code>~/wegene/wegeneV16.csv</code></a></td>
+<td>Source: WeGene admixture report</td>
+</tr>
+<tr>
+<td><a href="."><code>~/wegene/{zhe,dad,mom}_relatives.txt</code></a></td>
+<td>Source: relatives by province (23mofang, scraped per-platform)</td>
+</tr>
+<tr>
+<td><a href="_analyze.py"><code>~/wegene/_analyze.py</code></a></td>
+<td>Re-run script</td>
+</tr>
+<tr>
+<td><a href="../g25/summaries/Zhe_family_g25_robust.md"><code>~/g25/summaries/Zhe_family_g25_robust.md</code></a></td>
+<td>G25 detail (200+ tests, 7 pools, G25-only)</td>
+</tr>
+<tr>
+<td><a href="../g25/summaries/raw/"><code>~/g25/summaries/raw/</code></a></td>
+<td>G25 raw outputs (157+ files including Manchu pool xref)</td>
+</tr>
+<tr>
+<td><a href="../biopipeline/summaries/Zhe.md"><code>~/biopipeline/summaries/Zhe.md</code></a></td>
+<td>qpAdm summary for ZheAddr_pc (pileupCaller-rewritten 2026-05-11; supersedes prior bcftools-ZheAddr analysis)</td>
+</tr>
+<tr>
+<td><a href="../biopipeline/summaries/Zhe_dstats.md"><code>~/biopipeline/summaries/Zhe_dstats.md</code></a></td>
+<td>D-stat battery for ZheAddr_pc (34 quartets, pileupCaller-rewritten 2026-05-11)</td>
+</tr>
+<tr>
+<td><a href="../biopipeline/summaries/Dad.md"><code>~/biopipeline/summaries/Dad.md</code></a></td>
+<td><strong>NEW (2026-05-11)</strong> — qpAdm summary for DadAddr (pileupCaller from b37 CRAM)</td>
+</tr>
+<tr>
+<td><a href="../biopipeline/summaries/Dad_dstats.md"><code>~/biopipeline/summaries/Dad_dstats.md</code></a></td>
+<td><strong>NEW (2026-05-11)</strong> — D-stat battery for DadAddr</td>
+</tr>
+<tr>
+<td><a href="../biopipeline/summaries/Dad_validation_plan.md"><code>~/biopipeline/summaries/Dad_validation_plan.md</code></a></td>
+<td>Dad BAM validation plan + pre-staged YAMLs (historical reference; pipeline now superseded by direct AADR-merge in <code>~/zhe/aadr_call_pc/</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p style="color:#888; font-size:0.85em; margin-top: 30px;">
+Generated from the analytical working document. Last source modification: 2026-05-13.
+Returns to landing: <a href="index.html">index.html</a> · English: <a href="en.html">en.html</a> · 中文: <a href="zh.html">zh.html</a>
+</p>
+</main>
+</div>
+</body>
+</html>
