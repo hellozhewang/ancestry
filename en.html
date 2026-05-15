@@ -207,6 +207,39 @@ tr:hover td { background: #faf5ec; }
     margin: 20px 0;
 }
 .evidence-flow strong { color: #5a4030; }
+.y-chart {
+    margin: 16px 0 10px;
+}
+.y-row {
+    display: grid;
+    grid-template-columns: 118px 1fr 58px;
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 0.9em;
+}
+.y-label { color: #4a3020; font-weight: 600; }
+.y-bar-track {
+    height: 18px;
+    background: #f1eadb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.y-bar {
+    height: 100%;
+    background: #718a55;
+    border-radius: 4px;
+}
+.y-value {
+    color: #5a4030;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+.chart-note {
+    color: #777;
+    font-size: 0.86em;
+    margin-top: 8px;
+}
 footer.report {
     margin-top: 60px;
     padding: 30px 0;
@@ -219,6 +252,7 @@ footer.report {
     nav.toc { position: static; height: auto; width: 100%; border-right: none; border-bottom: 1px solid #e5dfd0; }
     main { padding: 30px 25px; }
     header.report h1 { font-size: 1.7em; }
+    .y-row { grid-template-columns: 92px 1fr 52px; }
 }
 </style>
 </head>
@@ -228,6 +262,7 @@ footer.report {
 <nav class="toc">
 <h2>Contents</h2>
 <a href="#summary">1. Executive summary</a>
+<a href="#reader-guide" class="h3">Quick reader guide</a>
 <a href="#evidence-stack">2. Evidence stack</a>
 <a href="#dad">3. Dad (王一波) — paternal Amur/Jurchen-Manchu signal</a>
 <a href="#dad-autosomal" class="h3">3a. Autosomal: Amur-related signal</a>
@@ -273,6 +308,77 @@ footer.report {
 <li><strong>Documentary</strong> (moderate confidence): family register kept by a 命师 (fortune teller) with hour-precise birth/death dates but <em>no names, no 籍贯</em> above 王长荣 — opposite of the maternal side's deep 族谱 records.</li>
 <li><strong>Cultural / behavioral</strong> (moderate confidence): 敦龙 as actively-used family name into 2026 (propagated through marriage into 贾 family network); polygamy of 王长荣's father (≥3 wives), which is compatible with a Banner/officer or wealthy-literati background but not decisive on its own.</li>
 </ul>
+
+<h3 id="reader-guide">Quick reader guide</h3>
+
+<div class="highlight-box">
+<h4>Why the Y-DNA distribution catches the eye</h4>
+<p>N-Y137601 is rare nationally, but its visible 23mofang distribution does not look like a smooth north-to-south Han migration gradient. It peaks in Manchu/Tungusic-associated regions and in southern garrison/dispersal cities, while Jiangsu dips between Zhejiang and Shanghai.</p>
+<div class="y-chart" aria-label="N-Y137601 distribution by province">
+<div class="y-row"><div class="y-label">Shanghai</div><div class="y-bar-track"><div class="y-bar" style="width:100%"></div></div><div class="y-value">0.31%</div></div>
+<div class="y-row"><div class="y-label">Heilongjiang</div><div class="y-bar-track"><div class="y-bar" style="width:94%"></div></div><div class="y-value">0.29%</div></div>
+<div class="y-row"><div class="y-label">Inner Mongolia</div><div class="y-bar-track"><div class="y-bar" style="width:74%"></div></div><div class="y-value">0.23%</div></div>
+<div class="y-row"><div class="y-label">Beijing</div><div class="y-bar-track"><div class="y-bar" style="width:48%"></div></div><div class="y-value">0.15%</div></div>
+<div class="y-row"><div class="y-label">Zhejiang</div><div class="y-bar-track"><div class="y-bar" style="width:39%"></div></div><div class="y-value">0.12%</div></div>
+<div class="y-row"><div class="y-label">Liaoning</div><div class="y-bar-track"><div class="y-bar" style="width:35%"></div></div><div class="y-value">0.11%</div></div>
+<div class="y-row"><div class="y-label">Shandong</div><div class="y-bar-track"><div class="y-bar" style="width:32%"></div></div><div class="y-value">0.10%</div></div>
+<div class="y-row"><div class="y-label">Jiangsu</div><div class="y-bar-track"><div class="y-bar" style="width:13%"></div></div><div class="y-value">0.04%</div></div>
+<p class="chart-note">Bar lengths are scaled to Shanghai = 100. National baseline reported by 23mofang is about 0.04% of Chinese males.</p>
+</div>
+<table>
+<thead><tr><th>Rank</th><th>Province</th><th>N-Y137601 frequency</th><th>Reader-level interpretation</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Shanghai</td><td>0.31%</td><td>southern dispersal / migration spike</td></tr>
+<tr><td>2</td><td>Heilongjiang</td><td>0.29%</td><td>Manchu/Tungusic homeland zone</td></tr>
+<tr><td>3</td><td>Inner Mongolia</td><td>0.23%</td><td>Manchu/Mongol/NE borderland zone</td></tr>
+<tr><td>4</td><td>Beijing</td><td>0.15%</td><td>Banner capital context</td></tr>
+<tr><td>5</td><td>Zhejiang</td><td>0.12%</td><td>family province; Hangzhou / Zhapu garrison context</td></tr>
+<tr><td>10</td><td>Jiangsu</td><td>0.04%</td><td>dip between Zhejiang and Shanghai, not a smooth gradient</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="highlight-box">
+<h4>Broader China Y-DNA context</h4>
+<p>For scale, GeneU's WeGene aggregate for China shows that O-lineages dominate Chinese paternal lines, especially O2 and O1. N is a minority lineage nationally, so a rare downstream N branch such as N-Y137601 becomes interesting when its geography points toward Manchu/Tungusic-associated regions and southern dispersal cities.</p>
+<div class="y-chart" aria-label="GeneU WeGene China-wide Y-DNA haplogroup context">
+<div class="y-row"><div class="y-label">O2</div><div class="y-bar-track"><div class="y-bar" style="width:100%"></div></div><div class="y-value">52.4%</div></div>
+<div class="y-row"><div class="y-label">O1</div><div class="y-bar-track"><div class="y-bar" style="width:44%"></div></div><div class="y-value">23.1%</div></div>
+<div class="y-row"><div class="y-label">C</div><div class="y-bar-track"><div class="y-bar" style="width:19%"></div></div><div class="y-value">9.7%</div></div>
+<div class="y-row"><div class="y-label">N</div><div class="y-bar-track"><div class="y-bar" style="width:13%"></div></div><div class="y-value">6.9%</div></div>
+<div class="y-row"><div class="y-label">Q</div><div class="y-bar-track"><div class="y-bar" style="width:5%"></div></div><div class="y-value">2.8%</div></div>
+<div class="y-row"><div class="y-label">D</div><div class="y-bar-track"><div class="y-bar" style="width:4%"></div></div><div class="y-value">1.9%</div></div>
+<div class="y-row"><div class="y-label">Other</div><div class="y-bar-track"><div class="y-bar" style="width:6%"></div></div><div class="y-value">3.3%</div></div>
+<p class="chart-note">Source: <a href="https://geneu.xyz/surname-haplo/wegene">GeneU / WeGene China GeoGene aggregate</a>, API timestamp 2026/5/15 00:00:16 China time; n = 7,908 Y-DNA records after excluding overseas and unknown-region entries. This is a commercial database aggregate, not a peer-reviewed census.</p>
+</div>
+</div>
+
+<div class="evidence-flow">
+<strong>The working inheritance picture:</strong>
+<p class="mono">candidate paternal source -> 王长荣? -> 王立言 -> 王一波 -> 王喆</p>
+<p>If 王长荣 or his immediate paternal background is the relevant source, the rough pedigree share is dad 25% and zhe 12.5%. The genetic coefficients are not expected to equal those pedigree numbers, because each proxy population already contains its own mixture history.</p>
+</div>
+
+<div class="highlight-box warning">
+<h4>What this does not mean</h4>
+<ul>
+<li>It does not mean dad is pure Hezhen or pure Manchu.</li>
+<li>It does not prove the specific clan was 完颜.</li>
+<li>It does not mean every Amur_N coefficient is recent ancestry.</li>
+<li>It does mean dad's paternal side has a real Amur/Jurchen-Manchu-related signal that is unusual for a Zhejiang/Wu-region family baseline.</li>
+</ul>
+</div>
+
+<h4>Evidence strength at a glance</h4>
+<table>
+<thead><tr><th>Strength</th><th>Claim</th></tr></thead>
+<tbody>
+<tr><td><span class="confidence conf-vhigh">very high</span></td><td>Dad is shifted toward Amur/Jurchen-Manchu-related sources above the Zhejiang/Wu-region Han baseline.</td></tr>
+<tr><td><span class="confidence conf-high">high</span></td><td>The signal is mainly paternal-side: Y-DNA, dad-vs-mom contrast, father-son dilution, and record asymmetry align.</td></tr>
+<tr><td><span class="confidence conf-mod">moderate</span></td><td>Hangzhou / southern garrison dispersal is the best historical setting, but not proven from a named roster yet.</td></tr>
+<tr><td><span class="confidence conf-low">low</span></td><td>Specific clan identification such as 完颜 remains a working hypothesis, not a conclusion.</td></tr>
+</tbody>
+</table>
 </section>
 
 <section id="evidence-stack">

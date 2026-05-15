@@ -198,6 +198,39 @@ tr:hover td { background: #faf5ec; }
     margin: 20px 0;
 }
 .evidence-flow strong { color: #5a4030; }
+.y-chart {
+    margin: 16px 0 10px;
+}
+.y-row {
+    display: grid;
+    grid-template-columns: 118px 1fr 58px;
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 0.9em;
+}
+.y-label { color: #4a3020; font-weight: 600; }
+.y-bar-track {
+    height: 18px;
+    background: #f1eadb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.y-bar {
+    height: 100%;
+    background: #718a55;
+    border-radius: 4px;
+}
+.y-value {
+    color: #5a4030;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+.chart-note {
+    color: #777;
+    font-size: 0.86em;
+    margin-top: 8px;
+}
 footer.report {
     margin-top: 60px;
     padding: 30px 0;
@@ -210,6 +243,7 @@ footer.report {
     nav.toc { position: static; height: auto; width: 100%; border-right: none; border-bottom: 1px solid #e5dfd0; }
     main { padding: 30px 25px; }
     header.report h1 { font-size: 1.7em; }
+    .y-row { grid-template-columns: 92px 1fr 52px; }
 }
 </style>
 </head>
@@ -219,6 +253,7 @@ footer.report {
 <nav class="toc">
 <h2>目录</h2>
 <a href="#summary">一、核心结论</a>
+<a href="#reader-guide" class="h3">快速阅读指南</a>
 <a href="#evidence-stack">二、证据汇总</a>
 <a href="#dad">三、王一波 — 父系阿穆尔 / 女真-满洲信号</a>
 <a href="#dad-autosomal" class="h3">3a. 常染色体:阿穆尔相关信号</a>
@@ -264,6 +299,77 @@ footer.report {
 <li><strong>文献证据</strong>(中等置信度):家族登记册由命师(算命师)精确到时辰记录出生死亡日期,但王长荣以上完全<em>没有姓名、没有籍贯</em> — 与母系两大世家的深度族谱形成鲜明对比。</li>
 <li><strong>文化/行为证据</strong>(中等置信度):「敦龙」作为家用名一直使用到 2026 年(通过婚姻传入贾家亲属网络);王长荣父亲的多妻制(≥3 妻),与八旗军官或富裕士绅背景相容,但单独不能定论。</li>
 </ul>
+
+<h3 id="reader-guide">快速阅读指南</h3>
+
+<div class="highlight-box">
+<h4>为什么 Y 染色体分布图很关键</h4>
+<p>N-Y137601 在全国很少见,但 23魔方可见分布不像平滑的「北方汉族南迁梯度」。它在满洲 / 通古斯相关地区和南方驻防、散迁城市出现高点,而江苏夹在浙江和上海之间反而低。</p>
+<div class="y-chart" aria-label="N-Y137601 各省分布">
+<div class="y-row"><div class="y-label">上海</div><div class="y-bar-track"><div class="y-bar" style="width:100%"></div></div><div class="y-value">0.31%</div></div>
+<div class="y-row"><div class="y-label">黑龙江</div><div class="y-bar-track"><div class="y-bar" style="width:94%"></div></div><div class="y-value">0.29%</div></div>
+<div class="y-row"><div class="y-label">内蒙古</div><div class="y-bar-track"><div class="y-bar" style="width:74%"></div></div><div class="y-value">0.23%</div></div>
+<div class="y-row"><div class="y-label">北京</div><div class="y-bar-track"><div class="y-bar" style="width:48%"></div></div><div class="y-value">0.15%</div></div>
+<div class="y-row"><div class="y-label">浙江</div><div class="y-bar-track"><div class="y-bar" style="width:39%"></div></div><div class="y-value">0.12%</div></div>
+<div class="y-row"><div class="y-label">辽宁</div><div class="y-bar-track"><div class="y-bar" style="width:35%"></div></div><div class="y-value">0.11%</div></div>
+<div class="y-row"><div class="y-label">山东</div><div class="y-bar-track"><div class="y-bar" style="width:32%"></div></div><div class="y-value">0.10%</div></div>
+<div class="y-row"><div class="y-label">江苏</div><div class="y-bar-track"><div class="y-bar" style="width:13%"></div></div><div class="y-value">0.04%</div></div>
+<p class="chart-note">柱长以上海 = 100 缩放。23魔方报告的全国基线约为中国男性 0.04%。</p>
+</div>
+<table>
+<thead><tr><th>排名</th><th>省市</th><th>N-Y137601 频率</th><th>直观解读</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>上海</td><td>0.31%</td><td>南方散迁 / 移民高点</td></tr>
+<tr><td>2</td><td>黑龙江</td><td>0.29%</td><td>满洲 / 通古斯故地</td></tr>
+<tr><td>3</td><td>内蒙古</td><td>0.23%</td><td>满蒙及东北边地</td></tr>
+<tr><td>4</td><td>北京</td><td>0.15%</td><td>八旗首都背景</td></tr>
+<tr><td>5</td><td>浙江</td><td>0.12%</td><td>父亲所在省;杭州 / 乍浦驻防背景</td></tr>
+<tr><td>10</td><td>江苏</td><td>0.04%</td><td>夹在浙江和上海高点之间的低谷,不像平滑梯度</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="highlight-box">
+<h4>更大的中国 Y-DNA 背景</h4>
+<p>为了有一个直观比例参照,GeneU 的 WeGene 中国汇总数据显示:中国父系以 O 系为主体,尤其是 O2 和 O1。N 在全国属于少数父系,所以像 N-Y137601 这样的下游稀有 N 支系,如果地理又指向满洲 / 通古斯相关区域和南方散迁城市,就会变得值得注意。</p>
+<div class="y-chart" aria-label="GeneU WeGene 中国 Y-DNA 单倍群背景">
+<div class="y-row"><div class="y-label">O2</div><div class="y-bar-track"><div class="y-bar" style="width:100%"></div></div><div class="y-value">52.4%</div></div>
+<div class="y-row"><div class="y-label">O1</div><div class="y-bar-track"><div class="y-bar" style="width:44%"></div></div><div class="y-value">23.1%</div></div>
+<div class="y-row"><div class="y-label">C</div><div class="y-bar-track"><div class="y-bar" style="width:19%"></div></div><div class="y-value">9.7%</div></div>
+<div class="y-row"><div class="y-label">N</div><div class="y-bar-track"><div class="y-bar" style="width:13%"></div></div><div class="y-value">6.9%</div></div>
+<div class="y-row"><div class="y-label">Q</div><div class="y-bar-track"><div class="y-bar" style="width:5%"></div></div><div class="y-value">2.8%</div></div>
+<div class="y-row"><div class="y-label">D</div><div class="y-bar-track"><div class="y-bar" style="width:4%"></div></div><div class="y-value">1.9%</div></div>
+<div class="y-row"><div class="y-label">其他</div><div class="y-bar-track"><div class="y-bar" style="width:6%"></div></div><div class="y-value">3.3%</div></div>
+<p class="chart-note">来源:<a href="https://geneu.xyz/surname-haplo/wegene">GeneU / WeGene 中国地理基因汇总</a>,API 时间戳为中国时间 2026/5/15 00:00:16;排除海外和未知地区后 n = 7,908 条 Y-DNA 记录。这是商业数据库汇总,不是同行评议全国普查。</p>
+</div>
+</div>
+
+<div class="evidence-flow">
+<strong>当前工作继承图:</strong>
+<p class="mono">候选父系来源 -> 王长荣? -> 王立言 -> 王一波 -> 王喆</p>
+<p>如果王长荣或其直接父系背景是相关来源,粗略族谱比例是父亲 25%、王喆 12.5%。遗传模型系数不需要等于族谱比例,因为每个代理人群本身也有自己的混合历史。</p>
+</div>
+
+<div class="highlight-box warning">
+<h4>这不意味着什么</h4>
+<ul>
+<li>不表示父亲是纯赫哲或纯满族。</li>
+<li>不证明具体族系一定是完颜。</li>
+<li>不表示每个 Amur_N 系数都是近代祖源。</li>
+<li>它表示:在浙江 / 吴语区家族基线下,父亲父系有真实的阿穆尔 / 女真-满洲相关信号。</li>
+</ul>
+</div>
+
+<h4>证据强度一眼看懂</h4>
+<table>
+<thead><tr><th>强度</th><th>论点</th></tr></thead>
+<tbody>
+<tr><td><span class="confidence conf-vhigh">非常高</span></td><td>父亲相对浙江 / 吴语区汉族基线,确实偏向阿穆尔 / 女真-满洲相关来源。</td></tr>
+<tr><td><span class="confidence conf-high">高</span></td><td>信号主要来自父系:Y-DNA、父母对比、父子减半和记录不对称互相吻合。</td></tr>
+<tr><td><span class="confidence conf-mod">中等</span></td><td>杭州 / 南方驻防散迁是目前最好的历史背景,但尚未由点名档案证明。</td></tr>
+<tr><td><span class="confidence conf-low">低</span></td><td>完颜等具体族系仍是工作假说,不是结论。</td></tr>
+</tbody>
+</table>
 </section>
 
 <section id="evidence-stack">
