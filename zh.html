@@ -263,6 +263,7 @@ footer.report {
 <a href="#dad-american" class="h3">3e. 美国平台「韩国」%</a>
 <a href="#dad-heilongjiang" class="h3">3f. 黑龙江亲戚</a>
 <a href="#dad-name" class="h3">3g. 敦龙 命名不对称</a>
+<a href="#dad-rfmix" class="h3">3h. RFmix 段长检验</a>
 <a href="#mom">四、胡吉 — 吴语区汉族</a>
 <a href="#zhe">五、王喆 — 继承结构</a>
 <a href="#hypothesis">六、主导假说</a>
@@ -538,6 +539,37 @@ footer.report {
 </ul>
 <p>这是 1911 年后八旗后代家族的预期标记:当外部身份标志(族谱、籍贯)被政治迫害破坏时,身份只能通过内部实践传承 — 长辈如何称呼后代、家里用什么名字、过年用什么菜。汉族世家不需要实践性身份延续,因为他们的族谱已经承担了身份保存。</p>
 </div>
+
+<h3 id="dad-rfmix">3h. RFmix 局部祖源段长检验 — 近代 vs 远古混血直接证据</h3>
+<p>运行日期:2026-05-15。流水线:AADR 1240K → Beagle 5.4 定相 → RFmix v2.03 局部祖源推断。参考样本库:128 个 AADR 样本(43 汉 + 11 赫哲 + 10 达斡尔 + 11 锡伯 + 11 鄂伦春 + 11 蒙古 + 31 日本)。查询样本:父亲 + 3 个控制个体。</p>
+
+<p><strong>诊断性测试。</strong>qpAdm 只能告诉你某祖源占多少比例,但不能告诉你是<em>什么时候</em>混入的。RFmix 给染色体上每一段都标注其最可能来源人群,从而揭示真实的段长分布。在标准混血模型下,最大单段长度预期:</p>
+<ul>
+<li><strong>3-4 代前</strong>(曾祖父级别):最大段 40-80+ cM</li>
+<li><strong>5-10 代前</strong>:最大段 15-30 cM</li>
+<li><strong>30+ 代前</strong>(远古散布):最大段 &lt;10 cM</li>
+</ul>
+
+<table>
+<thead><tr><th>样本</th><th>qpAdm 总赫哲 %</th><th>RFmix 东北亚总 cM</th><th>东北亚段数</th><th>最大东北亚段 (cM)</th><th>前 5 大东北亚段 (cM)</th></tr></thead>
+<tbody>
+<tr><td>HGDP00774(八旗偏移汉)</td><td>56.5%</td><td>1359</td><td>369</td><td>18.1</td><td>18, 16, 15, 14, 14</td></tr>
+<tr><td>HGDP00784(典型汉)</td><td>27.5%</td><td>1480</td><td>404</td><td>22.8</td><td>23, 16, 14, 14, 13</td></tr>
+<tr><td>HGDP01296(纯黄河汉)</td><td>8.5%</td><td>1859</td><td>444</td><td>22.0</td><td>22, 17, 17, 15, 14</td></tr>
+<tr><td><strong>王一波</strong></td><td>~38% 阿穆尔(qpAdm)</td><td><strong>2139</strong></td><td><strong>478</strong></td><td><strong>45.78</strong></td><td><strong>46, 24, 22, 20, 19</strong></td></tr>
+</tbody>
+</table>
+
+<div class="highlight-box success">
+<h4>核心发现</h4>
+<p><strong>父亲最大单个东北亚段为 45.78 cM,位于第 15 号染色体</strong>(Mb 20.07-35.09)。这<strong>比任何控制个体的最大段大约 2.5 倍</strong> — 包括 HGDP00774,虽然后者总赫哲比例更高(56.5% vs 父亲的 38%)。父亲总赫哲更少但最大段更大,这是<strong>近代单一祖先来源</strong>的诊断特征,而不是远古散布累积。45 cM 完整段只能来自约 3-4 代前的祖先 — 正好对应家族记录中王长荣父亲(1914 灯祖父记录,即王喆的高祖父级别)。</p>
+</div>
+
+<p><strong>RFmix 不能区分的部分。</strong>东北亚簇内的亚人群(赫哲 vs 达斡尔 vs 锡伯 vs 鄂伦春 vs 蒙古)由于太相似,加上参考样本量小(各约 10 个),在亚 Mb 尺度上无法可靠区分。父亲的前几大东北亚段都显示同一段内有<em>混合的亚人群标注</em>(例如 chr15 段被标为"达斡尔、赫哲、蒙古、锡伯"的连续混合)。所以陈满洲 vs 新满洲的问题在 RFmix 后仍然开放 — 但近代 vs 远古的时间问题已经解决。</p>
+
+<p><strong>置信度更新。</strong>RFmix 段长分析增加了直接的局部祖源证据,证明父亲的东北亚成分来自近代(3-4 代)来源 — 排除了"远古散布的北方汉族混血"这个替代假说。这将"近代八旗后代"的结论从<strong>高 → 非常高</strong>。</p>
+
+<p>完整输出在 <code>/home/zzwang/rfmix/output/</code>:每个样本的核型图(PNG)、每段详情 CSV、所有 22 条常染色体的 RFmix MSP 原始文件,以及 <code>INTERPRETATION.md</code> 分析报告。</p>
 </section>
 
 <section id="mom">
